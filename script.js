@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // alert('Login successful! This is a demo.');
                 
                 // Simulate login success - in production, redirect after successful API response
-                window.location.href = 'about-us.html';
+                window.location.href = 'home.html';
             }
         });
     }

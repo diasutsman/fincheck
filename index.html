@@ -21,76 +21,95 @@
 		<link rel="stylesheet" href="footer.css" />
 	</head>
 	<body>
-		<div class="login-container">
-			<!-- Logo -->
-			<div class="logo-container">
-				<a href="index.html">
-					<img
-						src="images/probiz360-logo.svg"
-						alt="ProBiz360 Logo"
-						class="logo"
-					/>
-				</a>
-			</div>
-
-			<!-- Login Form -->
-			<div class="form-container">
-				<form action="about-us.html" method="get">
-					<!-- Email/Username Input -->
-					<div class="form-group">
-						<input
-							type="text"
-							class="form-control"
-							placeholder="Email or Username"
-							required
-						/>
-						<div class="input-underline"></div>
-					</div>
-
-					<!-- Password Input -->
-					<div class="form-group">
-						<input
-							type="password"
-							class="form-control"
-							placeholder="Password"
-							required
-						/>
-						<div class="input-underline"></div>
-					</div>
-
-					<!-- Login Button -->
-					<div class="form-group">
-						<button type="submit" class="btn btn-login">Login</button>
-					</div>
-				</form>
-			</div>
-
-			<!-- Social Login Section -->
-			<div class="social-login-container">
-				<!-- Social Login Separator -->
-				<div class="separator-container">
-					<p class="separator">Login using sosmed</p>
+		<div class="login-page">
+			<!-- Left side with background image -->
+			<div class="login-image-side">
+				<div class="overlay"></div>
+				<div class="logo-on-image">
+					<img src="images/white-logo.png" alt="ProBiz360 Logo" class="white-logo" />
 				</div>
+			</div>
 
-				<!-- Social Login Buttons -->
-				<div class="social-buttons">
-					<!-- Google Button -->
-					<a href="about-us.html" class="btn btn-social google">
-						<img
-							src="images/google-icon.svg"
-							alt="Google"
-							class="social-icon"
-						/>
-					</a>
+			<!-- Right side with login form -->
+			<div class="login-form-side">
+				<div class="login-container">
+					<!-- Logo for mobile only -->
+					<!-- <div class="logo-container mobile-only">
+						<a href="index.html">
+							<img
+								src="images/probiz360-logo.svg"
+								alt="ProBiz360 Logo"
+								class="logo"
+							/>
+						</a>
+					</div> -->
 
-					<!-- LinkedIn Button -->
-					<a href="about-us.html" class="btn btn-social linkedin">
-						<img
-							src="images/linkedin-icon.svg"
-							alt="LinkedIn"
-							class="social-icon"
-						/>
-					</a>
+					<div class="welcome-text">
+						<h1>Welcome to</h1>
+						<img src="images/probiz360-logo.svg" alt="ProBiz360" class="welcome-logo" />
+						<p>Log in to get the moment updates on the things that interest you</p>
+					</div>
+
+					<!-- Login Form -->
+					<div class="form-container">
+						<form action="home.html" method="get">
+							<!-- Email/Username Input -->
+							<div class="form-group">
+								<input
+									type="text"
+									class="form-control"
+									placeholder="Email or Username"
+									required
+								/>
+								<div class="input-underline"></div>
+							</div>
+
+							<!-- Password Input -->
+							<div class="form-group">
+								<input
+									type="password"
+									class="form-control"
+									placeholder="Password"
+									required
+								/>
+								<div class="input-underline"></div>
+							</div>
+
+							<!-- Login Button -->
+							<div class="form-group">
+								<button type="submit" class="btn btn-login">Login</button>
+							</div>
+						</form>
+					</div>
+
+					<!-- Social Login Section -->
+					<div class="social-login-container">
+						<!-- Social Login Separator -->
+						<div class="separator-container">
+							<p class="separator">Login using social media</p>
+						</div>
+
+						<!-- Social Login Buttons -->
+						<div class="social-buttons">
+							<!-- Facebook Button -->
+							<a href="home.html" class="btn btn-social facebook">
+								<img
+									src="images/facebook-icon.svg"
+									alt="Facebook"
+									class="social-icon"
+								/>
+							</a>
+
+							<!-- Google Button -->
+							<a href="home.html" class="btn btn-social google">
+								<img
+									src="images/google-icon.svg"
+									alt="Google"
+									class="social-icon"
+								/>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
