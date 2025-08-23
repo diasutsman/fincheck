@@ -11,6 +11,7 @@
 			href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
+
 		<!-- Bootstrap CSS -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -37,7 +38,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: 20px 0;
-				margin-top: 20px;
+				
 				border-top: 1px solid #e5e7eb;
 			}
 			/* strategic */
@@ -70,9 +71,7 @@
 			.header-section {
 				position: relative;
 				width: 100%;
-				margin-bottom: 167px;
-				left: 0;
-				top: 0;
+				margin-bottom: 18px;
 			}
 
 			/* Status bar */
@@ -100,20 +99,12 @@
 
 			/* Logo */
 			.logo {
-				position: absolute;
 				width: 118px;
 				height: 33px;
-				left: 0;
-				top: 25px;
 			}
 
 			/* strategic label */
 			.strategic-label {
-				position: absolute;
-				width: 27px;
-				height: 12px;
-				right: 35px;
-				top: 35px;
 				font-family: "Kanit", sans-serif;
 				font-style: normal;
 				font-weight: 400;
@@ -124,11 +115,6 @@
 
 			/* Title */
 			.strategic-title {
-				position: absolute;
-				width: 127px;
-				height: 36px;
-				left: 0;
-				top: 81px;
 				font-family: "Kanit", sans-serif;
 				font-style: normal;
 				font-weight: 400;
@@ -139,11 +125,6 @@
 
 			/* Description */
 			.strategic-description {
-				position: absolute;
-				width: 235px;
-				height: 36px;
-				left: 0;
-				top: 131px;
 				font-family: "Kanit", sans-serif;
 				font-style: normal;
 				font-weight: 400;
@@ -164,16 +145,17 @@
 
 			/* Form title */
 			.form-title {
-				position: relative;
-				width: 160px;
-				height: 18px;
-				margin-bottom: 15px;
+				
+				
+				
 				font-family: "Kanit", sans-serif;
 				font-style: normal;
 				font-weight: 400;
 				font-size: 15px;
 				line-height: 18px;
 				color: #293179;
+
+                margin-bottom: 15px;
 			}
 
 			/* Form item */
@@ -207,6 +189,7 @@
 				font-size: 10px;
 				line-height: 12px;
 				color: #000000;
+                margin-bottom: 14px;
 			}
 
 			/* Form select wrapper */
@@ -309,7 +292,7 @@
 				width: 110px;
 				height: 29px;
 				margin-left: auto;
-				margin-top: 30px;
+				
 				background: #4957d6;
 				border-radius: 6px;
 				display: flex;
@@ -319,7 +302,8 @@
 				cursor: pointer;
 			}
 
-			.next-text, .prev-text {
+			.next-text,
+			.prev-text {
 				font-family: "Kanit", sans-serif;
 				font-style: normal;
 				font-weight: 600;
@@ -567,6 +551,8 @@
 				color: #928f8f;
 			}
 		</style>
+
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	</head>
 	<body>
 		<div
@@ -636,22 +622,28 @@
 					</div> -->
 
 					<!-- Logo -->
-					<div class="logo">
-						<img
-							src="images/probiz360-logo.png"
-							alt="ProBiz360 Logo"
-							width="118"
-							height="33"
-						/>
+					<div
+						class="flex items-center gap-2 justify-between mb-6"
+						style="margin-bottom: 24px"
+					>
+						<div class="logo">
+							<img
+								src="images/probiz360-logo.png"
+								alt="ProBiz360 Logo"
+								width="118"
+								height="33"
+							/>
+						</div>
+
+						<div
+							class="strategic-label"
+							x-text="'Input ' + getPageTitle(currentPage)"
+						></div>
 					</div>
 
 					<div
-						class="strategic-label"
-						x-text="'Input ' + getPageTitle(currentPage)"
-					></div>
-
-					<div
-						class="strategic-title"
+						class="strategic-title mb-6"
+                        style="margin-bottom: 14px"
 						x-text="{
                         'strategic': 'Input Evaluasi Tingkat Strategis Perusahaan',
                         'kesehatan': 'Input Evaluasi Tingkat Kesehatan Laporan Keuangan',

@@ -1,1313 +1,1879 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluasi Perusahaan - ProBiz360</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script>
-        function evalApp() {
-            return {
-                currentSection: 'AnT',
-                toggleDropdown(event) {
-                    const dropdown = event.target.closest('.form-select-wrapper');
-                    const optionsPanel = dropdown.querySelector('.options-panel');
-                    const customSelect = dropdown.querySelector('.custom-select');
-                    
-                    // Close all other dropdowns first
-                    document.querySelectorAll('.options-panel.active').forEach(panel => {
-                        if (panel !== optionsPanel) {
-                            panel.classList.remove('active');
-                            panel.closest('.form-select-wrapper').querySelector('.custom-select').classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current dropdown
-                    optionsPanel.classList.toggle('active');
-                    customSelect.classList.toggle('active');
-                },
-                selectOption(event, dropdown) {
-                    const selectedText = event.target.closest('.option-item').querySelector('.option-text').innerText;
-                    const customSelect = dropdown.querySelector('.custom-select');
-                    const optionsPanel = dropdown.querySelector('.options-panel');
-                    
-                    customSelect.innerText = selectedText;
-                    customSelect.classList.remove('active');
-                    optionsPanel.classList.remove('active');
-                    dropdown.classList.add('has-value');
-                },
-                closeDropdowns(event) {
-                    if (!event.target.closest('.form-select-wrapper')) {
-                        document.querySelectorAll('.options-panel.active').forEach(panel => {
-                            panel.classList.remove('active');
-                            panel.closest('.form-select-wrapper').querySelector('.custom-select').classList.remove('active');
-                        });
-                    }
-                },
-                changeSection(section) {
-                    this.currentSection = section;
-                },
-                init() {
-                    document.addEventListener('click', this.closeDropdowns);
-                }
-            }
-        }
-    </script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #FFFFFF;
-        }
-        
-        .ant-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            background: #FFFFFF;
-            overflow-x: hidden;
-        }
-        
-        .content-group {
-            position: relative;
-            width: 85%;
-            max-width: 100%;
-            margin: 0 auto;
-            padding-top: 18px;
-            padding-bottom: 50px;
-        }
-        
-        /* Header section */
-        .header-section {
-            position: relative;
-            width: 100%;
-            margin-bottom: 167px;
-            left: 0;
-            top: 0;
-        }
-        
-        /* Status bar */
-        .status-bar {
-            position: absolute;
-            right: 14.76%;
-            top: 1.14%;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .status-signal {
-            background: #000000;
-        }
-        
-        .status-battery {
-            position: absolute;
-            left: 87.53%;
-            right: 7.38%;
-            top: 1.14%;
-            bottom: 98.23%;
-            background: #000000;
-        }
-        
-        /* Logo */
-        .logo {
-            position: absolute;
-            width: 118px;
-            height: 33px;
-            left: 0;
-            top: 25px;
-        }
-        
-        /* Section label */
-        .section-label {
-            position: absolute;
-            height: 12px;
-            right: 0;
-            top: 35px;
-            font-family: 'Kanit', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 12px;
-            color: #8A8A8A;
-            text-align: right;
-        }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Evaluasi Perusahaan - ProBiz360</title>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Alpine.js -->
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+		></script>
+		<script>
+			function evalApp() {
+				return {
+					currentSection: "AnT",
+					toggleDropdown(event) {
+						const dropdown = event.target.closest(".form-select-wrapper");
+						const optionsPanel = dropdown.querySelector(".options-panel");
+						const customSelect = dropdown.querySelector(".custom-select");
 
-        .section-title {
-            color: #111827;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 10px 0;
-        }
+						// Close all other dropdowns first
+						document
+							.querySelectorAll(".options-panel.active")
+							.forEach((panel) => {
+								if (panel !== optionsPanel) {
+									panel.classList.remove("active");
+									panel
+										.closest(".form-select-wrapper")
+										.querySelector(".custom-select")
+										.classList.remove("active");
+								}
+							});
 
-        .section-desc {
-            color: #4B5563;
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
+						// Toggle current dropdown
+						optionsPanel.classList.toggle("active");
+						customSelect.classList.toggle("active");
+					},
+					selectOption(event, dropdown) {
+						const selectedText = event.target
+							.closest(".option-item")
+							.querySelector(".option-text").innerText;
+						const customSelect = dropdown.querySelector(".custom-select");
+						const optionsPanel = dropdown.querySelector(".options-panel");
 
-        .assessment-form {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+						customSelect.innerText = selectedText;
+						customSelect.classList.remove("active");
+						optionsPanel.classList.remove("active");
+						dropdown.classList.add("has-value");
+					},
+					closeDropdowns(event) {
+						if (!event.target.closest(".form-select-wrapper")) {
+							document
+								.querySelectorAll(".options-panel.active")
+								.forEach((panel) => {
+									panel.classList.remove("active");
+									panel
+										.closest(".form-select-wrapper")
+										.querySelector(".custom-select")
+										.classList.remove("active");
+								});
+						}
+					},
+					changeSection(section) {
+						this.currentSection = section;
+					},
+					init() {
+						document.addEventListener("click", this.closeDropdowns);
+					},
+				};
+			}
+		</script>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="styles.css" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: "Kanit", sans-serif;
+				margin: 0;
+				padding: 0;
+				background: #ffffff;
+			}
 
-        .form-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 20px;
-        }
+			.ant-container {
+				position: relative;
+				width: 100%;
+				max-width: 100%;
+				margin: 0 auto;
+				background: #ffffff;
+				overflow-x: hidden;
+			}
 
-        .form-item {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            padding: 15px 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
+			.content-group {
+				position: relative;
+				width: 85%;
+				max-width: 100%;
+				margin: 0 auto;
+				padding-top: 18px;
+				padding-bottom: 50px;
+			}
 
-        .form-item-number {
-            width: 24px;
-            height: 24px;
-            background-color: #6B7280;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            font-weight: 600;
-            margin-right: 15px;
-        }
+			/* Header section */
+			.header-section {
+				position: relative;
+				width: 100%;
+				margin-bottom: 167px;
+				left: 0;
+				top: 0;
+			}
 
-        .form-item-question {
-            flex: 1;
-            min-width: 200px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #111827;
-            margin-right: 20px;
-            margin-top: 3px;
-        }
+			/* Status bar */
+			.status-bar {
+				position: absolute;
+				right: 14.76%;
+				top: 1.14%;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
 
-        .form-select-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 200px;
-            margin-top: 10px;
-        }
-        
-        .custom-select {
-            width: 100%;
-            padding: 10px 15px;
-            background-color: white;
-            border: 1px solid #D1D5DB;
-            border-radius: 6px;
-            font-size: 14px;
-            color: #6B7280;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .down-arrow {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6B7280;
-            pointer-events: none;
-        }
+			.status-signal {
+				background: #000000;
+			}
 
-        .options-panel {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            border: 1px solid #D1D5DB;
-            border-radius: 6px;
-            margin-top: 5px;
-            z-index: 10;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+			.status-battery {
+				position: absolute;
+				left: 87.53%;
+				right: 7.38%;
+				top: 1.14%;
+				bottom: 98.23%;
+				background: #000000;
+			}
 
-        .options-note {
-            padding: 10px 15px;
-            font-size: 12px;
-            color: #6B7280;
-            border-bottom: 1px solid #E5E7EB;
-        }
+			/* Logo */
+			.logo {
+				position: absolute;
+				width: 118px;
+				height: 33px;
+				left: 0;
+				top: 25px;
+			}
 
-        .option-item {
-            padding: 10px 15px;
-            cursor: pointer;
-        }
+			/* Section label */
+			.section-label {
+				position: absolute;
+				height: 12px;
+				right: 0;
+				top: 35px;
+				font-family: "Kanit", sans-serif;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 15px;
+				line-height: 12px;
+				color: #8a8a8a;
+				text-align: right;
+			}
 
-        .option-item:hover {
-            background-color: #F3F4F6;
-        }
+			.section-title {
+				color: #111827;
+				font-size: 24px;
+				font-weight: 700;
+				margin: 10px 0;
+			}
 
-        .option-text {
-            font-size: 14px;
-            color: #111827;
-        }
+			.section-desc {
+				color: #4b5563;
+				font-size: 16px;
+				font-weight: 400;
+				margin-bottom: 30px;
+			}
 
-        .options-panel.active {
-            display: block;
-        }
+			.assessment-form {
+				margin-top: 20px;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
 
-        .custom-select.active {
-            border-color: #2563EB;
-        }
+			.form-title {
+				font-size: 20px;
+				font-weight: 600;
+				color: #111827;
+				margin-bottom: 20px;
+			}
 
-        .form-select-wrapper.has-value .custom-select {
-            color: #111827;
-        }
-        
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 0;
-            margin-top: 20px;
-            border-top: 1px solid #E5E7EB;
-        }
-        
-        .next-button, .prev-button {
-            background-color: #2563EB;
-            color: white;
-            border-radius: 6px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .prev-text, .next-text {
-            font-family: 'Kanit', sans-serif;
-            font-style: normal;
-            font-weight: 600;
-            font-size: 15px;
-            line-height: 22px;
-            color: #FFFFFF;
-        }
-        
-        /* Footer */
-        .footer {
-            position: fixed;
-            width: 100%;
-            height: 112px;
-            left: 0px;
-            bottom: 0px;
-            background: #F8F8F8;
-            border-radius: 15px 15px 0 0;
-            filter: drop-shadow(6px -16px 28px rgba(0, 0, 0, 0.25));
-        }
-        
-        .footer-nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding-top: 15px;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .nav-icon {
-            color: #676767;
-            margin-bottom: 5px;
-        }
-        
-        .nav-icon.active {
-            color: #C32126;
-        }
-        
-        .nav-text {
-            font-family: 'Kanit', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 8px;
-            line-height: 9px;
-            text-align: center;
-            color: #000000;
-        }
+			.form-item {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: flex-start;
+				padding: 15px 20px;
+				background-color: #f8f9fa;
+				border-radius: 8px;
+			}
 
-        .down-arrow {
-            position: absolute;
-            right: 10px;
-            top: 8px;
-            width: 20px;
-            height: 20px;
-            pointer-events: none;
-        }
-        
-        /* Animations for page transitions */
-        [x-transition:enter] {
-            opacity: 0;
-        }
-        [x-transition:enter-start] {
-            opacity: 0;
-        }
-        [x-transition:enter-end] {
-            opacity: 1;
-            transition: opacity 300ms ease-in-out;
-        }
-        [x-transition:leave] {
-            opacity: 1;
-        }
-        [x-transition:leave-start] {
-            opacity: 1;
-        }
-        [x-transition:leave-end] {
-            opacity: 0;
-            transition: opacity 300ms ease-in-out;
-        }
-    </style>
-</head>
-<body>
-    <div class="ant-container" x-data="evalApp()">
-        <!-- Header Section -->
-        <div class="content-group">
-            <div class="header-section mb-4">
-           
-                
-                <!-- Logo -->
-                <div class="logo">
-                    <img src="images/probiz360-logo.png" alt="ProBiz360 Logo" width="118" height="33">
-                </div>
-                
-                <div class="section-label" x-text="currentSection"></div>
-                
-                <div class="section-title mb-[16px" x-text="'Input Evaluasi ' + currentSection + ' Perusahaan'"></div>
-                
-                <div class="section-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+			.form-item-number {
+				width: 24px;
+				height: 24px;
+				background-color: #6b7280;
+				color: white;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 12px;
+				font-weight: 600;
+				margin-right: 15px;
+			}
 
-                <div class="mt-4">
-                    <a href="business-process.html" class="btn btn-outline-primary d-flex align-items-center" style="width: fit-content;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                        </svg>
-                        Back to Business Process
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Assessment Forms for each section -->
-            <!-- ANT Section -->
-            <div class="assessment-form" x-show="currentSection === 'AnT'" x-transition>
-                <div class="form-title">Kapabilitas Tim Finance</div>
-                
-                <!-- Form Item 1 -->
-                <div class="form-item">
-                    <div class="form-item-number">1.</div>
-                    <div class="form-item-question">Persentase tim finance yang memang memiliki background pendidikan D3/S1 Akuntansi/Finance</div>
-                    <div class="form-select-wrapper" x-data>
-                        <div class="custom-select" @click="$parent.toggleDropdown($event)">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&gt; 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">70% - 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">50% - 70%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&lt; 50%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 2 -->
-                <div class="form-item">
-                    <div class="form-item-number">2.</div>
-                    <div class="form-item-question">Ada anggota tim yang memiliki sertifikat CA</div>
-                    <div class="form-select-wrapper" x-data>
-                        <div class="custom-select" @click="$parent.toggleDropdown($event)">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&gt; 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">70% - 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">50% - 70%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&lt; 50%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 3 -->
-                <div class="form-item">
-                    <div class="form-item-number">3.</div>
-                    <div class="form-item-question">Ada anggota tim yang memiliki kemampuan membuat SOP Akuntansi</div>
-                    <div class="form-select-wrapper" x-data>
-                        <div class="custom-select" @click="$parent.toggleDropdown($event)">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&gt; 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">70% - 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">50% - 70%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&lt; 50%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 4 -->
-                <div class="form-item">
-                    <div class="form-item-number">4.</div>
-                    <div class="form-item-question">Ada anggota tim yang memiliki keahlian akuntansi biaya (COGS)</div>
-                    <div class="form-select-wrapper" x-data>
-                        <div class="custom-select" @click="$parent.toggleDropdown($event)">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&gt; 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">70% - 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">50% - 70%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&lt; 50%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 5 -->
-                <div class="form-item">
-                    <div class="form-item-number">5.</div>
-                    <div class="form-item-question">Ada anggota tim yang memiliki sertifikat pajak Brevet A dan B</div>
-                    <div class="form-select-wrapper" x-data>
-                        <div class="custom-select" @click="$parent.toggleDropdown($event)">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&gt; 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">70% - 90%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">50% - 70%</div>
-                            </div>
-                            <div class="option-item" @click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))">
-                                <div class="option-text">&lt; 50%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			.form-item-question {
+				flex: 1;
+				min-width: 200px;
+				font-size: 16px;
+				font-weight: 500;
+				color: #111827;
+				margin-right: 20px;
+				margin-top: 3px;
+			}
 
-            <!-- FINANCE Section -->
-            <div class="assessment-form" x-show="currentSection === 'Finance'" x-transition>
-                <div class="form-title">Kapabilitas Tim Finance</div>
-                
-                <!-- Form Item 1 -->
-                <div class="form-item">
-                    <div class="form-item-number">1.</div>
-                    <div class="form-item-question">Ada laporan keuangan (neraca, laba rugi, arus kas) yang disusun secara berkala (bulanan, triwulanan)</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 2 -->
-                <div class="form-item">
-                    <div class="form-item-number">2.</div>
-                    <div class="form-item-question">Laporan keuangan dibuat oleh staff finance/accounting dalam perusahaan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 3 -->
-                <div class="form-item">
-                    <div class="form-item-number">3.</div>
-                    <div class="form-item-question">Laporan keuangan sudah menggunakan software akuntansi</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 4 -->
-                <div class="form-item">
-                    <div class="form-item-number">4.</div>
-                    <div class="form-item-question">Laporan keuangan sudah menggunakan Chart of Account (COA) dan General Ledger (GL) sesuai dengan standar PSAK</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 5 -->
-                <div class="form-item">
-                    <div class="form-item-number">5.</div>
-                    <div class="form-item-question">Ada pemisahan rekening operasional perusahaan dengan rekening pribadi pemilik bisnis</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			.form-select-wrapper {
+				position: relative;
+				width: 100%;
+				max-width: 200px;
+				margin-top: 10px;
+			}
 
-            <!-- MARKETING Section -->
-            <div class="assessment-form" x-show="currentSection === 'Marketing'" x-transition>
-                <div class="form-title">Kapabilitas Tim Marketing</div>
-                
-                <!-- Form Item 1 -->
-                <div class="form-item">
-                    <div class="form-item-number">1.</div>
-                    <div class="form-item-question">Ada tim marketing yang fokus untuk digital marketing</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 2 -->
-                <div class="form-item">
-                    <div class="form-item-number">2.</div>
-                    <div class="form-item-question">Ada tim marketing yang berfokus untuk offline marketing</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 3 -->
-                <div class="form-item">
-                    <div class="form-item-number">3.</div>
-                    <div class="form-item-question">Ada kajian/analisis mengenai competitor</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 4 -->
-                <div class="form-item">
-                    <div class="form-item-number">4.</div>
-                    <div class="form-item-question">Ada positioning yang jelas terkait produk dan layanan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 5 -->
-                <div class="form-item">
-                    <div class="form-item-number">5.</div>
-                    <div class="form-item-question">Ada tim yang khusus menangani social media</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			.custom-select {
+				width: 100%;
+				padding: 10px 15px;
+				background-color: white;
+				border: 1px solid #d1d5db;
+				border-radius: 6px;
+				font-size: 14px;
+				color: #6b7280;
+				cursor: pointer;
+				position: relative;
+			}
 
-            <!-- SALES Section -->
-            <div class="assessment-form" x-show="currentSection === 'Sales'" x-transition>
-                <div class="form-title">Kapabilitas Tim Sales</div>
-                
-                <!-- Form Item 1 -->
-                <div class="form-item">
-                    <div class="form-item-number">1.</div>
-                    <div class="form-item-question">Ada tim sales yang aktif melakukan penjualan produk/layanan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 2 -->
-                <div class="form-item">
-                    <div class="form-item-number">2.</div>
-                    <div class="form-item-question">Ada target penjualan yang diberikan ke tim sales</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 3 -->
-                <div class="form-item">
-                    <div class="form-item-number">3.</div>
-                    <div class="form-item-question">Ada tools atau sistem yang digunakan untuk memantau kinerja tim sales</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 4 -->
-                <div class="form-item">
-                    <div class="form-item-number">4.</div>
-                    <div class="form-item-question">Ada pelatihan untuk tim sales secara berkala</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 5 -->
-                <div class="form-item">
-                    <div class="form-item-number">5.</div>
-                    <div class="form-item-question">Ada metode evaluasi kinerja tim sales</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			.down-arrow {
+				position: absolute;
+				right: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				color: #6b7280;
+				pointer-events: none;
+			}
 
-            <!-- OPERATION Section -->
-            <div class="assessment-form" x-show="currentSection === 'Operation'" x-transition>
-                <div class="form-title">Kapabilitas Tim Operation</div>
-                
-                <!-- Form Item 1 -->
-                <div class="form-item">
-                    <div class="form-item-number">1.</div>
-                    <div class="form-item-question">Ada SOP yang jelas untuk proses operasional</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 2 -->
-                <div class="form-item">
-                    <div class="form-item-number">2.</div>
-                    <div class="form-item-question">Ada sistem untuk monitoring kualitas produk/layanan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 3 -->
-                <div class="form-item">
-                    <div class="form-item-number">3.</div>
-                    <div class="form-item-question">Ada sistem untuk memantau efisiensi proses operasional</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 4 -->
-                <div class="form-item">
-                    <div class="form-item-number">4.</div>
-                    <div class="form-item-question">Ada pelatihan untuk tim operasional secara berkala</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 5 -->
-                <div class="form-item">
-                    <div class="form-item-number">5.</div>
-                    <div class="form-item-question">Ada standar keamanan kerja yang diterapkan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			.options-panel {
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				background-color: white;
+				border: 1px solid #d1d5db;
+				border-radius: 6px;
+				margin-top: 5px;
+				z-index: 10;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
 
-            <!-- SDM Section -->
-            <div class="assessment-form" x-show="currentSection === 'SDM'" x-transition>
-                <div class="form-title">Kapabilitas Tim SDM</div>
-                
-                <!-- Form Item 1 -->
-                <div class="form-item">
-                    <div class="form-item-number">1.</div>
-                    <div class="form-item-question">Ada proses rekrutmen yang terstruktur</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 2 -->
-                <div class="form-item">
-                    <div class="form-item-number">2.</div>
-                    <div class="form-item-question">Ada program pengembangan karir karyawan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 3 -->
-                <div class="form-item">
-                    <div class="form-item-number">3.</div>
-                    <div class="form-item-question">Ada sistem penilaian kinerja karyawan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 4 -->
-                <div class="form-item">
-                    <div class="form-item-number">4.</div>
-                    <div class="form-item-question">Ada program kesejahteraan karyawan</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Form Item 5 -->
-                <div class="form-item">
-                    <div class="form-item-number">5.</div>
-                    <div class="form-item-question">Ada program untuk membangun budaya kerja positif</div>
-                    <div class="form-select-wrapper">
-                        <div class="custom-select">Select an option</div>
-                        <div class="down-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                        </div>
-                        <div class="options-panel">
-                            <div class="options-note">*Pilih salah satu</div>
-                            <div class="option-item">
-                                <div class="option-text">Ya</div>
-                            </div>
-                            <div class="option-item">
-                                <div class="option-text">Tidak</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Navigation Buttons -->
-            <div class="nav-buttons">
-                <div class="prev-button" @click="prevPage()" x-show="currentIndex > 0">
-                    <div class="prev-text">Previous</div>
-                </div>
-                <div style="flex-grow: 1;"></div>
-                <div class="next-button" @click="nextPage()" x-show="currentIndex < sections.length - 1">
-                    <div class="next-text">Next</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-nav">
-                <a href="index.html" class="nav-item">
-                    <div class="nav-icon active">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="nav-text">Home</div>
-                </a>
-                <a href="#" class="nav-item">
-                    <div class="nav-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <div class="nav-text">Your Result</div>
-                </a>
-                <a href="#" class="nav-item">
-                    <div class="nav-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 20H5V9h14m-3-7v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-1V2m-7 5h3v3h-3V7m4 0h3v3h-3V7M8 12h3v3H8v-3m4 0h3v3h-3v-3m4 0h3v3h-3v-3m-8 4h3v3H8v-3m4 0h3v3h-3v-3m4 0h3v3h-3v-3z"></path>
-                        </svg>
-                    </div>
-                    <div class="nav-text">News</div>
-                </a>
-                <a href="#" class="nav-item">
-                    <div class="nav-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65c-.04-.24-.25-.42-.5-.42h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"></path>
-                        </svg>
-                    </div>
-                    <div class="nav-text">Setting</div>
-                </a>
-                <a href="profile.html" class="nav-item">
-                    <div class="nav-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"></path>
-                        </svg>
-                    </div>
-                    <div class="nav-text">Profile</div>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script>
-        function evalApp() {
-            return {
-                sections: ['AnT', 'Finance', 'Marketing', 'Sales', 'Operation', 'SDM'],
-                currentIndex: 0,
-                
-                get currentSection() {
-                    return this.sections[this.currentIndex];
-                },
-                
-                nextPage() {
-                    if (this.currentIndex < this.sections.length - 1) {
-                        this.currentIndex++;
-                    }
-                    console.log('this.currentIndex', this.currentIndex)
-                },
-                
-                prevPage() {
-                    if (this.currentIndex > 0) {
-                        this.currentIndex--;
-                    }
-                },
-                
-                initDropdowns() {
-                    setTimeout(() => {
-                        const customSelects = document.querySelectorAll('.custom-select');
-                        
-                        customSelects.forEach(select => {
-                            select.addEventListener('click', function() {
-                                // Close all other open panels first
-                                document.querySelectorAll('.options-panel').forEach(panel => {
-                                    if (panel !== this.nextElementSibling.nextElementSibling) {
-                                        panel.style.display = 'none';
-                                    }
-                                });
-                                
-                                // Toggle the current panel
-                                const panel = this.nextElementSibling.nextElementSibling;
-                                panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-                            });
-                        });
-                        
-                        const optionItems = document.querySelectorAll('.option-item');
-                        optionItems.forEach(item => {
-                            item.addEventListener('click', function() {
-                                const selectedValue = this.querySelector('.option-text').textContent;
-                                const customSelect = this.closest('.form-select-wrapper').querySelector('.custom-select');
-                                customSelect.textContent = selectedValue;
-                                customSelect.style.color = '#000';
-                                this.closest('.options-panel').style.display = 'none';
-                            });
-                        });
-                        
-                        // Close dropdown when clicking outside
-                        document.addEventListener('click', function(e) {
-                            if (!e.target.closest('.form-select-wrapper')) {
-                                document.querySelectorAll('.options-panel').forEach(panel => {
-                                    panel.style.display = 'none';
-                                });
-                            }
-                        });
-                    }, 100);
-                }
-            };
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            Alpine.start();
-            
-            // Initialize dropdowns after Alpine has started
-            setTimeout(() => {
-                const app = document.querySelector('.ant-container').__x.$data;
-                if (app && app.initDropdowns) {
-                    app.initDropdowns();
-                }
-            }, 200);
-        });
-    </script>
-</body>
+			.options-note {
+				padding: 10px 15px;
+				font-size: 12px;
+				color: #6b7280;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.option-item {
+				padding: 10px 15px;
+				cursor: pointer;
+			}
+
+			.option-item:hover {
+				background-color: #f3f4f6;
+			}
+
+			.option-text {
+				font-size: 14px;
+				color: #111827;
+			}
+
+			.options-panel.active {
+				display: block;
+			}
+
+			.custom-select.active {
+				border-color: #2563eb;
+			}
+
+			.form-select-wrapper.has-value .custom-select {
+				color: #111827;
+			}
+
+			.nav-buttons {
+				display: flex;
+				justify-content: space-between;
+				padding: 20px 0;
+				margin-top: 20px;
+				border-top: 1px solid #e5e7eb;
+			}
+
+			.next-button,
+			.prev-button {
+				background-color: #2563eb;
+				color: white;
+				border-radius: 6px;
+				padding: 10px 20px;
+				cursor: pointer;
+				font-weight: 500;
+				transition: background-color 0.3s;
+			}
+
+			.prev-text,
+			.next-text {
+				font-family: "Kanit", sans-serif;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 15px;
+				line-height: 22px;
+				color: #ffffff;
+			}
+
+			/* Footer */
+			.footer {
+				position: fixed;
+				width: 100%;
+				height: 112px;
+				left: 0px;
+				bottom: 0px;
+				background: #f8f8f8;
+				border-radius: 15px 15px 0 0;
+				filter: drop-shadow(6px -16px 28px rgba(0, 0, 0, 0.25));
+			}
+
+			.footer-nav {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				padding-top: 15px;
+			}
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-decoration: none;
+			}
+
+			.nav-icon {
+				color: #676767;
+				margin-bottom: 5px;
+			}
+
+			.nav-icon.active {
+				color: #c32126;
+			}
+
+			.nav-text {
+				font-family: "Kanit", sans-serif;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 8px;
+				line-height: 9px;
+				text-align: center;
+				color: #000000;
+			}
+
+			.down-arrow {
+				position: absolute;
+				right: 10px;
+				top: 8px;
+				width: 20px;
+				height: 20px;
+				pointer-events: none;
+			}
+
+			/* Animations for page transitions */
+			
+		</style>
+	</head>
+	<body>
+		<div class="ant-container" x-data="evalApp()">
+			<!-- Header Section -->
+			<div class="content-group">
+				<div class="header-section mb-4">
+					<!-- Logo -->
+					<div class="logo">
+						<img
+							src="images/probiz360-logo.png"
+							alt="ProBiz360 Logo"
+							width="118"
+							height="33"
+						/>
+					</div>
+
+					<div class="section-label" x-text="currentSection"></div>
+
+					<div
+						class="section-title mb-[16px"
+						x-text="'Input Evaluasi ' + currentSection + ' Perusahaan'"
+					></div>
+
+					<div class="section-description">
+						Lorem Ipsum is simply dummy text of the printing and typesetting
+						industry. Lorem Ipsum has been the industry's standard dummy text
+						ever since the 1500s
+					</div>
+
+					<div class="mt-4">
+						<a
+							href="business-process.html"
+							class="btn btn-outline-primary d-flex align-items-center"
+							style="width: fit-content"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-arrow-left me-2"
+								viewBox="0 0 16 16"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+								/>
+							</svg>
+							Back to Business Process
+						</a>
+					</div>
+				</div>
+
+				<!-- Assessment Forms for each section -->
+				<!-- ANT Section -->
+				<div
+					class="assessment-form"
+					x-show="currentSection === 'AnT'"
+					x-transition
+				>
+					<div class="form-title">Kapabilitas Tim Finance</div>
+
+					<!-- Form Item 1 -->
+					<div class="form-item">
+						<div class="form-item-number">1.</div>
+						<div class="form-item-question">
+							Persentase tim finance yang memang memiliki background pendidikan
+							D3/S1 Akuntansi/Finance
+						</div>
+						<div class="form-select-wrapper" x-data>
+							<div
+								class="custom-select"
+								@click="$parent.toggleDropdown($event)"
+							>
+								Select an option
+							</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&gt; 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">70% - 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">50% - 70%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&lt; 50%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 2 -->
+					<div class="form-item">
+						<div class="form-item-number">2.</div>
+						<div class="form-item-question">
+							Ada anggota tim yang memiliki sertifikat CA
+						</div>
+						<div class="form-select-wrapper" x-data>
+							<div
+								class="custom-select"
+								@click="$parent.toggleDropdown($event)"
+							>
+								Select an option
+							</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&gt; 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">70% - 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">50% - 70%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&lt; 50%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 3 -->
+					<div class="form-item">
+						<div class="form-item-number">3.</div>
+						<div class="form-item-question">
+							Ada anggota tim yang memiliki kemampuan membuat SOP Akuntansi
+						</div>
+						<div class="form-select-wrapper" x-data>
+							<div
+								class="custom-select"
+								@click="$parent.toggleDropdown($event)"
+							>
+								Select an option
+							</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&gt; 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">70% - 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">50% - 70%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&lt; 50%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 4 -->
+					<div class="form-item">
+						<div class="form-item-number">4.</div>
+						<div class="form-item-question">
+							Ada anggota tim yang memiliki keahlian akuntansi biaya (COGS)
+						</div>
+						<div class="form-select-wrapper" x-data>
+							<div
+								class="custom-select"
+								@click="$parent.toggleDropdown($event)"
+							>
+								Select an option
+							</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&gt; 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">70% - 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">50% - 70%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&lt; 50%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 5 -->
+					<div class="form-item">
+						<div class="form-item-number">5.</div>
+						<div class="form-item-question">
+							Ada anggota tim yang memiliki sertifikat pajak Brevet A dan B
+						</div>
+						<div class="form-select-wrapper" x-data>
+							<div
+								class="custom-select"
+								@click="$parent.toggleDropdown($event)"
+							>
+								Select an option
+							</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&gt; 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">70% - 90%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">50% - 70%</div>
+								</div>
+								<div
+									class="option-item"
+									@click="$parent.selectOption($event, $el.closest('.form-select-wrapper'))"
+								>
+									<div class="option-text">&lt; 50%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- FINANCE Section -->
+				<div
+					class="assessment-form"
+					x-show="currentSection === 'Finance'"
+					x-transition
+				>
+					<div class="form-title">Kapabilitas Tim Finance</div>
+
+					<!-- Form Item 1 -->
+					<div class="form-item">
+						<div class="form-item-number">1.</div>
+						<div class="form-item-question">
+							Ada laporan keuangan (neraca, laba rugi, arus kas) yang disusun
+							secara berkala (bulanan, triwulanan)
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 2 -->
+					<div class="form-item">
+						<div class="form-item-number">2.</div>
+						<div class="form-item-question">
+							Laporan keuangan dibuat oleh staff finance/accounting dalam
+							perusahaan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 3 -->
+					<div class="form-item">
+						<div class="form-item-number">3.</div>
+						<div class="form-item-question">
+							Laporan keuangan sudah menggunakan software akuntansi
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 4 -->
+					<div class="form-item">
+						<div class="form-item-number">4.</div>
+						<div class="form-item-question">
+							Laporan keuangan sudah menggunakan Chart of Account (COA) dan
+							General Ledger (GL) sesuai dengan standar PSAK
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 5 -->
+					<div class="form-item">
+						<div class="form-item-number">5.</div>
+						<div class="form-item-question">
+							Ada pemisahan rekening operasional perusahaan dengan rekening
+							pribadi pemilik bisnis
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- MARKETING Section -->
+				<div
+					class="assessment-form"
+					x-show="currentSection === 'Marketing'"
+					x-transition
+				>
+					<div class="form-title">Kapabilitas Tim Marketing</div>
+
+					<!-- Form Item 1 -->
+					<div class="form-item">
+						<div class="form-item-number">1.</div>
+						<div class="form-item-question">
+							Ada tim marketing yang fokus untuk digital marketing
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 2 -->
+					<div class="form-item">
+						<div class="form-item-number">2.</div>
+						<div class="form-item-question">
+							Ada tim marketing yang berfokus untuk offline marketing
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 3 -->
+					<div class="form-item">
+						<div class="form-item-number">3.</div>
+						<div class="form-item-question">
+							Ada kajian/analisis mengenai competitor
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 4 -->
+					<div class="form-item">
+						<div class="form-item-number">4.</div>
+						<div class="form-item-question">
+							Ada positioning yang jelas terkait produk dan layanan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 5 -->
+					<div class="form-item">
+						<div class="form-item-number">5.</div>
+						<div class="form-item-question">
+							Ada tim yang khusus menangani social media
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- SALES Section -->
+				<div
+					class="assessment-form"
+					x-show="currentSection === 'Sales'"
+					x-transition
+				>
+					<div class="form-title">Kapabilitas Tim Sales</div>
+
+					<!-- Form Item 1 -->
+					<div class="form-item">
+						<div class="form-item-number">1.</div>
+						<div class="form-item-question">
+							Ada tim sales yang aktif melakukan penjualan produk/layanan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 2 -->
+					<div class="form-item">
+						<div class="form-item-number">2.</div>
+						<div class="form-item-question">
+							Ada target penjualan yang diberikan ke tim sales
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 3 -->
+					<div class="form-item">
+						<div class="form-item-number">3.</div>
+						<div class="form-item-question">
+							Ada tools atau sistem yang digunakan untuk memantau kinerja tim
+							sales
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 4 -->
+					<div class="form-item">
+						<div class="form-item-number">4.</div>
+						<div class="form-item-question">
+							Ada pelatihan untuk tim sales secara berkala
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 5 -->
+					<div class="form-item">
+						<div class="form-item-number">5.</div>
+						<div class="form-item-question">
+							Ada metode evaluasi kinerja tim sales
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- OPERATION Section -->
+				<div
+					class="assessment-form"
+					x-show="currentSection === 'Operation'"
+					x-transition
+				>
+					<div class="form-title">Kapabilitas Tim Operation</div>
+
+					<!-- Form Item 1 -->
+					<div class="form-item">
+						<div class="form-item-number">1.</div>
+						<div class="form-item-question">
+							Ada SOP yang jelas untuk proses operasional
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 2 -->
+					<div class="form-item">
+						<div class="form-item-number">2.</div>
+						<div class="form-item-question">
+							Ada sistem untuk monitoring kualitas produk/layanan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 3 -->
+					<div class="form-item">
+						<div class="form-item-number">3.</div>
+						<div class="form-item-question">
+							Ada sistem untuk memantau efisiensi proses operasional
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 4 -->
+					<div class="form-item">
+						<div class="form-item-number">4.</div>
+						<div class="form-item-question">
+							Ada pelatihan untuk tim operasional secara berkala
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 5 -->
+					<div class="form-item">
+						<div class="form-item-number">5.</div>
+						<div class="form-item-question">
+							Ada standar keamanan kerja yang diterapkan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- SDM Section -->
+				<div
+					class="assessment-form"
+					x-show="currentSection === 'SDM'"
+					x-transition
+				>
+					<div class="form-title">Kapabilitas Tim SDM</div>
+
+					<!-- Form Item 1 -->
+					<div class="form-item">
+						<div class="form-item-number">1.</div>
+						<div class="form-item-question">
+							Ada proses rekrutmen yang terstruktur
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 2 -->
+					<div class="form-item">
+						<div class="form-item-number">2.</div>
+						<div class="form-item-question">
+							Ada program pengembangan karir karyawan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 3 -->
+					<div class="form-item">
+						<div class="form-item-number">3.</div>
+						<div class="form-item-question">
+							Ada sistem penilaian kinerja karyawan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 4 -->
+					<div class="form-item">
+						<div class="form-item-number">4.</div>
+						<div class="form-item-question">
+							Ada program kesejahteraan karyawan
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Item 5 -->
+					<div class="form-item">
+						<div class="form-item-number">5.</div>
+						<div class="form-item-question">
+							Ada program untuk membangun budaya kerja positif
+						</div>
+						<div class="form-select-wrapper">
+							<div class="custom-select">Select an option</div>
+							<div class="down-arrow">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</div>
+							<div class="options-panel">
+								<div class="options-note">*Pilih salah satu</div>
+								<div class="option-item">
+									<div class="option-text">Ya</div>
+								</div>
+								<div class="option-item">
+									<div class="option-text">Tidak</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Navigation Buttons -->
+				<div class="nav-buttons">
+					<div
+						class="prev-button"
+						@click="prevPage()"
+						x-show="currentIndex > 0"
+					>
+						<div class="prev-text">Previous</div>
+					</div>
+					<div style="flex-grow: 1"></div>
+					<div
+						class="next-button"
+						@click="nextPage()"
+						x-show="currentIndex < sections.length - 1"
+					>
+						<div class="next-text">Next</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div class="footer">
+				<div class="footer-nav">
+					<a href="index.html" class="nav-item">
+						<div class="nav-icon active">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"></path>
+							</svg>
+						</div>
+						<div class="nav-text">Home</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+								></path>
+							</svg>
+						</div>
+						<div class="nav-text">Your Result</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M19 20H5V9h14m-3-7v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-1V2m-7 5h3v3h-3V7m4 0h3v3h-3V7M8 12h3v3H8v-3m4 0h3v3h-3v-3m4 0h3v3h-3v-3m-8 4h3v3H8v-3m4 0h3v3h-3v-3m4 0h3v3h-3v-3z"
+								></path>
+							</svg>
+						</div>
+						<div class="nav-text">News</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65c-.04-.24-.25-.42-.5-.42h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"
+								></path>
+							</svg>
+						</div>
+						<div class="nav-text">Setting</div>
+					</a>
+					<a href="profile.html" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"
+								></path>
+							</svg>
+						</div>
+						<div class="nav-text">Profile</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Custom JavaScript -->
+		<script>
+			function evalApp() {
+				return {
+					sections: [
+						"AnT",
+						"Finance",
+						"Marketing",
+						"Sales",
+						"Operation",
+						"SDM",
+					],
+					currentIndex: 0,
+
+					get currentSection() {
+						return this.sections[this.currentIndex];
+					},
+
+					nextPage() {
+						if (this.currentIndex < this.sections.length - 1) {
+							this.currentIndex++;
+						}
+						console.log("this.currentIndex", this.currentIndex);
+					},
+
+					prevPage() {
+						if (this.currentIndex > 0) {
+							this.currentIndex--;
+						}
+					},
+
+					initDropdowns() {
+						setTimeout(() => {
+							const customSelects = document.querySelectorAll(".custom-select");
+
+							customSelects.forEach((select) => {
+								select.addEventListener("click", function () {
+									// Close all other open panels first
+									document
+										.querySelectorAll(".options-panel")
+										.forEach((panel) => {
+											if (
+												panel !== this.nextElementSibling.nextElementSibling
+											) {
+												panel.style.display = "none";
+											}
+										});
+
+									// Toggle the current panel
+									const panel = this.nextElementSibling.nextElementSibling;
+									panel.style.display =
+										panel.style.display === "block" ? "none" : "block";
+								});
+							});
+
+							const optionItems = document.querySelectorAll(".option-item");
+							optionItems.forEach((item) => {
+								item.addEventListener("click", function () {
+									const selectedValue =
+										this.querySelector(".option-text").textContent;
+									const customSelect = this.closest(
+										".form-select-wrapper"
+									).querySelector(".custom-select");
+									customSelect.textContent = selectedValue;
+									customSelect.style.color = "#000";
+									this.closest(".options-panel").style.display = "none";
+								});
+							});
+
+							// Close dropdown when clicking outside
+							document.addEventListener("click", function (e) {
+								if (!e.target.closest(".form-select-wrapper")) {
+									document
+										.querySelectorAll(".options-panel")
+										.forEach((panel) => {
+											panel.style.display = "none";
+										});
+								}
+							});
+						}, 100);
+					},
+				};
+			}
+
+			document.addEventListener("DOMContentLoaded", function () {
+				Alpine.start();
+
+				// Initialize dropdowns after Alpine has started
+				setTimeout(() => {
+					const app = document.querySelector(".ant-container").__x.$data;
+					if (app && app.initDropdowns) {
+						app.initDropdowns();
+					}
+				}, 200);
+			});
+		</script>
+	</body>
 </html>
