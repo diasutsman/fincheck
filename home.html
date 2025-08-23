@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FinCheck - Home</title>
+		<!-- Google Fonts: Kanit -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="styles.css" />
+		<style>
+			/* Home page styles */
+			body {
+				font-family: "Kanit", sans-serif;
+				background: #ffffff;
+				margin: 0;
+				padding: 0;
+			}
+
+			.home-container {
+				position: relative;
+				width: 100%;
+				max-width: 100%;
+				margin: 0 auto;
+				min-height: 100vh;
+				overflow-x: hidden;
+				padding-bottom: 64px;
+			}
+
+			@media (min-width: 480px) {
+				.home-container {
+					max-width: 480px;
+				}
+			}
+
+			/* Header section */
+			.header {
+				padding: 62px 32px 20px;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.welcome-text {
+				font-size: 14px;
+				color: #293179;
+				margin: 0;
+			}
+
+			.user-name {
+				font-size: 30px;
+				color: #293179;
+				margin: 0;
+			}
+
+			.notification-bell {
+				width: 33px;
+				height: 33px;
+				margin-right: 15px;
+				color: #3b46ac;
+			}
+
+			.profile-photo {
+				width: 33px;
+				height: 33px;
+				border-radius: 50%;
+				overflow: hidden;
+				background-color: #d9d9d9;
+			}
+
+			.profile-photo img {
+				
+                width: 45px;
+				height: 45px;
+				object-fit: cover;
+			}
+
+			/* Chart section */
+			.chart-section {
+				margin: 10px 32px;
+				background: linear-gradient(90deg, #293179 15.99%, #4c5adf 101.81%);
+				border-radius: 15px;
+				color: #ffffff;
+				padding: 15px;
+				min-height: 154px;
+				position: relative;
+			}
+
+			.chart-year {
+				font-size: 15px;
+				margin-bottom: 15px;
+			}
+
+			.chart-labels {
+				position: absolute;
+				bottom: 10px;
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				left: 0;
+				padding: 0 15px;
+			}
+
+			.chart-label {
+				font-size: 10px;
+				text-align: center;
+			}
+
+			.chart-values {
+				position: absolute;
+				left: 15px;
+				top: 30px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 70px;
+			}
+
+			.chart-value {
+				font-size: 10px;
+			}
+
+			.chart-graph {
+				position: relative;
+				height: 80px;
+				margin-left: 50px;
+				margin-top: 10px;
+			}
+
+			.chart-last-check {
+				position: absolute;
+				font-size: 12px;
+				top: 35%;
+				right: 30%;
+			}
+
+			.chart-dot {
+				position: absolute;
+				width: 8px;
+				height: 8px;
+				background: #c32126;
+				border-radius: 50%;
+				top: 50%;
+				right: 45%;
+			}
+
+			.chart-dot::after {
+				content: "";
+				position: absolute;
+				width: 4px;
+				height: 4px;
+				background: #ffffff;
+				border-radius: 50%;
+				top: 2px;
+				left: 2px;
+			}
+
+			/* Business section */
+			.business-card {
+				margin: 20px 30px;
+				min-height: 196px;
+				border-radius: 18px;
+				position: relative;
+				overflow: hidden;
+				background: linear-gradient(
+					89.97deg,
+					rgba(53, 64, 156, 0) -20.13%,
+					#121636 97.17%
+				);
+			}
+
+			.business-card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.business-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(
+					89.97deg,
+					rgba(53, 64, 156, 0) -20.13%,
+					#121636 97.17%
+				);
+
+				border-radius: 19px;
+			}
+
+			.business-icon {
+				position: absolute;
+				bottom: 64px;
+				left: 25px;
+				color: #ffffff;
+			}
+
+			.business-text {
+				position: absolute;
+				bottom: 20px;
+				left: 25px;
+
+				/*font-size: 9px;*/
+				max-width: 235px;
+				/*line-height: 12px;*/
+
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				/* or 133% */
+
+				color: #ffffff;
+			}
+
+			/* Button sections */
+			.button-section {
+				margin: 15px 30px;
+				width: calc(100% - 60px);
+			}
+
+			.business-button {
+				background-color: #3b46ac;
+				color: #ffffff;
+				border-radius: 13px;
+				padding: 15px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 10px;
+				min-height: 47px;
+				position: relative;
+			}
+
+			.button-icon {
+				margin-right: 10px;
+				color: #ffffff;
+			}
+
+			.button-text {
+				font-size: 16px;
+				line-height: 8px;
+				margin: 0;
+				text-align: center;
+			}
+
+			.button-subtext {
+				font-size: 12px;
+				color: #293179;
+				text-align: center;
+				margin-top: 8px;
+				margin-bottom: 15px;
+			}
+
+			.locked-button .button-icon {
+				position: absolute;
+				left: 45%;
+				transform: translateX(-50%);
+			}
+
+			.button-subtext.locked {
+				color: #b1b1b1;
+			}
+
+			/* History section */
+			.history-section {
+				margin: 20px 30px;
+				width: calc(100% - 60px);
+			}
+
+			.history-title {
+				font-size: 12px;
+				color: #293179;
+				margin-bottom: 15px;
+			}
+
+			.history-item {
+				background-color: #676767;
+				border-radius: 15px;
+				padding: 10px 20px;
+				color: #ffffff;
+				margin-bottom: 10px;
+				position: relative;
+				min-height: 51px;
+			}
+
+			.history-date {
+				font-size: 15px;
+				margin: 0;
+			}
+
+			.history-description {
+				font-size: 5px;
+				margin-top: 3px;
+				max-width: 80%;
+				line-height: 6px;
+			}
+
+			.history-icon {
+				position: absolute;
+				right: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				color: #ffffff;
+			}
+
+			/* Banner section */
+			.banner-section {
+				margin: 20px 30px;
+
+				border-radius: 15px;
+			}
+
+			.banner-section img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 15px;
+			}
+
+			/* Footer section */
+			.footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background-color: #f8f8f8;
+				border-radius: 15px 15px 0 0;
+				padding: 15px 0;
+				display: flex;
+				justify-content: space-around;
+				box-shadow: 6px -16px 28px rgba(0, 0, 0, 0.25);
+				z-index: 100;
+			}
+
+			.footer-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-decoration: none;
+			}
+
+			.footer-icon {
+				margin-bottom: 5px;
+			}
+
+			.footer-icon.active {
+				color: #c32126;
+			}
+
+			.footer-icon.inactive {
+				color: #676767;
+			}
+
+			.footer-text {
+				font-size: 12px;
+				color: #000000;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="home-container">
+			<!-- Status Bar -->
+			<div class="status-bar">
+				<!-- Status bar content would go here, but typically is handled by the device itself -->
+			</div>
+
+			<!-- Header Section -->
+			<div class="header">
+				<div class="user-info">
+					<p class="welcome-text">Welcome,</p>
+					<p class="user-name">Albert Ricia</p>
+				</div>
+				<div class="header-actions" style="display: flex; align-items: center;">
+					<div class="notification-bell">
+						<svg
+							width="33"
+							height="33"
+							viewBox="0 0 33 33"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M28.875 8.93751C28.875 11.5913 26.7162 13.75 24.0625 13.75C21.4088 13.75 19.25 11.5913 19.25 8.93751C19.25 6.28376 21.4088 4.12501 24.0625 4.12501C26.7162 4.12501 28.875 6.28376 28.875 8.93751ZM26.125 16.2113C25.4375 16.39 24.75 16.5 24.0625 16.5C22.0579 16.4964 20.1365 15.6984 18.719 14.281C17.3016 12.8635 16.5036 10.9421 16.5 8.93751C16.5 6.91626 17.2975 5.08751 18.5625 3.72626C18.313 3.42038 17.9983 3.17402 17.6415 3.00513C17.2847 2.83624 16.8948 2.74909 16.5 2.75001C14.9875 2.75001 13.75 3.98751 13.75 5.50001V5.89876C9.66625 7.10876 6.875 10.8625 6.875 15.125V23.375L4.125 26.125V27.5H28.875V26.125L26.125 23.375V16.2113ZM16.5 31.625C18.0262 31.625 19.25 30.4013 19.25 28.875H13.75C13.75 29.6044 14.0397 30.3038 14.5555 30.8196C15.0712 31.3353 15.7707 31.625 16.5 31.625Z"
+								fill="#3B46AC"
+							/>
+						</svg>
+					</div>
+					<div class="profile-photo">
+						<a href="profile.html">
+							<img
+								src="https://randomuser.me/api/portraits/men/43.jpg"
+								alt="Albert Ricia"
+							/>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Chart Section -->
+			<div class="chart-section">
+				<div class="chart-year">2024</div>
+
+				<div class="chart-values">
+					<div class="chart-value">100</div>
+					<div class="chart-value">80</div>
+					<div class="chart-value">0</div>
+				</div>
+
+				<div class="chart-graph">
+					<!-- In a real implementation, this would be a proper chart -->
+					<svg
+						width="100%"
+						height="100%"
+						viewBox="0 0 240 80"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M0,40 L40,60 L80,20 L120,40 L160,10 L200,30"
+							stroke="white"
+							stroke-width="2"
+							fill="none"
+						/>
+					</svg>
+					<div class="chart-last-check">Last Check</div>
+					<div class="chart-dot"></div>
+				</div>
+
+				<div class="chart-labels">
+					<div class="chart-label">JAN</div>
+					<div class="chart-label">FEB</div>
+					<div class="chart-label">MAR</div>
+					<div class="chart-label">APR</div>
+					<div class="chart-label">MAY</div>
+					<div class="chart-label">JUN</div>
+				</div>
+			</div>
+
+			<!-- Business Card Section -->
+			<div class="business-card">
+				<img src="images/business-card-image.png" alt="Business analysis" />
+				<div class="business-overlay"></div>
+				<div class="business-icon">
+					<svg
+						width="25"
+						height="24"
+						viewBox="0 0 25 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_2004_33)">
+							<path
+								d="M24.6592 17.9061C24.0917 16.5487 22.9566 15.6534 21.6796 15.3357C20.7432 15.1047 19.9203 14.4693 19.4662 13.6029L16.8839 8.80866C16.4015 7.88448 16.2596 6.81589 16.6002 5.83394V5.80505C16.6285 5.74729 16.6285 5.68953 16.6569 5.66065V5.63177C16.6853 5.48736 16.7137 5.34296 16.7421 5.22744C16.7421 5.19856 16.7421 5.16968 16.7421 5.16968C16.7421 5.14079 16.7421 5.08303 16.7704 5.05415C16.7704 4.99639 16.7704 4.96751 16.7988 4.90975C16.7988 4.88087 16.7988 4.88087 16.7988 4.85199C16.8839 4.01444 16.7137 3.14801 16.288 2.36823C15.8056 1.47292 15.0678 0.837545 14.2449 0.462094C14.1881 0.34657 14.1314 0.31769 14.0746 0.288809C14.0746 0.288809 14.0463 0.288809 14.0463 0.259928C13.9895 0.231047 13.9611 0.231047 13.9044 0.202166C13.876 0.202166 13.8476 0.173285 13.8192 0.173285C13.7909 0.173285 13.7625 0.144404 13.7341 0.144404C13.7057 0.144404 13.649 0.115523 13.6206 0.115523C13.5922 0.115523 13.5922 0.115523 13.5638 0.115523C13.5071 0.115523 13.4503 0.0866426 13.3936 0.0866426C13.3936 0.0866426 13.3936 0.0866426 13.3652 0.0866426C13.2233 0.0577617 13.0814 0.0288809 12.9396 0.0288809C12.8828 0.0288809 12.7977 0.0288809 12.7409 0C12.7125 0 12.7125 0 12.6842 0C12.6274 0 12.5707 0 12.5423 0C12.4855 0 12.4288 0 12.4004 0C12.372 0 12.372 0 12.3436 0C12.2869 0 12.2018 0 12.145 0.0288809C12.0031 0.0288809 11.8612 0.0577617 11.7194 0.0866426C11.7194 0.0866426 11.7194 0.0866426 11.691 0.0866426C11.6342 0.0866426 11.5775 0.115523 11.5207 0.115523C11.4923 0.115523 11.4923 0.115523 11.464 0.115523C11.4356 0.115523 11.3788 0.144404 11.3505 0.144404C11.3221 0.144404 11.2937 0.173285 11.2653 0.173285C11.2369 0.173285 11.2086 0.202166 11.1802 0.202166C11.0667 0.259928 11.0383 0.259928 10.9816 0.288809C10.9816 0.288809 10.9532 0.288809 10.9532 0.31769C10.8964 0.34657 10.8397 0.375451 10.7829 0.404332C9.93161 0.779783 9.22219 1.44404 8.73979 2.31047C8.31413 3.09025 8.14387 3.95668 8.229 4.79422C8.229 4.8231 8.229 4.8231 8.229 4.85199C8.229 4.90975 8.229 4.93863 8.25738 4.99639C8.25738 5.02527 8.25738 5.08303 8.28576 5.11191C8.28576 5.14079 8.28576 5.16968 8.28576 5.16968C8.31413 5.31408 8.34251 5.45848 8.37089 5.57401V5.60289C8.39926 5.66065 8.39926 5.71841 8.42764 5.74729V5.77617C8.76816 6.75812 8.62628 7.8556 8.14387 8.7509L5.56158 13.5451C5.07917 14.4116 4.28462 15.0469 3.34818 15.278C2.04285 15.6245 0.907776 16.5487 0.340239 17.9061C-0.482689 19.8412 0.226732 22.1516 1.9861 23.3069C4.11436 24.6931 6.92367 23.9422 8.14387 21.7184C8.73979 20.5921 8.82492 19.3213 8.45602 18.1949C8.14387 17.2419 8.20063 16.2022 8.68303 15.3069L11.3221 10.3971C11.3221 10.3971 11.3221 10.3971 11.3221 10.3682C11.8329 9.41516 13.2233 9.41516 13.7341 10.3682C13.7341 10.3682 13.7341 10.3682 13.7341 10.3971L16.3732 15.3069C16.8556 16.2022 16.9123 17.2419 16.6002 18.1949C16.2313 19.3213 16.3164 20.5921 16.9123 21.7184C18.1041 23.9422 20.9135 24.6931 23.0701 23.3069C24.8011 22.1516 25.4821 19.8412 24.6592 17.9061Z"
+								fill="white"
+							/>
+							<path
+								d="M12.5142 18.4838C13.956 18.4838 15.1249 17.2942 15.1249 15.8267C15.1249 14.3593 13.956 13.1697 12.5142 13.1697C11.0724 13.1697 9.90352 14.3593 9.90352 15.8267C9.90352 17.2942 11.0724 18.4838 12.5142 18.4838Z"
+								fill="white"
+							/>
+						</g>
+						<defs>
+							<clipPath id="clip0_2004_33">
+								<rect width="25" height="24" fill="white" />
+							</clipPath>
+						</defs>
+					</svg>
+				</div>
+				<div class="business-text">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</div>
+			</div>
+
+			<!-- Button Sections -->
+			<div class="button-section">
+				<a
+					href="business-check.html"
+					style="text-decoration: none; color: inherit"
+				>
+					<div class="business-button">
+						<div class="button-icon">
+							<svg
+								width="30"
+								height="30"
+								viewBox="0 0 30 30"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M27.8906 13.8867H24.3105C23.8037 9.59766 20.4023 6.19629 16.1133 5.68945V2.10938C16.1133 1.98047 16.0078 1.875 15.8789 1.875H14.1211C13.9922 1.875 13.8867 1.98047 13.8867 2.10938V5.68945C9.59766 6.19629 6.19629 9.59766 5.68945 13.8867H2.10938C1.98047 13.8867 1.875 13.9922 1.875 14.1211V15.8789C1.875 16.0078 1.98047 16.1133 2.10938 16.1133H5.68945C6.19629 20.4023 9.59766 23.8037 13.8867 24.3105V27.8906C13.8867 28.0195 13.9922 28.125 14.1211 28.125H15.8789C16.0078 28.125 16.1133 28.0195 16.1133 27.8906V24.3105C20.4023 23.8037 23.8037 20.4023 24.3105 16.1133H27.8906C28.0195 16.1133 28.125 16.0078 28.125 15.8789V14.1211C28.125 13.9922 28.0195 13.8867 27.8906 13.8867ZM15 22.1484C11.0508 22.1484 7.85156 18.9492 7.85156 15C7.85156 11.0508 11.0508 7.85156 15 7.85156C18.9492 7.85156 22.1484 11.0508 22.1484 15C22.1484 18.9492 18.9492 22.1484 15 22.1484Z"
+									fill="white"
+								/>
+								<path
+									d="M15 11.4844C14.0596 11.4844 13.1807 11.8477 12.5156 12.5156C11.8506 13.1807 11.4844 14.0596 11.4844 15C11.4844 15.9404 11.8506 16.8193 12.5156 17.4844C13.1807 18.1465 14.0625 18.5156 15 18.5156C15.9375 18.5156 16.8193 18.1494 17.4844 17.4844C18.1465 16.8193 18.5156 15.9375 18.5156 15C18.5156 14.0625 18.1494 13.1807 17.4844 12.5156C16.8193 11.8477 15.9404 11.4844 15 11.4844Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						<p class="button-text">Business Check</p>
+					</div>
+				</a>
+				<div class="button-subtext"  style="font-size: 12px">Lets Start Check Your Business</div>
+
+				<a
+					href="business-process.html"
+					style="text-decoration: none; color: inherit"
+				>
+					<div class="business-button">
+						<div class="button-icon">
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M17.3333 2C17.3333 1.46957 17.544 0.960859 17.9191 0.585787C18.2942 0.210714 18.8029 0 19.3333 0H22C22.5304 0 23.0391 0.210714 23.4142 0.585787C23.7893 0.960859 24 1.46957 24 2V22C24 22.5304 23.7893 23.0391 23.4142 23.4142C23.0391 23.7893 22.5304 24 22 24H19.3333C18.8029 24 18.2942 23.7893 17.9191 23.4142C17.544 23.0391 17.3333 22.5304 17.3333 22V2ZM8.66667 10C8.66667 9.46957 8.87738 8.96086 9.25245 8.58579C9.62753 8.21071 10.1362 8 10.6667 8H13.3333C13.8638 8 14.3725 8.21071 14.7475 8.58579C15.1226 8.96086 15.3333 9.46957 15.3333 10V22C15.3333 22.5304 15.1226 23.0391 14.7475 23.4142C14.3725 23.7893 13.8638 24 13.3333 24H10.6667C10.1362 24 9.62753 23.7893 9.25245 23.4142C8.87738 23.0391 8.66667 22.5304 8.66667 22V10ZM2 16C1.46957 16 0.960859 16.2107 0.585787 16.5858C0.210714 16.9609 0 17.4696 0 18V22C0 22.5304 0.210714 23.0391 0.585787 23.4142C0.960859 23.7893 1.46957 24 2 24H4.66667C5.1971 24 5.70581 23.7893 6.08088 23.4142C6.45595 23.0391 6.66667 22.5304 6.66667 22V18C6.66667 17.4696 6.45595 16.9609 6.08088 16.5858C5.70581 16.2107 5.1971 16 4.66667 16H2Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						<p class="button-text">Business Process</p>
+					</div>
+				</a>
+				<div class="button-subtext"  style="font-size: 12px">Lets Start Check Your Business Process</div>
+			</div>
+
+			<!-- History Section -->
+			<div class="history-section">
+				<div class="history-title">Report Your Business Check</div>
+
+				<div class="history-item">
+					<p class="history-date">Februari 2025</p>
+					<p class="history-description">
+						Lorem Ipsum is simply dummy text of the printing and typesetting
+						industry. Lorem Ipsum
+					</p>
+					<div class="history-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="16" y1="13" x2="8" y2="13"></line>
+							<line x1="16" y1="17" x2="8" y2="17"></line>
+							<polyline points="10 9 9 9 8 9"></polyline>
+						</svg>
+					</div>
+				</div>
+
+				<div class="history-item">
+					<p class="history-date">Maret 2025</p>
+					<p class="history-description">
+						Lorem Ipsum is simply dummy text of the printing and typesetting
+						industry. Lorem Ipsum
+					</p>
+					<div class="history-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="16" y1="13" x2="8" y2="13"></line>
+							<line x1="16" y1="17" x2="8" y2="17"></line>
+							<polyline points="10 9 9 9 8 9"></polyline>
+						</svg>
+					</div>
+				</div>
+
+				<div class="history-item">
+					<p class="history-date">April 2025</p>
+					<p class="history-description">
+						Lorem Ipsum is simply dummy text of the printing and typesetting
+						industry. Lorem Ipsum
+					</p>
+					<div class="history-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="16" y1="13" x2="8" y2="13"></line>
+							<line x1="16" y1="17" x2="8" y2="17"></line>
+							<polyline points="10 9 9 9 8 9"></polyline>
+						</svg>
+					</div>
+				</div>
+
+				<div class="history-item">
+					<p class="history-date">Mei 2025</p>
+					<p class="history-description">
+						Lorem Ipsum is simply dummy text of the printing and typesetting
+						industry. Lorem Ipsum
+					</p>
+					<div class="history-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="16" y1="13" x2="8" y2="13"></line>
+							<line x1="16" y1="17" x2="8" y2="17"></line>
+							<polyline points="10 9 9 9 8 9"></polyline>
+						</svg>
+					</div>
+				</div>
+
+				<div class="history-item">
+					<p class="history-date">Juni 2025</p>
+					<p class="history-description">
+						Lorem Ipsum is simply dummy text of the printing and typesetting
+						industry. Lorem Ipsum
+					</p>
+					<div class="history-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="16" y1="13" x2="8" y2="13"></line>
+							<line x1="16" y1="17" x2="8" y2="17"></line>
+							<polyline points="10 9 9 9 8 9"></polyline>
+						</svg>
+					</div>
+				</div>
+			</div>
+
+			<!-- Banner Section -->
+			<div class="banner-section">
+				<p
+					style="
+						font-family: 'Montserrat';
+						font-style: normal;
+						font-weight: 800;
+						font-size: 15px;
+
+						color: #000000;
+					"
+				>
+					Upcoming Event
+				</p>
+				<img src="images/banner.png" alt="Team collaboration" />
+			</div>
+
+			<!-- Footer Section -->
+			<div class="footer">
+				<a href="#" class="footer-item">
+					<div class="footer-icon active">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+							<polyline points="9 22 9 12 15 12 15 22"></polyline>
+						</svg>
+					</div>
+					<div class="footer-text">Home</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+							<path
+								d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+							></path>
+						</svg>
+					</div>
+					<div class="footer-text">Your Result</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
+							></path>
+							<path d="M18 14v4"></path>
+							<path d="M18 9v1"></path>
+							<rect x="12" y="8" width="15" height="14" rx="2"></rect>
+						</svg>
+					</div>
+					<div class="footer-text">News</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="12" cy="12" r="3"></circle>
+							<path
+								d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+							></path>
+						</svg>
+					</div>
+					<div class="footer-text">Setting</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+							<circle cx="12" cy="7" r="4"></circle>
+						</svg>
+					</div>
+					<div class="footer-text">Profile</div>
+				</a>
+			</div>
+		</div>
+
+		<!-- Bootstrap JS with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Custom JavaScript -->
+		<script src="script.js"></script>
+	</body>
+</html>

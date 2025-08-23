@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Business Check</title>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="styles.css" />
+		<style>
+			/* Business Check */
+			body {
+				font-family: "Kanit", sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #ffffff;
+			}
+
+			.business-check-container {
+				position: relative;
+				width: 100%;
+				max-width: 100%;
+				min-height: 100vh;
+				margin: 0 auto;
+				background: #ffffff;
+				overflow: hidden;
+			}
+
+			@media (min-width: 480px) {
+				.business-check-container {
+					max-width: 480px;
+				}
+			}
+
+			/* Banner section */
+			.banner {
+				position: relative;
+				width: 100%;
+				min-height: 228px;
+				background: #d9d9d9;
+				overflow: hidden;
+			}
+
+			.banner-image {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.banner-overlay {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(
+					89.97deg,
+					rgba(53, 64, 156, 0) -20.13%,
+					#121636 97.17%
+				);
+				mix-blend-mode: multiply;
+			}
+
+			.banner-icon {
+				position: absolute;
+				width: 44px;
+				height: 42px;
+				left: 31px;
+				top: 77px;
+			}
+
+			.banner-title {
+				position: absolute;
+				width: auto;
+				left: 30px;
+				top: 137px;
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 24px;
+				color: #ffffff;
+			}
+
+			.banner-text {
+				position: absolute;
+				width: calc(100% - 62px);
+				max-width: 235px;
+				left: 31px;
+				top: 165px;
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				color: #ffffff;
+			}
+
+			/* Status bar */
+			.status-bar {
+				position: absolute;
+				top: 2.23%;
+				right: 14.76%;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
+
+			.status-bar svg {
+				fill: #ffffff;
+			}
+
+			/* Content section */
+			.content-section {
+				position: relative;
+				width: 100%;
+				padding: 20px 30px;
+				margin-bottom: 120px; /* Space for fixed footer */
+			}
+
+			.section-title {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 12px;
+				color: #293179;
+				margin-bottom: 25px;
+			}
+
+			/* Card styles */
+			.check-card {
+				position: relative;
+				width: 100%;
+				min-height: 47px;
+				background: #3b46ac;
+				border-radius: 13px;
+				margin-bottom: 15px;
+				display: flex;
+				align-items: center;
+				padding: 0 20px;
+			}
+
+			.check-card.locked {
+				position: relative;
+			}
+
+			.check-card.locked::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #3b46ac;
+				mix-blend-mode: multiply;
+				border-radius: 13px;
+				z-index: 1;
+			}
+
+			.card-icon {
+				color: #ffffff;
+				margin-right: 10px;
+				z-index: 2;
+			}
+
+			.lock-icon {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				color: #ffffff;
+				z-index: 3;
+			}
+
+			.card-title {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 8px;
+				text-align: center;
+				color: #ffffff;
+				z-index: 2;
+			}
+
+			.card-description {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				color: #aaaaaa;
+				margin-top: 10px;
+				margin-bottom: 30px;
+			}
+
+			/* Footer */
+			.footer {
+				position: fixed;
+				width: 100%;
+				min-height: 112px;
+				left: 0;
+				bottom: 0;
+				background: #f8f8f8;
+				border-radius: 15px 15px 0 0;
+				filter: drop-shadow(6px -16px 28px rgba(0, 0, 0, 0.25));
+				z-index: 100;
+			}
+
+			@media (min-width: 480px) {
+				.footer {
+					max-width: 480px;
+					left: 50%;
+					transform: translateX(-50%);
+				}
+			}
+
+			.footer-nav {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				padding-top: 15px;
+			}
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-decoration: none;
+			}
+
+			.nav-icon {
+				color: #676767;
+				margin-bottom: 5px;
+			}
+
+			.nav-icon.active {
+				color: #c32126;
+			}
+
+			.nav-text {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 8px;
+				line-height: 9px;
+				text-align: center;
+				color: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="business-check-container">
+			<!-- Banner Section -->
+			<div class="banner">
+				<img
+					src="images/Business Illustration.svg"
+					alt="Business Analysis"
+					class="banner-image"
+				/>
+				<div class="banner-overlay"></div>
+
+				<!-- Status Bar -->
+				<div class="status-bar">
+					<svg width="15" height="15" viewBox="0 0 24 24">
+						<path
+							d="M3.75 17.25v-10.5h3v10.5h-3zm5.25 0v-10.5h3v10.5h-3zm5.25 0v-10.5h3v10.5h-3z"
+							fill="#FFFFFF"
+						/>
+					</svg>
+					<svg width="15" height="15" viewBox="0 0 24 24">
+						<rect
+							x="4"
+							y="6"
+							width="16"
+							height="12"
+							rx="1"
+							stroke="#FFFFFF"
+							stroke-width="2"
+							fill="none"
+						/>
+						<rect x="6" y="8" width="12" height="8" rx="1" fill="#FFFFFF" />
+					</svg>
+				</div>
+
+				<!-- Banner Content -->
+				<div class="banner-icon">
+					<svg
+						width="44"
+						height="42"
+						viewBox="0 0 44 42"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M22 0L26.9706 15.8295H43.6414L30.3354 25.6115L35.3060 41.4410L22 31.6590L8.69398 41.4410L13.6646 25.6115L0.358624 15.8295H17.0294L22 0Z"
+							fill="#FFFFFF"
+						/>
+						<path d="M22 23L24 19L22 15L20 19L22 23Z" fill="#FFFFFF" />
+					</svg>
+				</div>
+				<h1 class="banner-title">Business Check</h1>
+				<p class="banner-text">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+			</div>
+
+			<!-- Content Section -->
+			<div class="content-section">
+				<h2 class="section-title">Lets Start!</h2>
+
+				<!-- Strategic Card -->
+				<a href="business-check-assessment.html" style="text-decoration: none">
+					<div class="check-card">
+						<div class="card-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="30"
+								height="30"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<circle cx="12" cy="12" r="10"></circle>
+								<circle cx="12" cy="12" r="2"></circle>
+							</svg>
+						</div>
+						<div class="card-title">Strategic</div>
+					</div>
+				</a>
+				<p class="card-description">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+
+				<!-- Input Kesehatan Card (Locked) -->
+				<div class="check-card locked">
+					<div class="card-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="32"
+							height="32"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+							></path>
+							<path d="M12 11v6"></path>
+							<path d="M9 14h6"></path>
+						</svg>
+					</div>
+					<div class="card-title">Input Kesehatan</div>
+					<div class="lock-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+							<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+						</svg>
+					</div>
+				</div>
+				<p class="card-description">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+
+				<!-- Input Standard Card (Locked) -->
+				<div class="check-card locked">
+					<div class="card-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="28"
+							height="28"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+							></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+						</svg>
+					</div>
+					<div class="card-title">Input Standard</div>
+					<div class="lock-icon">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+							<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+						</svg>
+					</div>
+				</div>
+				<p class="card-description">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+			</div>
+
+			<!-- Footer -->
+			<div class="footer">
+				<div class="footer-nav">
+					<a href="#" class="nav-item">
+						<div class="nav-icon active">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"></path>
+							</svg>
+						</div>
+						<div class="nav-text">Home</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="28"
+								height="28"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+								<path
+									d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+								></path>
+							</svg>
+						</div>
+						<div class="nav-text">Your Result</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="28"
+								height="28"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path
+									d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
+								></path>
+								<path d="M18 14h-3"></path>
+								<path d="M18 10h-6"></path>
+								<path d="M18 18h-3"></path>
+								<path d="M8 6v4"></path>
+								<path d="M6 8h4"></path>
+							</svg>
+						</div>
+						<div class="nav-text">News</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<circle cx="12" cy="10" r="3"></circle>
+								<path
+									d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"
+								></path>
+							</svg>
+						</div>
+						<div class="nav-text">Setting</div>
+					</a>
+					<a href="#" class="nav-item">
+						<div class="nav-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="32"
+								height="32"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+								<circle cx="12" cy="7" r="4"></circle>
+							</svg>
+						</div>
+						<div class="nav-text">Profile</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "fincheck",
+  "version": "1.0.0",
+  "description": "A responsive login page built with HTML, Bootstrap, and JavaScript that matches the provided design reference.",
+  "main": "script-assessment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^4.1.12"
+  }
+}

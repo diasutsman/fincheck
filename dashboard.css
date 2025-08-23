@@ -1,0 +1,242 @@
+/* Main Body Styles */
+body {
+    font-family: "Kanit", "Arial", sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    position: relative;
+    padding-bottom: 70px; /* Space for fixed bottom nav */
+    min-height: 100vh;
+}
+
+/* Header Section */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.welcome-text p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.welcome-text h1 {
+    margin: 0;
+    color: #4527a0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.profile-pic img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4527a0;
+}
+
+/* Chart Card */
+.chart-card {
+    background-color: #4527a0;
+    color: white;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 15px;
+    position: relative;
+}
+
+.year-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.chart-container {
+    height: 150px;
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-visual {
+    height: 100px;
+    position: relative;
+}
+
+.chart-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    top: 50%;
+}
+
+.chart-label {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 12px;
+}
+
+.chart-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.chart-y-axis {
+    position: absolute;
+    left: 0;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+/* Info Card */
+.info-card {
+    background-color: #fff;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-card-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Action Button */
+.action-button {
+    background-color: #4527a0;
+    color: white;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.action-button.secondary {
+    background-color: #6b45d2;
+}
+
+.action-button .target-icon,
+.action-button .lock-icon {
+    margin-right: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Reports Section */
+.reports-section {
+    padding: 15px;
+}
+
+.reports-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.report-item {
+    background-color: #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.month-details h4 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+}
+
+.month-details p {
+    font-size: 12px;
+    margin: 5px 0 0;
+    color: #666;
+}
+
+.report-icon {
+    color: #333;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #999;
+    font-size: 10px;
+}
+
+.nav-item i {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.nav-item.active {
+    color: #4527a0;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .dashboard-container {
+        max-width: 480px;
+    }
+
+    .bottom-nav {
+        max-width: 480px;
+    }
+}

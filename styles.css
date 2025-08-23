@@ -1,214 +1,183 @@
-/* Main Body Styles - sets up the page container */
+/* Main Body Styles */
 body {
-    font-family: 'Kanit', 'Arial', sans-serif;
-    background-color: #FFFFFF;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
+	font-family: "Kanit", "Arial", sans-serif;
+	background-color: #ffffff;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
 }
 
 /* Login Container - main wrapper for the login form */
 .login-container {
-    background-color: #FFFFFF;
-    padding: 2rem;
-    width: 393px; /* Exact width from Figma */
-    height: 852px; /* Exact height from Figma */
-    position: relative;
-    margin: 0 auto;
+	background-color: #ffffff;
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
 }
 
-/* Logo Styling - positions the ProBiz360 logo */
+/* Logo Container */
+.logo-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 6rem;
+	margin-bottom: 3rem;
+}
+
+/* Logo Styling */
 .logo {
-    width: 222px; /* Logo width from Figma */
-    height: 63px; /* Logo height from Figma */
-    position: absolute;
-    top: 147px; /* Exact position from Figma */
-    left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
+	width: 222px;
+	height: 63px;
 }
 
-/* Form Input Styling - for text and password fields */
+/* Form Container */
+.form-container {
+	margin: 1rem 0;
+}
+
+/* Form Group - provides spacing between form elements */
+.form-group {
+	margin-bottom: 2rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Form Input Styling */
 .form-control {
-    border: none;
-    border-radius: 0;
-    font-family: 'Kanit', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px; /* Matches Figma line height */
-    color: #8A8A8A; /* Text color from Figma */
-    width: 305px; /* Width from Figma */
-    padding: 0 0 5px 0;
-    position: absolute;
-    background: transparent;
+	border: none;
+	border-radius: 0;
+	font-family: "Kanit", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+	color: #8a8a8a;
+	width: 100%;
+	max-width: 100%;
+	padding: 0 0 5px 0;
+	background: transparent;
+}
+
+/* Input Underline */
+.input-underline {
+	width: 100%;
+	max-width: 100%;
+	height: 2px;
+	background: #b1aeae;
+	margin-top: 2px;
 }
 
 /* Form Input Focus State */
 .form-control:focus {
-    box-shadow: none;
-    border-color: #3B46AC; /* Matches login button color */
-    outline: none;
+	box-shadow: none;
+	border-color: #3b46ac;
+	outline: none;
 }
 
 /* Login Button Styling */
 .btn-login {
-    background-color: #3B46AC; /* Exact color from Figma */
-    color: white;
-    border-radius: 10px; /* From Figma */
-    font-family: 'Kanit';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    text-align: center;
-    width: 305px; /* Width from Figma */
-    height: 54px; /* Height from Figma */
-    position: absolute;
-    left: 44px; /* Position from Figma */
-    top: 416px; /* Position from Figma */
-    border: none;
-    transition: background-color 0.3s;
+	background-color: #3b46ac;
+	color: white;
+	border-radius: 10px;
+	font-family: "Kanit";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	min-height: 54px;
+	border: none;
+	transition: background-color 0.3s;
 }
 
 .btn-login:hover {
-    background-color: #2a348d;
-    color: white;
+	background-color: #2a348d;
+	color: white;
+}
+
+/* Social Login Container */
+.social-login-container {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Separator Container */
+.separator-container {
+	margin-bottom: 1.5rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 /* Social Login Separator Text */
 .separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #717171; /* Color from Figma */
-    font-family: 'Kanit';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    width: 124px; /* Width from Figma */
-    height: 24px; /* Height from Figma */
-    position: absolute;
-    left: 134px; /* Position from Figma */
-    top: 517px; /* Position from Figma */
+	color: #717171;
+	font-family: "Kanit";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	text-align: center;
+	margin: 0;
+	display: flex;
+	align-items: center;
 }
 
 .separator::before,
 .separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #ddd;
-    margin: 0 0.5rem;
+	content: "";
+	flex: 1;
+	border-bottom: 1px solid #ddd;
+	margin: 0 0.5rem;
+	display: none; /* Hide by default, can be enabled if needed */
 }
 
-/* Social Login Buttons Container */
-.social-login {
-    position: absolute;
-    top: 560px; /* Position from Figma */
-    left: 142px; /* Position from Figma */
-    width: 110px;
-    display: flex;
-    justify-content: space-between;
+/* Social Buttons Container */
+.social-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
 }
 
 /* Social Login Button Base Styling */
 .btn-social {
-    border: none;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	border: none;
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
 }
 
-/* Social Icons Sizing - Exact dimensions from Figma */
+/* Social Icons Sizing */
 .social-icon {
-    width: 38px; /* Width from Figma */
-    height: 38px; /* Height from Figma */
-}
-
-/* Form Input Positions - Exact positions from Figma */
-input[type="text"] {
-    left: 43px; /* Position from Figma */
-    top: 285px; /* Position from Figma */
-}
-
-input[type="password"] {
-    left: 43px; /* Position from Figma */
-    top: 358px; /* Position from Figma */
-}
-
-/* Bottom borders for inputs - Creates the underline effect */
-input[type="text"]::after,
-input[type="password"]::after {
-    content: "";
-    position: absolute;
-    width: 305px; /* Width from Figma */
-    height: 2px; /* Height from Figma */
-    background: #B1AEAE; /* Color from Figma */
-    left: 0;
-    bottom: 0;
-}
-
-/* Rectangle borders - Input underlines from Figma */
-.rectangle-border-username {
-    position: absolute;
-    width: 305px; /* Width from Figma */
-    height: 2px; /* Height from Figma */
-    left: 44px; /* Position from Figma */
-    top: 312px; /* Position from Figma */
-    background: #B1AEAE; /* Color from Figma */
-}
-
-.rectangle-border-password {
-    position: absolute;
-    width: 305px; /* Width from Figma */
-    height: 2px; /* Height from Figma */
-    left: 44px; /* Position from Figma */
-    top: 385px; /* Position from Figma */
-    background: #B1AEAE; /* Color from Figma */
-}
-
-/* Google social button - Position exactly as in Figma */
-.btn-social.google {
-    position: absolute;
-    width: 38px; /* Width from Figma */
-    height: 38px; /* Height from Figma */
-    left: 142px; /* Position from Figma */
-    top: 560px; /* Position from Figma */
-}
-
-/* LinkedIn social button - Position exactly as in Figma */
-.btn-social.linkedin {
-    position: absolute;
-    width: 38px; /* Width from Figma */
-    height: 38px; /* Height from Figma */
-    left: 213px; /* Position from Figma */
-    top: 560px; /* Position from Figma */
-}
-
-/* Login text styling - Exact position and styling from Figma */
-.login-text {
-    position: absolute;
-    width: 35px; /* Width from Figma */
-    height: 24px; /* Height from Figma */
-    left: 135px; /* Position from Figma */
-    top: 15px; /* Position from Figma */
-    font-family: 'Kanit';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    text-align: center;
-    color: #FFFFFF;
+	width: 38px;
+	height: 38px;
 }
 
 /* Mobile responsive adjustments */
-@media (max-width: 768px) {
-    .login-container {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 393px;
-    }
+@media (min-width: 768px) {
+	.login-container {
+		max-width: 480px;
+		padding: 2rem;
+	}
+
+	.form-control,
+	.btn-login,
+	.input-underline {
+		max-width: 80%;
+	}
 }

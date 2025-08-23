@@ -1,4 +1,52 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Profile page edit functionality
+    const editIcons = document.querySelectorAll('.edit-icon');
+    const saveButton = document.querySelector('.save-button');
+    let activeEditField = null;
+    
+    // Handle edit icon clicks
+    editIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            // Get the related input field
+            const inputField = this.closest('.form-group').querySelector('input');
+            
+            // Disable any previously active field
+            if (activeEditField && activeEditField !== inputField) {
+                activeEditField.disabled = true;
+                activeEditField.parentElement.classList.remove('editing');
+            }
+            
+            // Toggle the disabled state
+            inputField.disabled = !inputField.disabled;
+            
+            // Add visual feedback
+            if (!inputField.disabled) {
+                inputField.parentElement.classList.add('editing');
+                inputField.focus();
+                activeEditField = inputField;
+            } else {
+                inputField.parentElement.classList.remove('editing');
+                activeEditField = null;
+            }
+        });
+    });
+    
+    // Handle save button click
+    if (saveButton) {
+        saveButton.addEventListener('click', function() {
+            // Disable all input fields
+            document.querySelectorAll('.form-section input').forEach(input => {
+                input.disabled = true;
+                input.parentElement.classList.remove('editing');
+            });
+            
+            activeEditField = null;
+            
+            // You could add code here to save the data to a backend
+            alert('Profile information saved!');
+        });
+    }
+    
     // Form validation
     const loginForm = document.querySelector('form');
     const emailInput = document.querySelector('input[type="text"]');
@@ -27,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (isValid) {
                 // For demo purposes - in production this would be an API call
-                alert('Login successful! This is a demo.');
+                // alert('Login successful! This is a demo.');
                 
                 // Simulate login success - in production, redirect after successful API response
-                // window.location.href = 'dashboard.html';
+                window.location.href = 'about-us.html';
             }
         });
     }
