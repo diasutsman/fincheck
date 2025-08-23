@@ -18,6 +18,7 @@
 		/>
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="footer.css" />
 		<style>
 			/* Business Check */
 			body {
@@ -149,12 +150,12 @@
 				display: flex;
 				align-items: center;
 				padding: 0 20px;
-                justify-content: center;
+				justify-content: center;
 			}
 
 			.check-card.locked {
 				position: relative;
-				background: #2D0D6E;
+				background: #2d0d6e;
 				border-radius: 13px;
 				height: 47px;
 				width: 100%;
@@ -223,7 +224,8 @@
 			}
 
 			/* Footer */
-			.footer {
+			/*
+            .footer {
 				position: fixed;
 				width: 100%;
 				min-height: 112px;
@@ -249,6 +251,7 @@
 				align-items: center;
 				padding-top: 15px;
 			}
+                */
 
 			.nav-item {
 				display: flex;
@@ -353,11 +356,22 @@
 				<a href="business-check-assessment.html" style="text-decoration: none">
 					<div class="check-card">
 						<div class="card-icon">
-							<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M27.8906 13.8867H24.3105C23.8037 9.59766 20.4023 6.19629 16.1133 5.68945V2.10938C16.1133 1.98047 16.0078 1.875 15.8789 1.875H14.1211C13.9922 1.875 13.8867 1.98047 13.8867 2.10938V5.68945C9.59766 6.19629 6.19629 9.59766 5.68945 13.8867H2.10938C1.98047 13.8867 1.875 13.9922 1.875 14.1211V15.8789C1.875 16.0078 1.98047 16.1133 2.10938 16.1133H5.68945C6.19629 20.4023 9.59766 23.8037 13.8867 24.3105V27.8906C13.8867 28.0195 13.9922 28.125 14.1211 28.125H15.8789C16.0078 28.125 16.1133 28.0195 16.1133 27.8906V24.3105C20.4023 23.8037 23.8037 20.4023 24.3105 16.1133H27.8906C28.0195 16.1133 28.125 16.0078 28.125 15.8789V14.1211C28.125 13.9922 28.0195 13.8867 27.8906 13.8867ZM15 22.1484C11.0508 22.1484 7.85156 18.9492 7.85156 15C7.85156 11.0508 11.0508 7.85156 15 7.85156C18.9492 7.85156 22.1484 11.0508 22.1484 15C22.1484 18.9492 18.9492 22.1484 15 22.1484Z" fill="white"/>
-                                <path d="M15 11.4844C14.0596 11.4844 13.1807 11.8477 12.5156 12.5156C11.8506 13.1807 11.4844 14.0596 11.4844 15C11.4844 15.9404 11.8506 16.8193 12.5156 17.4844C13.1807 18.1465 14.0625 18.5156 15 18.5156C15.9375 18.5156 16.8193 18.1494 17.4844 17.4844C18.1465 16.8193 18.5156 15.9375 18.5156 15C18.5156 14.0625 18.1494 13.1807 17.4844 12.5156C16.8193 11.8477 15.9404 11.4844 15 11.4844Z" fill="white"/>
-                                </svg>
-                                
+							<svg
+								width="30"
+								height="30"
+								viewBox="0 0 30 30"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M27.8906 13.8867H24.3105C23.8037 9.59766 20.4023 6.19629 16.1133 5.68945V2.10938C16.1133 1.98047 16.0078 1.875 15.8789 1.875H14.1211C13.9922 1.875 13.8867 1.98047 13.8867 2.10938V5.68945C9.59766 6.19629 6.19629 9.59766 5.68945 13.8867H2.10938C1.98047 13.8867 1.875 13.9922 1.875 14.1211V15.8789C1.875 16.0078 1.98047 16.1133 2.10938 16.1133H5.68945C6.19629 20.4023 9.59766 23.8037 13.8867 24.3105V27.8906C13.8867 28.0195 13.9922 28.125 14.1211 28.125H15.8789C16.0078 28.125 16.1133 28.0195 16.1133 27.8906V24.3105C20.4023 23.8037 23.8037 20.4023 24.3105 16.1133H27.8906C28.0195 16.1133 28.125 16.0078 28.125 15.8789V14.1211C28.125 13.9922 28.0195 13.8867 27.8906 13.8867ZM15 22.1484C11.0508 22.1484 7.85156 18.9492 7.85156 15C7.85156 11.0508 11.0508 7.85156 15 7.85156C18.9492 7.85156 22.1484 11.0508 22.1484 15C22.1484 18.9492 18.9492 22.1484 15 22.1484Z"
+									fill="white"
+								/>
+								<path
+									d="M15 11.4844C14.0596 11.4844 13.1807 11.8477 12.5156 12.5156C11.8506 13.1807 11.4844 14.0596 11.4844 15C11.4844 15.9404 11.8506 16.8193 12.5156 17.4844C13.1807 18.1465 14.0625 18.5156 15 18.5156C15.9375 18.5156 16.8193 18.1494 17.4844 17.4844C18.1465 16.8193 18.5156 15.9375 18.5156 15C18.5156 14.0625 18.1494 13.1807 17.4844 12.5156C16.8193 11.8477 15.9404 11.4844 15 11.4844Z"
+									fill="white"
+								/>
+							</svg>
 						</div>
 						<div class="card-title">Strategic</div>
 					</div>
@@ -457,110 +471,115 @@
 				</p>
 			</div>
 
-			<!-- Footer -->
+			<!-- Footer Section -->
 			<div class="footer">
-				<div class="footer-nav">
-					<a href="#" class="nav-item">
-						<div class="nav-icon active">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="32"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-							>
-								<path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"></path>
-							</svg>
-						</div>
-						<div class="nav-text">Home</div>
-					</a>
-					<a href="#" class="nav-item">
-						<div class="nav-icon">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="28"
-								height="28"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-								<path
-									d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-								></path>
-							</svg>
-						</div>
-						<div class="nav-text">Your Result</div>
-					</a>
-					<a href="#" class="nav-item">
-						<div class="nav-icon">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="28"
-								height="28"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path
-									d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
-								></path>
-								<path d="M18 14h-3"></path>
-								<path d="M18 10h-6"></path>
-								<path d="M18 18h-3"></path>
-								<path d="M8 6v4"></path>
-								<path d="M6 8h4"></path>
-							</svg>
-						</div>
-						<div class="nav-text">News</div>
-					</a>
-					<a href="#" class="nav-item">
-						<div class="nav-icon">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="10" r="3"></circle>
-								<path
-									d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"
-								></path>
-							</svg>
-						</div>
-						<div class="nav-text">Setting</div>
-					</a>
-					<a href="#" class="nav-item">
-						<div class="nav-icon">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="32"
-								height="32"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-								<circle cx="12" cy="7" r="4"></circle>
-							</svg>
-						</div>
-						<div class="nav-text">Profile</div>
-					</a>
-				</div>
+				<a href="#" class="footer-item">
+					<div class="footer-icon active">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+							<polyline points="9 22 9 12 15 12 15 22"></polyline>
+						</svg>
+					</div>
+					<div class="footer-text">Home</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+							<path
+								d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+							></path>
+						</svg>
+					</div>
+					<div class="footer-text">Your Result</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
+							></path>
+							<path d="M18 14v4"></path>
+							<path d="M18 9v1"></path>
+							<rect x="12" y="8" width="15" height="14" rx="2"></rect>
+						</svg>
+					</div>
+					<div class="footer-text">News</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="12" cy="12" r="3"></circle>
+							<path
+								d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+							></path>
+						</svg>
+					</div>
+					<div class="footer-text">Setting</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+							<circle cx="12" cy="7" r="4"></circle>
+						</svg>
+					</div>
+					<div class="footer-text">Profile</div>
+				</a>
 			</div>
 		</div>
 

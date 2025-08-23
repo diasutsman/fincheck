@@ -28,6 +28,7 @@
 		></script>
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="footer.css" />
 		<style>
 			* {
 				margin: 0;
@@ -38,7 +39,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: 20px 0;
-				
+
 				border-top: 1px solid #e5e7eb;
 			}
 			/* strategic */
@@ -145,9 +146,6 @@
 
 			/* Form title */
 			.form-title {
-				
-				
-				
 				font-family: "Kanit", sans-serif;
 				font-style: normal;
 				font-weight: 400;
@@ -155,7 +153,7 @@
 				line-height: 18px;
 				color: #293179;
 
-                margin-bottom: 15px;
+				margin-bottom: 15px;
 			}
 
 			/* Form item */
@@ -189,7 +187,7 @@
 				font-size: 10px;
 				line-height: 12px;
 				color: #000000;
-                margin-bottom: 14px;
+				margin-bottom: 14px;
 			}
 
 			/* Form select wrapper */
@@ -292,7 +290,7 @@
 				width: 110px;
 				height: 29px;
 				margin-left: auto;
-				
+
 				background: #4957d6;
 				border-radius: 6px;
 				display: flex;
@@ -313,7 +311,7 @@
 			}
 
 			/* Footer */
-			.footer {
+			/*.footer {
 				position: fixed;
 				width: 100%;
 				height: 112px;
@@ -329,7 +327,7 @@
 				justify-content: space-around;
 				align-items: center;
 				padding-top: 15px;
-			}
+			}*/
 
 			.nav-item {
 				display: flex;
@@ -643,7 +641,7 @@
 
 					<div
 						class="strategic-title mb-6"
-                        style="margin-bottom: 14px"
+						style="margin-bottom: 14px"
 						x-text="{
                         'strategic': 'Input Evaluasi Tingkat Strategis Perusahaan',
                         'kesehatan': 'Input Evaluasi Tingkat Kesehatan Laporan Keuangan',
@@ -675,7 +673,15 @@
 							relevan?
 						</div>
 						<div class="form-select-wrapper">
-							<select class="custom-select" style="width: 100%; appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+							<select
+								class="custom-select"
+								style="
+									width: 100%;
+									appearance: none;
+									-webkit-appearance: none;
+									-moz-appearance: none;
+								"
+							>
 								<option value="" disabled selected>Select an option</option>
 								<option value="ya">Ya</option>
 								<option value="tidak">Tidak</option>
@@ -706,7 +712,15 @@
 							pendidikan atau pelatihan manajemen bisnis?
 						</div>
 						<div class="form-select-wrapper">
-							<select class="custom-select" style="width: 100%; appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+							<select
+								class="custom-select"
+								style="
+									width: 100%;
+									appearance: none;
+									-webkit-appearance: none;
+									-moz-appearance: none;
+								"
+							>
 								<option value="" disabled selected>Select an option</option>
 								<option value="ya">Ya</option>
 								<option value="tidak">Tidak</option>
@@ -737,7 +751,15 @@
 							pengambilan keputusan strategis?
 						</div>
 						<div class="form-select-wrapper">
-							<select class="custom-select" style="width: 100%; appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+							<select
+								class="custom-select"
+								style="
+									width: 100%;
+									appearance: none;
+									-webkit-appearance: none;
+									-moz-appearance: none;
+								"
+							>
 								<option value="" disabled selected>Select an option</option>
 								<option value="sangat_kuat">Sangat Kuat</option>
 								<option value="kuat">Kuat</option>
@@ -770,7 +792,15 @@
 							manajemen?
 						</div>
 						<div class="form-select-wrapper">
-							<select class="custom-select" style="width: 100%; appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+							<select
+								class="custom-select"
+								style="
+									width: 100%;
+									appearance: none;
+									-webkit-appearance: none;
+									-moz-appearance: none;
+								"
+							>
 								<option value="" disabled selected>Select an option</option>
 								<option value="ya">Ya</option>
 								<option value="tidak">Tidak</option>
@@ -801,7 +831,15 @@
 							jaringan bisnis (networking)?
 						</div>
 						<div class="form-select-wrapper">
-							<select class="custom-select" style="width: 100%; appearance: none; -webkit-appearance: none; -moz-appearance: none;">
+							<select
+								class="custom-select"
+								style="
+									width: 100%;
+									appearance: none;
+									-webkit-appearance: none;
+									-moz-appearance: none;
+								"
+							>
 								<option value="" disabled selected>Select an option</option>
 								<option value="sangat_baik">Sangat Baik</option>
 								<option value="baik">Baik</option>

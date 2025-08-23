@@ -25,6 +25,7 @@
 		/>
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="footer.css" />
 		<style>
 			/* Home page styles */
 			body {
@@ -87,8 +88,7 @@
 			}
 
 			.profile-photo img {
-				
-                width: 45px;
+				width: 45px;
 				height: 45px;
 				object-fit: cover;
 			}
@@ -338,53 +338,13 @@
 				object-fit: cover;
 				border-radius: 15px;
 			}
-
-			/* Footer section */
-			.footer {
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				background-color: #f8f8f8;
-				border-radius: 15px 15px 0 0;
-				padding: 15px 0;
-				display: flex;
-				justify-content: space-around;
-				box-shadow: 6px -16px 28px rgba(0, 0, 0, 0.25);
-				z-index: 100;
-			}
-
-			.footer-item {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				text-decoration: none;
-			}
-
-			.footer-icon {
-				margin-bottom: 5px;
-			}
-
-			.footer-icon.active {
-				color: #c32126;
-			}
-
-			.footer-icon.inactive {
-				color: #676767;
-			}
-
-			.footer-text {
-				font-size: 12px;
-				color: #000000;
-				text-align: center;
-			}
 		</style>
 	</head>
 	<body>
 		<div class="home-container">
 			<!-- Status Bar -->
 			<!-- <div class="status-bar"> -->
-				<!-- Status bar content would go here, but typically is handled by the device itself -->
+			<!-- Status bar content would go here, but typically is handled by the device itself -->
 			<!-- </div> -->
 
 			<!-- Header Section -->
@@ -393,7 +353,7 @@
 					<p class="welcome-text">Welcome,</p>
 					<p class="user-name">Albert Ricia</p>
 				</div>
-				<div class="header-actions" style="display: flex; align-items: center;">
+				<div class="header-actions" style="display: flex; align-items: center">
 					<div class="notification-bell">
 						<svg
 							width="33"
@@ -523,7 +483,9 @@
 						<p class="button-text">Business Check</p>
 					</div>
 				</a>
-				<div class="button-subtext"  style="font-size: 12px">Lets Start Check Your Business</div>
+				<div class="button-subtext" style="font-size: 12px">
+					Lets Start Check Your Business
+				</div>
 
 				<a
 					href="business-process.html"
@@ -547,7 +509,9 @@
 						<p class="button-text">Business Process</p>
 					</div>
 				</a>
-				<div class="button-subtext"  style="font-size: 12px">Lets Start Check Your Business Process</div>
+				<div class="button-subtext" style="font-size: 12px">
+					Lets Start Check Your Business Process
+				</div>
 			</div>
 
 			<!-- History Section -->
