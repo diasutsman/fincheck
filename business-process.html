@@ -19,8 +19,13 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="stylesheet" href="footer.css" />
+
+		<link rel="stylesheet" href="home.css" />
+		<link rel="stylesheet" href="footer.css" />
+		<link rel="stylesheet" href="evaluation.css" />
+
 		<style>
-			/* Business Process */
+			/* Business Check */
 			body {
 				font-family: "Kanit", sans-serif;
 				margin: 0;
@@ -28,7 +33,7 @@
 				background-color: #ffffff;
 			}
 
-			.business-process-container {
+			.business-check-container {
 				position: relative;
 				width: 100%;
 				max-width: 100%;
@@ -39,7 +44,7 @@
 			}
 
 			@media (min-width: 480px) {
-				.business-process-container {
+				.business-check-container {
 					max-width: 480px;
 				}
 			}
@@ -72,12 +77,20 @@
 				mix-blend-mode: multiply;
 			}
 
+			.banner-icon {
+				position: absolute;
+				width: 44px;
+				height: 42px;
+				left: 31px;
+				top: 77px;
+			}
+
 			.banner-title {
 				position: absolute;
 				width: auto;
 				left: 30px;
 				top: 137px;
-				font-family: "Kanit", sans-serif;
+				font-family: "Kanit";
 				font-style: normal;
 				font-weight: 400;
 				font-size: 24px;
@@ -91,7 +104,7 @@
 				max-width: 235px;
 				left: 31px;
 				top: 165px;
-				font-family: "Kanit", sans-serif;
+				font-family: "Kanit";
 				font-style: normal;
 				font-weight: 400;
 				font-size: 9px;
@@ -122,7 +135,7 @@
 			}
 
 			.section-title {
-				font-family: "Kanit", sans-serif;
+				font-family: "Kanit";
 				font-style: normal;
 				font-weight: 400;
 				font-size: 24px;
@@ -131,8 +144,19 @@
 				margin-bottom: 25px;
 			}
 
+			.content-group {
+				position: relative;
+
+				max-width: 100%;
+				margin: 0 auto;
+				padding-top: 18px;
+				padding-bottom: 50px;
+				padding: 0 32px;
+				width: 100%;
+			}
+
 			/* Card styles */
-			.process-card {
+			.check-card {
 				position: relative;
 				width: 100%;
 				min-height: 47px;
@@ -142,21 +166,26 @@
 				display: flex;
 				align-items: center;
 				padding: 0 20px;
+				justify-content: center;
 			}
 
-			.process-card.locked {
+			.check-card.locked {
 				position: relative;
+				background: #2d0d6e;
+				border-radius: 13px;
+				height: 47px;
+				width: 100%;
 			}
 
-			.process-card.locked::before {
+			.check-card.locked::before {
 				content: "";
 				position: absolute;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background: #3b46ac;
-				mix-blend-mode: multiply;
+				background: rgba(45, 13, 110, 0.5);
+				mix-blend-mode: overlay;
 				border-radius: 13px;
 				z-index: 1;
 			}
@@ -165,6 +194,11 @@
 				color: #ffffff;
 				margin-right: 10px;
 				z-index: 2;
+				width: 32px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 
 			.lock-icon {
@@ -174,10 +208,15 @@
 				transform: translate(-50%, -50%);
 				color: #ffffff;
 				z-index: 3;
+				width: 24px;
+				height: 24px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 
 			.card-title {
-				font-family: "Kanit", sans-serif;
+				font-family: "Kanit";
 				font-style: normal;
 				font-weight: 400;
 				font-size: 16px;
@@ -185,10 +224,12 @@
 				text-align: center;
 				color: #ffffff;
 				z-index: 2;
+				width: 116px;
+				height: 8px;
 			}
 
 			.card-description {
-				font-family: "Kanit", sans-serif;
+				font-family: "Kanit";
 				font-style: normal;
 				font-weight: 400;
 				font-size: 9px;
@@ -199,7 +240,7 @@
 			}
 
 			/* Footer */
-			/* 
+			/*
             .footer {
 				position: fixed;
 				width: 100%;
@@ -245,7 +286,7 @@
 			}
 
 			.nav-text {
-				font-family: "Kanit", sans-serif;
+				font-family: "Kanit";
 				font-style: normal;
 				font-weight: 400;
 				font-size: 8px;
@@ -253,10 +294,550 @@
 				text-align: center;
 				color: #000000;
 			}
+
+			.form-title {
+				font-size: 24px;
+			}
+
+			.strategic-title {
+				font-size: 32px;
+			}
+
+			.card-title {
+				font-size: 32px;
+			}
+
+			.assessment-form {
+				padding: 40px;
+			}
+
+			.assessment-form {
+				max-width: none;
+				padding: 0;
+			}
 		</style>
+
+		<style>
+			/* Business Check */
+			body {
+				font-family: "Kanit", sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #ffffff;
+			}
+
+			.business-check-container {
+				position: relative;
+				width: 100%;
+				max-width: 100%;
+				min-height: 100vh;
+				margin: 0 auto;
+				background: #ffffff;
+				overflow: hidden;
+			}
+
+			@media (min-width: 480px) {
+				.business-check-container {
+					max-width: 480px;
+				}
+			}
+
+			/* Banner section */
+			.banner {
+				position: relative;
+				width: 100%;
+				min-height: 228px;
+				background: #d9d9d9;
+				overflow: hidden;
+			}
+
+			.banner-image {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.banner-overlay {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(
+					89.97deg,
+					rgba(53, 64, 156, 0) -20.13%,
+					#121636 97.17%
+				);
+				mix-blend-mode: multiply;
+			}
+
+			.banner-icon {
+				position: absolute;
+				width: 44px;
+				height: 42px;
+				left: 31px;
+				top: 77px;
+			}
+
+			.banner-title {
+				position: absolute;
+				width: auto;
+				left: 30px;
+				top: 137px;
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 24px;
+				color: #ffffff;
+			}
+
+			.banner-text {
+				position: absolute;
+				width: calc(100% - 62px);
+				max-width: 235px;
+				left: 31px;
+				top: 165px;
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				color: #ffffff;
+			}
+
+			/* Status bar */
+			.status-bar {
+				position: absolute;
+				top: 2.23%;
+				right: 14.76%;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
+
+			.status-bar svg {
+				fill: #ffffff;
+			}
+
+			/* Content section */
+			.content-section {
+				position: relative;
+				width: 100%;
+				padding: 20px 30px;
+				margin-bottom: 120px; /* Space for fixed footer */
+			}
+
+			.section-title {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 12px;
+				color: #293179;
+				margin-bottom: 25px;
+			}
+
+			.content-group {
+				position: relative;
+
+				max-width: 100%;
+				margin: 0 auto;
+				padding-top: 18px;
+				padding-bottom: 50px;
+				padding: 0 32px;
+				width: 100%;
+			}
+
+			/* Card styles */
+			.check-card {
+				position: relative;
+				width: 100%;
+				min-height: 47px;
+				background: #3b46ac;
+				border-radius: 13px;
+				margin-bottom: 15px;
+				display: flex;
+				align-items: center;
+				padding: 0 20px;
+				justify-content: center;
+			}
+
+			.check-card.locked {
+				position: relative;
+				background: #2d0d6e;
+				border-radius: 13px;
+				height: 47px;
+				width: 100%;
+			}
+
+			.check-card.locked::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(45, 13, 110, 0.5);
+				mix-blend-mode: overlay;
+				border-radius: 13px;
+				z-index: 1;
+			}
+
+			.card-icon {
+				color: #ffffff;
+				margin-right: 10px;
+				z-index: 2;
+				width: 32px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.lock-icon {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				color: #ffffff;
+				z-index: 3;
+				width: 24px;
+				height: 24px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.card-title {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 8px;
+				text-align: center;
+				color: #ffffff;
+				z-index: 2;
+				width: 116px;
+				height: 8px;
+			}
+
+			.card-description {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				color: #aaaaaa;
+				margin-top: 10px;
+				margin-bottom: 30px;
+			}
+
+			/* Footer */
+			/*
+            .footer {
+				position: fixed;
+				width: 100%;
+				min-height: 112px;
+				left: 0;
+				bottom: 0;
+				background: #f8f8f8;
+				border-radius: 15px 15px 0 0;
+				filter: drop-shadow(6px -16px 28px rgba(0, 0, 0, 0.25));
+				z-index: 100;
+			}
+
+			@media (min-width: 480px) {
+				.footer {
+					max-width: 480px;
+					left: 50%;
+					transform: translateX(-50%);
+				}
+			}
+
+			.footer-nav {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				padding-top: 15px;
+			}
+                */
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-decoration: none;
+			}
+
+			.nav-icon {
+				color: #676767;
+				margin-bottom: 5px;
+			}
+
+			.nav-icon.active {
+				color: #c32126;
+			}
+
+			.nav-text {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 8px;
+				line-height: 9px;
+				text-align: center;
+				color: #000000;
+			}
+
+			.form-title {
+				font-size: 24px;
+			}
+
+			.strategic-title {
+				font-size: 32px;
+			}
+
+			.card-title {
+				font-size: 32px;
+			}
+		</style>
+
+		<!-- styles on phone -->
+		<style>
+			@media (max-width: 768px) {
+				/* Business Process */
+				body {
+					font-family: "Kanit", sans-serif;
+					margin: 0;
+					padding: 0;
+					background-color: #ffffff;
+				}
+
+				.business-process-container {
+					position: relative;
+					width: 100%;
+					max-width: 100%;
+					min-height: 100vh;
+					margin: 0 auto;
+					background: #ffffff;
+					overflow: hidden;
+				}
+
+				/* Banner section */
+				.banner {
+					position: relative;
+					width: 100%;
+					min-height: 228px;
+					background: #d9d9d9;
+					overflow: hidden;
+				}
+
+				.banner-image {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+
+				.banner-overlay {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					background: linear-gradient(
+						89.97deg,
+						rgba(53, 64, 156, 0) -20.13%,
+						#121636 97.17%
+					);
+					mix-blend-mode: multiply;
+				}
+
+				.banner-title {
+					position: absolute;
+					width: auto;
+					left: 30px;
+					top: 137px;
+					font-family: "Kanit", sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 24px;
+					line-height: 24px;
+					color: #ffffff;
+				}
+
+				.banner-text {
+					position: absolute;
+					width: calc(100% - 62px);
+					max-width: 235px;
+					left: 31px;
+					top: 165px;
+					font-family: "Kanit", sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 9px;
+					line-height: 12px;
+					color: #ffffff;
+				}
+
+				/* Status bar */
+				.status-bar {
+					position: absolute;
+					top: 2.23%;
+					right: 14.76%;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+				}
+
+				.status-bar svg {
+					fill: #ffffff;
+				}
+
+				/* Content section */
+				.content-section {
+					position: relative;
+					width: 100%;
+					padding: 20px 30px;
+					margin-bottom: 120px; /* Space for fixed footer */
+				}
+
+				.section-title {
+					font-family: "Kanit", sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 24px;
+					line-height: 12px;
+					color: #293179;
+					margin-bottom: 25px;
+				}
+
+				/* Card styles */
+				.process-card {
+					position: relative;
+					width: 100%;
+					min-height: 47px;
+					background: #3b46ac;
+					border-radius: 13px;
+					margin-bottom: 15px;
+					display: flex;
+					align-items: center;
+					padding: 0 20px;
+				}
+
+				.process-card.locked {
+					position: relative;
+				}
+
+				.process-card.locked::before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: #3b46ac;
+					mix-blend-mode: multiply;
+					border-radius: 13px;
+					z-index: 1;
+				}
+
+				.card-icon {
+					color: #ffffff;
+					margin-right: 10px;
+					z-index: 2;
+				}
+
+				.lock-icon {
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					color: #ffffff;
+					z-index: 3;
+				}
+
+				.card-title {
+					font-family: "Kanit", sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 16px;
+					line-height: 8px;
+					text-align: center;
+					color: #ffffff;
+					z-index: 2;
+				}
+
+				.card-description {
+					font-family: "Kanit", sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 9px;
+					line-height: 12px;
+					color: #aaaaaa;
+					margin-top: 10px;
+					margin-bottom: 30px;
+				}
+
+				/* Footer */
+				/* 
+                .footer {
+                    position: fixed;
+                    width: 100%;
+                    min-height: 112px;
+                    left: 0;
+                    bottom: 0;
+                    background: #f8f8f8;
+                    border-radius: 15px 15px 0 0;
+                    filter: drop-shadow(6px -16px 28px rgba(0, 0, 0, 0.25));
+                    z-index: 100;
+                }
+    
+                @media (min-width: 480px) {
+                    .footer {
+                        max-width: 480px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+    
+                .footer-nav {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding-top: 15px;
+                }
+                    */
+
+				.nav-item {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					text-decoration: none;
+				}
+
+				.nav-icon {
+					color: #676767;
+					margin-bottom: 5px;
+				}
+
+				.nav-icon.active {
+					color: #c32126;
+				}
+
+				.nav-text {
+					font-family: "Kanit", sans-serif;
+					font-style: normal;
+					font-weight: 400;
+					font-size: 8px;
+					line-height: 9px;
+					text-align: center;
+					color: #000000;
+				}
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	</head>
 	<body>
-		<div class="business-process-container">
+		<div class="business-process-container md:hidden">
 			<!-- Banner Section -->
 			<div class="banner">
 				<img
@@ -323,6 +904,43 @@
 								<path d="M12 12v3"></path>
 							</svg>
 						</div>
+						<script>
+							// Enable mouse drag-to-scroll like on mobile
+							(function () {
+								const container = document.querySelector(
+									".desktop-dashboard .bc-cards"
+								);
+								if (!container) return;
+								let isDown = false;
+								let startX = 0;
+								let scrollLeft = 0;
+
+								container.addEventListener("mousedown", (e) => {
+									isDown = true;
+									container.classList.add("dragging");
+									startX = e.pageX - container.offsetLeft;
+									scrollLeft = container.scrollLeft;
+								});
+
+								container.addEventListener("mouseleave", () => {
+									isDown = false;
+									container.classList.remove("dragging");
+								});
+
+								container.addEventListener("mouseup", () => {
+									isDown = false;
+									container.classList.remove("dragging");
+								});
+
+								container.addEventListener("mousemove", (e) => {
+									if (!isDown) return;
+									e.preventDefault();
+									const x = e.pageX - container.offsetLeft;
+									const walk = x - startX; // how far mouse moved
+									container.scrollLeft = scrollLeft - walk;
+								});
+							})();
+						</script>
 						<div class="card-title">AnT</div>
 					</div>
 				</a>
@@ -557,7 +1175,7 @@
 
 			<!-- Footer Section -->
 			<div class="footer">
-				<a href="#" class="footer-item">
+				<a href="home.html" class="footer-item">
 					<div class="footer-icon active">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -666,8 +1284,1549 @@
 				</a>
 			</div>
 		</div>
+		<div class="hidden business-process-container-desktop md:block">
+			<div class="dd-header">
+				<div
+					style="
+						max-width: 1160px;
+						width: 100%;
+						margin: 0 auto;
+						padding: 0 32px;
+					"
+					x-data="{ menuOpen: false }"
+					@keydown.escape.window="menuOpen=false"
+					class="relative"
+				>
+					<div class="dd-topbar">
+						<div class="flex items-center gap-2">
+							<div class="back-button">
+								<a href="home.html" style="text-decoration: none">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="#293179"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M19 12H5"></path>
+										<path d="M12 19l-7-7 7-7"></path>
+									</svg>
+								</a>
+							</div>
+							<a href="home.html">
+								<img
+									src="images/probiz360-logo.png"
+									alt="ProBiz360"
+									class="dd-logo"
+								/>
+							</a>
+						</div>
+						<div class="dd-actions">
+							<div class="notification-bell">
+								<svg
+									width="33"
+									height="33"
+									viewBox="0 0 33 33"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M28.875 8.93751C28.875 11.5913 26.7162 13.75 24.0625 13.75C21.4088 13.75 19.25 11.5913 19.25 8.93751C19.25 6.28376 21.4088 4.12501 24.0625 4.12501C26.7162 4.12501 28.875 6.28376 28.875 8.93751ZM26.125 16.2113C25.4375 16.39 24.75 16.5 24.0625 16.5C22.0579 16.4964 20.1365 15.6984 18.719 14.281C17.3016 12.8635 16.5036 10.9421 16.5 8.93751C16.5 6.91626 17.2975 5.08751 18.5625 3.72626C18.313 3.42038 17.9983 3.17402 17.6415 3.00513C17.2847 2.83624 16.8948 2.74909 16.5 2.75001C14.9875 2.75001 13.75 3.98751 13.75 5.50001V5.89876C9.66625 7.10876 6.875 10.8625 6.875 15.125V23.375L4.125 26.125V27.5H28.875V26.125L26.125 23.375V16.2113ZM16.5 31.625C18.0262 31.625 19.25 30.4013 19.25 28.875H13.75C13.75 29.6044 14.0397 30.3038 14.5555 30.8196C15.0712 31.3353 15.7707 31.625 16.5 31.625Z"
+										fill="#3B46AC"
+									/>
+								</svg>
+							</div>
+							<button
+								id="menuButton"
+								class="menu-button"
+								aria-label="Open menu"
+								@click="menuOpen=!menuOpen"
+								:aria-expanded="menuOpen.toString()"
+								aria-haspopup="true"
+								aria-controls="accountMenu"
+							>
+								<svg
+									class="menu-icon"
+									width="28"
+									height="20"
+									viewBox="0 0 28 20"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<line
+										x1="1"
+										y1="2"
+										x2="27"
+										y2="2"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="10"
+										x2="27"
+										y2="10"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="18"
+										x2="27"
+										y2="18"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
 
-		<!-- Bootstrap JS -->
+					<!-- Desktop dropdown menu (Alpine + Tailwind) -->
+					<style>
+						[x-cloak] {
+							display: none !important;
+						}
+					</style>
+					<div
+						id="accountMenu"
+						role="menu"
+						aria-labelledby="menuButton"
+						tabindex="-1"
+						x-cloak
+						x-show="menuOpen"
+						x-transition.opacity
+						x-transition.duration.200ms
+						@click.outside="menuOpen=false"
+						class="absolute right-8 mt-3 w-[330px] bg-white rounded-xl shadow-2xl overflow-hidden z-50"
+					>
+						<!-- Logo header -->
+						<div class="px-5 pt-4 pb-2">
+							<img
+								src="images/probiz360-logo.png"
+								alt="ProBiz360"
+								class="h-[49px] w-auto"
+							/>
+						</div>
+						<!-- Active row -->
+						<div
+							class="relative flex items-center gap-3 bg-[#293179] text-white px-5 py-4 font-extrabold"
+						>
+							<svg
+								class="w-8 h-8"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5Z"
+									fill="#fff"
+								/>
+							</svg>
+							<span>Dashboard</span>
+							<span
+								class="absolute right-0 top-0 h-full w-[14px] bg-[#C32126]"
+							></span>
+						</div>
+						<!-- Links -->
+						<nav class="grid px-5 py-5 gap-7">
+							<a
+								href="business-check.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="9"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="12" r="2" fill="#A7A7A7" />
+								</svg>
+								<span>Business Check</span>
+							</a>
+							<a
+								href="business-process.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="3"
+										y="12"
+										width="3"
+										height="7"
+										rx="1"
+										fill="#A7A7A7"
+									/>
+									<rect
+										x="9"
+										y="9"
+										width="3"
+										height="10"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.9"
+									/>
+									<rect
+										x="15"
+										y="6"
+										width="3"
+										height="13"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.8"
+									/>
+								</svg>
+								<span>Business Process</span>
+							</a>
+							<a
+								href="profile.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="7" r="4" fill="#A7A7A7" />
+								</svg>
+								<span>Profile</span>
+							</a>
+							<a
+								href="#password"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="5"
+										y="11"
+										width="14"
+										height="10"
+										rx="2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<path
+										d="M8 11V8a4 4 0 018 0v3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Password</span>
+							</a>
+							<a
+								href="#logout"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M10 17l5-5-5-5"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+									<path
+										d="M15 12H3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+									<path
+										d="M21 21V3a2 2 0 0 0-2-2h-6"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Logout</span>
+							</a>
+						</nav>
+					</div>
+					<div class="dd-welcome">
+						<p class="welcome">Welcome,</p>
+						<h2 class="name">Albert Ricia</h2>
+						<p class="summary">
+							You have 4 task to finish all task today, your already completed
+							<strong>75% task</strong> fot today, your progress is
+							<strong>very good.</strong>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="desktop-dashboard">
+				<style>
+					/* Desktop cards layout (scoped) */
+					.bc-cards {
+						max-width: 1160px;
+						margin: 0 auto;
+						padding: 0 32px;
+						display: flex;
+						gap: 22px;
+						flex-wrap: nowrap; /* keep in one row */
+						overflow-x: auto; /* enable horizontal scroll */
+						overflow-y: hidden;
+						-webkit-overflow-scrolling: touch; /* smooth on iOS */
+						padding-bottom: 12px; /* space for scrollbar */
+						cursor: grab;
+					}
+					.bc-cards.dragging {
+						cursor: grabbing;
+						user-select: none;
+					}
+					.bc-card {
+						position: relative;
+						width: 233px;
+						height: 321px;
+						flex: 0 0 auto; /* do not shrink; honor width */
+						border-radius: 15px;
+						overflow: hidden;
+						background: #3742a3; /* base */
+					}
+					.bc-card .bg {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background-size: cover;
+						background-position: center;
+						z-index: 0;
+					}
+					.bc-card .grad {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background: linear-gradient(
+							0deg,
+							#3742a3 33.5%,
+							rgba(21, 25, 61, 0) 97.77%
+						);
+						mix-blend-mode: multiply;
+						z-index: 1;
+					}
+					.bc-card.locked .dim {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background: #6a6a71;
+						mix-blend-mode: multiply;
+						z-index: 1;
+					}
+					.bc-card .icon {
+						position: absolute;
+						top: 170px; /* default for Strategic aim icon */
+						left: 50%;
+						transform: translateX(-50%);
+						width: 46px;
+						height: 46px;
+						z-index: 2;
+					}
+					.bc-card.locked .icon {
+						width: 54px;
+						height: 54px;
+						top: 160px;
+					}
+					.bc-card .title {
+						position: absolute;
+						top: 210px; /* approx to spec */
+						left: 16px;
+						right: 16px;
+						text-align: center;
+						font-family: "Kanit", sans-serif;
+						font-style: normal;
+						font-weight: 400;
+						font-size: 36px; /* 36 for Strategic; others appear ~32 but acceptable */
+						line-height: 31px;
+						color: #ffffff;
+						z-index: 2;
+					}
+					.bc-card.small-title .title {
+						font-size: 32px;
+						line-height: 28px;
+					}
+					.bc-card .desc {
+						position: absolute;
+						left: 16px;
+						right: 16px;
+						bottom: 16px;
+						text-align: center;
+						font-family: "Kanit", sans-serif;
+						font-weight: 400;
+						font-size: 12px;
+						line-height: 12px;
+						color: #ffffff;
+						z-index: 2;
+					}
+				</style>
+
+				<div class="bc-cards">
+					<!-- AnT -->
+					<div class="bc-card" aria-label="AnT">
+						<div
+							class="bg"
+							style="background-image: url('images/ant-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<!-- keep existing icon style for consistency -->
+						<svg
+							class="icon"
+							viewBox="0 0 48 48"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<circle cx="24" cy="24" r="6" stroke="#FFFFFF" stroke-width="3" />
+							<circle
+								cx="24"
+								cy="24"
+								r="14"
+								stroke="#FFFFFF"
+								stroke-width="3"
+								opacity="0.9"
+							/>
+							<path
+								d="M24 2v6M24 40v6M2 24h6M40 24h6"
+								stroke="#FFFFFF"
+								stroke-width="3"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">AnT</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- Finance (locked) -->
+					<div class="bc-card small-title locked" aria-label="Finance">
+						<div
+							class="bg"
+							style="background-image: url('images/finance-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Finance</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- Marketing (locked) -->
+					<div class="bc-card small-title locked" aria-label="Marketing">
+						<div
+							class="bg"
+							style="background-image: url('images/marketing-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Marketing</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- Sales (locked) -->
+					<div class="bc-card small-title locked" aria-label="Sales">
+						<div
+							class="bg"
+							style="background-image: url('images/sales-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Sales</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- Operation (locked) -->
+					<div class="bc-card small-title locked" aria-label="Operation">
+						<div
+							class="bg"
+							style="background-image: url('images/operation-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Operation</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- SDM (locked) -->
+					<div class="bc-card small-title locked" aria-label="SDM">
+						<div
+							class="bg"
+							style="background-image: url('images/sdm-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">SDM</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+				</div>
+
+				<div class="ant-container" x-data="evalApp()">
+					<div class="p-10 content-group assessment-form mt-7">
+						<div class="header-section">
+							<div
+								class="flex items-start justify-between gap-2 mb-6"
+								style="margin-bottom: 24px"
+							>
+								<div>
+									<div
+										class="mb-6 strategic-title"
+										style="
+											margin-bottom: 14px;
+											/* Input Evaluasi Tingkat Strategik Perusahaan */
+
+											font-family: 'Kanit';
+											font-style: normal;
+											font-weight: 400;
+											font-size: 32px;
+											/* or 119% */
+											line-height: 38px;
+
+											color: #293179;
+										"
+										x-text="'Input Evaluasi ' + currentSection + ' Perusahaan'"
+									></div>
+
+									<div
+										class="strategic-description"
+										style="
+											/* Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s */
+
+											font-family: 'Kanit';
+											font-style: normal;
+											font-weight: 400;
+											font-size: 16px;
+											/* or 150% */
+
+											color: #aaaaaa;
+										"
+									>
+										Lorem Ipsum is simply dummy text of the printing and
+										typesetting industry. Lorem Ipsum has been the industry's
+										standard dummy text ever since the 1500s
+									</div>
+								</div>
+								<div class="section-label" x-text="currentSection"></div>
+							</div>
+						</div>
+						<div
+							class="assessment-form"
+							x-show="currentSection === 'AnT'"
+							x-transition
+						>
+							<div class="form-title">Kapabilitas Tim Finance</div>
+
+							<div class="form-item">
+								<div class="form-item-number">1.</div>
+								<div class="form-item-question">
+									Persentase tim finance yang memang memiliki background
+									pendidikan D3/S1 Akuntansi/Finance
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value=">90%">&gt; 90%</option>
+									<option value="70-90%">70% - 90%</option>
+									<option value="50-70%">50% - 70%</option>
+									<option value="<50%">&lt; 50%</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">2.</div>
+								<div class="form-item-question">
+									Ada anggota tim yang memiliki sertifikat CA
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value=">90%">&gt; 90%</option>
+									<option value="70-90%">70% - 90%</option>
+									<option value="50-70%">50% - 70%</option>
+									<option value="<50%">&lt; 50%</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">3.</div>
+								<div class="form-item-question">
+									Ada anggota tim yang memiliki kemampuan membuat SOP Akuntansi
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value=">90%">&gt; 90%</option>
+									<option value="70-90%">70% - 90%</option>
+									<option value="50-70%">50% - 70%</option>
+									<option value="<50%">&lt; 50%</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">4.</div>
+								<div class="form-item-question">
+									Ada anggota tim yang memiliki keahlian akuntansi biaya (COGS)
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value=">90%">&gt; 90%</option>
+									<option value="70-90%">70% - 90%</option>
+									<option value="50-70%">50% - 70%</option>
+									<option value="<50%">&lt; 50%</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">5.</div>
+								<div class="form-item-question">
+									Ada anggota tim yang memiliki sertifikat pajak Brevet A dan B
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value=">90%">&gt; 90%</option>
+									<option value="70-90%">70% - 90%</option>
+									<option value="50-70%">50% - 70%</option>
+									<option value="<50%">&lt; 50%</option>
+								</select>
+							</div>
+						</div>
+
+						<div
+							class="assessment-form"
+							x-show="currentSection === 'Finance'"
+							x-transition
+						>
+							<div class="form-title">Kapabilitas Tim Finance</div>
+
+							<div class="form-item">
+								<div class="form-item-number">1.</div>
+								<div class="form-item-question">
+									Ada laporan keuangan (neraca, laba rugi, arus kas) yang
+									disusun secara berkala (bulanan, triwulanan)
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">2.</div>
+								<div class="form-item-question">
+									Laporan keuangan dibuat oleh staff finance/accounting dalam
+									perusahaan
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">3.</div>
+								<div class="form-item-question">
+									Laporan keuangan sudah menggunakan software akuntansi
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">4.</div>
+								<div class="form-item-question">
+									Laporan keuangan sudah menggunakan Chart of Account (COA) dan
+									General Ledger (GL) sesuai dengan standar PSAK
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">5.</div>
+								<div class="form-item-question">
+									Ada pemisahan rekening operasional perusahaan dengan rekening
+									pribadi pemilik bisnis
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+						</div>
+
+						<div
+							class="assessment-form"
+							x-show="currentSection === 'Marketing'"
+							x-transition
+						>
+							<div class="form-title">Kapabilitas Tim Marketing</div>
+
+							<div class="form-item">
+								<div class="form-item-number">1.</div>
+								<div class="form-item-question">
+									Ada tim marketing yang fokus untuk digital marketing
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">2.</div>
+								<div class="form-item-question">
+									Ada tim marketing yang berfokus untuk offline marketing
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">3.</div>
+								<div class="form-item-question">
+									Ada kajian/analisis mengenai competitor
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">4.</div>
+								<div class="form-item-question">
+									Ada positioning yang jelas terkait produk dan layanan
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">5.</div>
+								<div class="form-item-question">
+									Ada tim yang khusus menangani social media
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+						</div>
+
+						<div
+							class="assessment-form"
+							x-show="currentSection === 'Sales'"
+							x-transition
+						>
+							<div class="form-title">Kapabilitas Tim Sales</div>
+
+							<div class="form-item">
+								<div class="form-item-number">1.</div>
+								<div class="form-item-question">
+									Ada tim sales yang aktif melakukan penjualan produk/layanan
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">2.</div>
+								<div class="form-item-question">
+									Ada target penjualan yang diberikan ke tim sales
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">3.</div>
+								<div class="form-item-question">
+									Ada tools atau sistem yang digunakan untuk memantau kinerja
+									tim sales
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">4.</div>
+								<div class="form-item-question">
+									Ada pelatihan untuk tim sales secara berkala
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">5.</div>
+								<div class="form-item-question">
+									Ada metode evaluasi kinerja tim sales
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Ya">Ya</option>
+									<option value="Tidak">Tidak</option>
+								</select>
+							</div>
+						</div>
+
+						<div
+							class="assessment-form"
+							x-show="currentSection === 'Operation'"
+							x-transition
+						>
+							<div class="form-title">
+								Kapabilitas dan Struktur Tim Operasional
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">1.</div>
+								<div class="form-item-question">
+									Apakah tim operasional memiliki keahlian teknis yang memadai?
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Mayoritas sangat kompeten">
+										Mayoritas sangat kompeten
+									</option>
+									<option value="Cukup kompeten">Cukup kompeten</option>
+									<option value="Masih banyak kekurangan">
+										Masih banyak kekurangan
+									</option>
+									<option value="Minim kompetensi">Minim kompetensi</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">2.</div>
+								<div class="form-item-question">
+									Ada personel yang mampu menyusun rencana keuangan (budget,
+									proyeksi, cash plan)
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Mayoritas sangat kompeten">
+										Mayoritas sangat kompeten
+									</option>
+									<option value="Cukup kompeten">Cukup kompeten</option>
+									<option value="Masih banyak kekurangan">
+										Masih banyak kekurangan
+									</option>
+									<option value="Minim kompetensi">Minim kompetensi</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">3.</div>
+								<div class="form-item-question">
+									Ada personel yang mampu melakukan analisis kondisi keuangan
+									perusahaan
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Mayoritas sangat kompeten">
+										Mayoritas sangat kompeten
+									</option>
+									<option value="Cukup kompeten">Cukup kompeten</option>
+									<option value="Masih banyak kekurangan">
+										Masih banyak kekurangan
+									</option>
+									<option value="Minim kompetensi">Minim kompetensi</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">4.</div>
+								<div class="form-item-question">
+									Ada personel yang mampu melakukan analisis kelayakan investasi
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Mayoritas sangat kompeten">
+										Mayoritas sangat kompeten
+									</option>
+									<option value="Cukup kompeten">Cukup kompeten</option>
+									<option value="Masih banyak kekurangan">
+										Masih banyak kekurangan
+									</option>
+									<option value="Minim kompetensi">Minim kompetensi</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">5.</div>
+								<div class="form-item-question">
+									Ada personel yang mampu menjalankan strategi pendanaan
+									(funding)
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Mayoritas sangat kompeten">
+										Mayoritas sangat kompeten
+									</option>
+									<option value="Cukup kompeten">Cukup kompeten</option>
+									<option value="Masih banyak kekurangan">
+										Masih banyak kekurangan
+									</option>
+									<option value="Minim kompetensi">Minim kompetensi</option>
+								</select>
+							</div>
+							<div class="form-item">
+								<div class="form-item-number">6.</div>
+								<div class="form-item-question">
+									Tingkat keterlibatan tim keuangan dalam penyusunan strategi
+									bisnis
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Mayoritas sangat kompeten">
+										Mayoritas sangat kompeten
+									</option>
+									<option value="Cukup kompeten">Cukup kompeten</option>
+									<option value="Masih banyak kekurangan">
+										Masih banyak kekurangan
+									</option>
+									<option value="Minim kompetensi">Minim kompetensi</option>
+								</select>
+							</div>
+						</div>
+
+						<div
+							class="assessment-form"
+							x-show="currentSection === 'SDM'"
+							x-transition
+						>
+							<div class="form-title">
+								Struktur Organisasi dan Kapabilitas SDM
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">1.</div>
+								<div class="form-item-question">
+									Apakah struktur organisasi lengkap dan diperbarui?
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Lengkap, jelas dan digunakan">
+										Lengkap, jelas dan digunakan
+									</option>
+									<option value="Ada tetapi belum optimal">
+										Ada tetapi belum optimal
+									</option>
+									<option value="Tidak lengkap">Tidak lengkap</option>
+									<option value="Tidak ada struktur">Tidak ada struktur</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">2.</div>
+								<div class="form-item-question">
+									Apakah semua jabatan memiliki job description tertulis?
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Lengkap, jelas dan digunakan">
+										Lengkap, jelas dan digunakan
+									</option>
+									<option value="Ada tetapi belum optimal">
+										Ada tetapi belum optimal
+									</option>
+									<option value="Tidak lengkap">Tidak lengkap</option>
+									<option value="Tidak ada struktur">Tidak ada struktur</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">3.</div>
+								<div class="form-item-question">
+									Apakah SDM di setiap posisi memiliki kompetensi sesuai
+									kebutuhan?
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Lengkap, jelas dan digunakan">
+										Lengkap, jelas dan digunakan
+									</option>
+									<option value="Ada tetapi belum optimal">
+										Ada tetapi belum optimal
+									</option>
+									<option value="Tidak lengkap">Tidak lengkap</option>
+									<option value="Tidak ada struktur">Tidak ada struktur</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">4.</div>
+								<div class="form-item-question">
+									Apakah ada unit/personel khusus untuk fungsi HR?
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Lengkap, jelas dan digunakan">
+										Lengkap, jelas dan digunakan
+									</option>
+									<option value="Ada tetapi belum optimal">
+										Ada tetapi belum optimal
+									</option>
+									<option value="Tidak lengkap">Tidak lengkap</option>
+									<option value="Tidak ada struktur">Tidak ada struktur</option>
+								</select>
+							</div>
+
+							<div class="form-item">
+								<div class="form-item-number">5.</div>
+								<div class="form-item-question">
+									Apakah ada data base SDM dan data karyawan yang tertib?
+								</div>
+								<select class="form-select" style="margin-top: 14px">
+									<option value="" selected>Select an option</option>
+									<option value="Lengkap, jelas dan digunakan">
+										Lengkap, jelas dan digunakan
+									</option>
+									<option value="Ada tetapi belum optimal">
+										Ada tetapi belum optimal
+									</option>
+									<option value="Tidak lengkap">Tidak lengkap</option>
+									<option value="Tidak ada struktur">Tidak ada struktur</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="nav-buttons">
+							<div
+								class="prev-button"
+								@click="prevPage()"
+								x-show="currentIndex > 0"
+							>
+								<div class="prev-text">Previous</div>
+							</div>
+							<div style="flex-grow: 1"></div>
+							<div
+								class="next-button"
+								@click="nextPage()"
+								x-show="currentIndex < sections.length - 1"
+							>
+								<div class="next-text">Next</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="hidden dd-footer md:grid">
+				<style>
+					/* Scoped footer styles */
+					.dd-footer {
+						background: #ffffff;
+						border-radius: 15px;
+						padding: 24px;
+						margin-top: 24px;
+					}
+					.dd-footer-grid {
+						display: grid;
+						gap: 24px;
+					}
+					@media (min-width: 992px) {
+						.dd-footer-grid {
+							grid-template-columns: 1.6fr 1fr 1fr 1fr;
+							gap: 40px;
+						}
+					}
+					.dd-footer .muted {
+						color: #867c7c;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 15px;
+						margin: 0 0 12px;
+					}
+					.dd-footer .body {
+						color: #000000;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 32px;
+						margin: 0;
+					}
+					.dd-footer .small {
+						color: #000000;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 15px;
+						margin: 0;
+					}
+					.dd-footer .tagline {
+						margin: 12px 0;
+					}
+					.dd-footer .addr {
+						margin: 12px 0 24px;
+						max-width: 420px;
+					}
+					.dd-footer .copyright {
+						margin-top: 40px;
+					}
+					.dd-footer .contact-item {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+					}
+					.dd-footer .social {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+						margin-top: 8px;
+					}
+					.dd-footer .logo-text {
+						font-family: "Kanit", "Montserrat", sans-serif;
+						font-weight: 800;
+						font-size: 28px;
+						color: #252b5f;
+						margin: 0;
+					}
+				</style>
+
+				<div
+					class="dd-footer-grid"
+					style="max-width: 1160px; margin: 0 auto; padding: 0 32px"
+				>
+					<!-- Col 1: Logo + tagline + address + copyright -->
+					<div>
+						<h2 class="logo-text">ProBiz360</h2>
+						<p class="muted tagline">
+							Virtual asisten keuangan bisnis dalam satu platform
+						</p>
+						<p class="small addr">
+							PT Finchack<br />Gedung Cibis Nine Lt 15 Unit C, Jl TB Simatupang
+							2,<br />Cilandak Timur, Pasar Minggu, Jakarta Selatan, DKI Jakarta
+							12560
+						</p>
+						<p class="small copyright">Copyright 2024 PT Finchack</p>
+					</div>
+
+					<!-- Col 2: Perusahaan -->
+					<div>
+						<p class="muted">Perusahaan</p>
+						<p class="body">
+							Tentang Finchack<br />Artikel<br />Kebijakan Privasi<br />Syarat &
+							Ketentuan
+						</p>
+					</div>
+
+					<!-- Col 3: Layanan -->
+					<div>
+						<p class="muted">Layanan</p>
+						<p class="body">
+							Pembukuan<br />Perpajakan<br />Rekonsiliasi Otomatis<br />Operasi
+							Finansial<br />Legalitas Usaha
+						</p>
+					</div>
+
+					<!-- Col 4: Contact + Social -->
+					<div>
+						<p class="muted">Contact</p>
+						<p class="body contact-item">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.52 5.8L0 24l6.36-1.5A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.27-6.1-3.48-8.52z"
+									fill="#25D366"
+									opacity="0.15"
+								/>
+								<path
+									d="M19.05 4.95A9 9 0 006.2 17.8l-.3.13-2.47.58.6-2.41.07-.26A9 9 0 1019.05 4.95z"
+									stroke="#000"
+									stroke-width="1.5"
+									fill="none"
+								/>
+								<path
+									d="M8.5 8.9c.2-.43.5-.44.8-.44.2 0 .44 0 .67.5.24.5.8 1.74.87 1.86.07.13.1.27 0 .43-.1.16-.15.27-.3.42-.15.15-.32.34-.46.46-.15.12-.3.24-.13.47.17.23.75 1.23 1.61 1.99 1.1.98 2.02 1.28 2.25 1.42.23.14.37.13.5-.02.13-.15.57-.66.72-.88.15-.22.3-.18.5-.1.2.07 1.28.6 1.5.7.22.1.37.15.42.24.05.1.05.55-.12 1.08-.17.53-1.05 1-1.46 1.03-.37.03-.84.15-2.76-.59-2.33-.92-3.83-3.2-3.95-3.36-.12-.16-.94-1.26-1.11-2.41-.17-1.15.07-1.77.2-1.98z"
+									fill="#000"
+								/>
+							</svg>
+							0825 5255 2532
+						</p>
+						<p class="body contact-item">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 5h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2z"
+									stroke="#000"
+									stroke-width="2"
+									fill="none"
+								/>
+								<path d="M3 7l9 6 9-6" stroke="#000" stroke-width="2" />
+							</svg>
+							0825 5255 2532
+						</p>
+						<p class="muted" style="margin-top: 12px">Ikuti kami</p>
+						<div class="social">
+							<svg
+								width="19"
+								height="19"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="5"
+									stroke="#000"
+									stroke-width="2"
+								/>
+								<circle cx="12" cy="12" r="4" stroke="#000" stroke-width="2" />
+								<circle cx="17.5" cy="6.5" r="1.2" fill="#000" />
+							</svg>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="2"
+									stroke="#000"
+									stroke-width="2"
+								/>
+								<path d="M8 17V10" stroke="#000" stroke-width="2" />
+								<circle cx="8" cy="7" r="1" fill="#000" />
+								<path
+									d="M12 17v-4.5a2.5 2.5 0 015 0V17"
+									stroke="#000"
+									stroke-width="2"
+								/>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Alpine.js (v3) for dropdown interactivity -->
+		<script
+			src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+			defer
+		></script>
+		<!-- Bootstrap JS with Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Custom JavaScript -->
+		<script src="script.js"></script>
+
+		<script>
+			function evalApp() {
+				return {
+					sections: [
+						"AnT",
+						"Finance",
+						"Marketing",
+						"Sales",
+						"Operation",
+						"SDM",
+					],
+					currentIndex: 0,
+
+					get currentSection() {
+						return this.sections[this.currentIndex];
+					},
+
+					nextPage() {
+						if (this.currentIndex < this.sections.length - 1) {
+							this.currentIndex++;
+						}
+						console.log("this.currentIndex", this.currentIndex);
+					},
+
+					prevPage() {
+						if (this.currentIndex > 0) {
+							this.currentIndex--;
+						}
+					},
+
+					initDropdowns() {
+						setTimeout(() => {
+							const customSelects = document.querySelectorAll(".custom-select");
+
+							customSelects.forEach((select) => {
+								select.addEventListener("click", function () {
+									// Close all other open panels first
+									document
+										.querySelectorAll(".options-panel")
+										.forEach((panel) => {
+											if (
+												panel !== this.nextElementSibling.nextElementSibling
+											) {
+												panel.style.display = "none";
+											}
+										});
+
+									// Toggle the current panel
+									const panel = this.nextElementSibling.nextElementSibling;
+									panel.style.display =
+										panel.style.display === "block" ? "none" : "block";
+								});
+							});
+
+							const optionItems = document.querySelectorAll(".option-item");
+							optionItems.forEach((item) => {
+								item.addEventListener("click", function () {
+									const selectedValue =
+										this.querySelector(".option-text").textContent;
+									const customSelect = this.closest(
+										".form-select-wrapper"
+									).querySelector(".custom-select");
+									customSelect.textContent = selectedValue;
+									customSelect.style.color = "#000";
+									this.closest(".options-panel").style.display = "none";
+								});
+							});
+
+							// Close dropdown when clicking outside
+							document.addEventListener("click", function (e) {
+								if (!e.target.closest(".form-select-wrapper")) {
+									document
+										.querySelectorAll(".options-panel")
+										.forEach((panel) => {
+											panel.style.display = "none";
+										});
+								}
+							});
+						}, 100);
+					},
+				};
+			}
+
+			document.addEventListener("DOMContentLoaded", function () {
+				Alpine.start();
+
+				// Initialize dropdowns after Alpine has started
+				setTimeout(() => {
+					const app = document.querySelector(".ant-container").__x.$data;
+					if (app && app.initDropdowns) {
+						app.initDropdowns();
+					}
+				}, 200);
+			});
+		</script>
 	</body>
 </html>

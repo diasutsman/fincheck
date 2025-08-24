@@ -19,6 +19,10 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="stylesheet" href="footer.css" />
+		<link rel="stylesheet" href="business-check-assessment.css" />
+
+		<link rel="stylesheet" href="home.css" />
+
 		<style>
 			/* Business Check */
 			body {
@@ -37,12 +41,13 @@
 				background: #ffffff;
 				overflow: hidden;
 			}
-
+			/*
 			@media (min-width: 480px) {
 				.business-check-container {
 					max-width: 480px;
 				}
 			}
+                */
 
 			/* Banner section */
 			.banner {
@@ -137,6 +142,17 @@
 				line-height: 12px;
 				color: #293179;
 				margin-bottom: 25px;
+			}
+
+			.content-group {
+				position: relative;
+
+				max-width: 100%;
+				margin: 0 auto;
+				padding-top: 18px;
+				padding-bottom: 50px;
+				padding: 0 32px;
+				width: 100%;
 			}
 
 			/* Card styles */
@@ -278,10 +294,20 @@
 				text-align: center;
 				color: #000000;
 			}
+
+			.form-title {
+				font-size: 24px;
+			}
+
+			.strategic-title {
+				font-size: 32px;
+			}
 		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 	</head>
 	<body>
-		<div class="business-check-container">
+		<div class="business-check-container md:hidden">
 			<!-- Banner Section -->
 			<div class="banner">
 				<img
@@ -473,7 +499,7 @@
 
 			<!-- Footer Section -->
 			<div class="footer">
-				<a href="#" class="footer-item">
+				<a href="home.html" class="footer-item">
 					<div class="footer-icon active">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -583,7 +609,1631 @@
 			</div>
 		</div>
 
-		<!-- Bootstrap JS -->
+		<div class="hidden business-check-container-desktop md:block">
+			<div class="dd-header">
+				<div
+					style="
+						max-width: 1160px;
+						width: 100%;
+						margin: 0 auto;
+						padding: 0 32px;
+					"
+					x-data="{ menuOpen: false }"
+					@keydown.escape.window="menuOpen=false"
+					class="relative"
+				>
+					<div class="dd-topbar">
+						<div class="flex items-center gap-2">
+							<div class="back-button">
+								<a href="home.html" style="text-decoration: none">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="#293179"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M19 12H5"></path>
+										<path d="M12 19l-7-7 7-7"></path>
+									</svg>
+								</a>
+							</div>
+							<a href="home.html">
+								<img
+									src="images/probiz360-logo.png"
+									alt="ProBiz360"
+									class="dd-logo"
+								/>
+							</a>
+						</div>
+						<div class="dd-actions">
+							<div class="notification-bell">
+								<svg
+									width="33"
+									height="33"
+									viewBox="0 0 33 33"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M28.875 8.93751C28.875 11.5913 26.7162 13.75 24.0625 13.75C21.4088 13.75 19.25 11.5913 19.25 8.93751C19.25 6.28376 21.4088 4.12501 24.0625 4.12501C26.7162 4.12501 28.875 6.28376 28.875 8.93751ZM26.125 16.2113C25.4375 16.39 24.75 16.5 24.0625 16.5C22.0579 16.4964 20.1365 15.6984 18.719 14.281C17.3016 12.8635 16.5036 10.9421 16.5 8.93751C16.5 6.91626 17.2975 5.08751 18.5625 3.72626C18.313 3.42038 17.9983 3.17402 17.6415 3.00513C17.2847 2.83624 16.8948 2.74909 16.5 2.75001C14.9875 2.75001 13.75 3.98751 13.75 5.50001V5.89876C9.66625 7.10876 6.875 10.8625 6.875 15.125V23.375L4.125 26.125V27.5H28.875V26.125L26.125 23.375V16.2113ZM16.5 31.625C18.0262 31.625 19.25 30.4013 19.25 28.875H13.75C13.75 29.6044 14.0397 30.3038 14.5555 30.8196C15.0712 31.3353 15.7707 31.625 16.5 31.625Z"
+										fill="#3B46AC"
+									/>
+								</svg>
+							</div>
+							<button
+								id="menuButton"
+								class="menu-button"
+								aria-label="Open menu"
+								@click="menuOpen=!menuOpen"
+								:aria-expanded="menuOpen.toString()"
+								aria-haspopup="true"
+								aria-controls="accountMenu"
+							>
+								<svg
+									class="menu-icon"
+									width="28"
+									height="20"
+									viewBox="0 0 28 20"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<line
+										x1="1"
+										y1="2"
+										x2="27"
+										y2="2"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="10"
+										x2="27"
+										y2="10"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="18"
+										x2="27"
+										y2="18"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<!-- Desktop dropdown menu (Alpine + Tailwind) -->
+					<style>
+						[x-cloak] {
+							display: none !important;
+						}
+					</style>
+					<div
+						id="accountMenu"
+						role="menu"
+						aria-labelledby="menuButton"
+						tabindex="-1"
+						x-cloak
+						x-show="menuOpen"
+						x-transition.opacity
+						x-transition.duration.200ms
+						@click.outside="menuOpen=false"
+						class="absolute right-8 mt-3 w-[330px] bg-white rounded-xl shadow-2xl overflow-hidden z-50"
+					>
+						<!-- Logo header -->
+						<div class="px-5 pt-4 pb-2">
+							<img
+								src="images/probiz360-logo.png"
+								alt="ProBiz360"
+								class="h-[49px] w-auto"
+							/>
+						</div>
+						<!-- Active row -->
+						<div
+							class="relative flex items-center gap-3 bg-[#293179] text-white px-5 py-4 font-extrabold"
+						>
+							<svg
+								class="w-8 h-8"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5Z"
+									fill="#fff"
+								/>
+							</svg>
+							<span>Dashboard</span>
+							<span
+								class="absolute right-0 top-0 h-full w-[14px] bg-[#C32126]"
+							></span>
+						</div>
+						<!-- Links -->
+						<nav class="grid px-5 py-5 gap-7">
+							<a
+								href="business-check.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="9"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="12" r="2" fill="#A7A7A7" />
+								</svg>
+								<span>Business Check</span>
+							</a>
+							<a
+								href="business-process.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="3"
+										y="12"
+										width="3"
+										height="7"
+										rx="1"
+										fill="#A7A7A7"
+									/>
+									<rect
+										x="9"
+										y="9"
+										width="3"
+										height="10"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.9"
+									/>
+									<rect
+										x="15"
+										y="6"
+										width="3"
+										height="13"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.8"
+									/>
+								</svg>
+								<span>Business Process</span>
+							</a>
+							<a
+								href="profile.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="7" r="4" fill="#A7A7A7" />
+								</svg>
+								<span>Profile</span>
+							</a>
+							<a
+								href="#password"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="5"
+										y="11"
+										width="14"
+										height="10"
+										rx="2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<path
+										d="M8 11V8a4 4 0 018 0v3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Password</span>
+							</a>
+							<a
+								href="#logout"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M10 17l5-5-5-5"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+									<path
+										d="M15 12H3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+									<path
+										d="M21 21V3a2 2 0 0 0-2-2h-6"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Logout</span>
+							</a>
+						</nav>
+					</div>
+					<div class="dd-welcome">
+						<p class="welcome">Welcome,</p>
+						<h2 class="name">Albert Ricia</h2>
+						<p class="summary">
+							You have 4 task to finish all task today, your already completed
+							<strong>75% task</strong> fot today, your progress is
+							<strong>very good.</strong>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="desktop-dashboard">
+				<style>
+					/* Desktop cards layout (scoped) */
+					.bc-cards {
+						max-width: 1160px;
+						margin: 0 auto;
+						padding: 0 32px;
+						display: flex;
+						gap: 22px;
+					}
+					.bc-card {
+						position: relative;
+						width: 233px;
+						height: 321px;
+						border-radius: 15px;
+						overflow: hidden;
+						background: #3742a3; /* base */
+					}
+					.bc-card .bg {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background-size: cover;
+						background-position: center;
+						z-index: 0;
+					}
+					.bc-card .grad {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background: linear-gradient(
+							0deg,
+							#3742a3 33.5%,
+							rgba(21, 25, 61, 0) 97.77%
+						);
+						mix-blend-mode: multiply;
+						z-index: 1;
+					}
+					.bc-card.locked .dim {
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background: #6a6a71;
+						mix-blend-mode: multiply;
+						z-index: 1;
+					}
+					.bc-card .icon {
+						position: absolute;
+						top: 170px; /* default for Strategic aim icon */
+						left: 50%;
+						transform: translateX(-50%);
+						width: 46px;
+						height: 46px;
+						z-index: 2;
+					}
+					.bc-card.locked .icon {
+						width: 54px;
+						height: 54px;
+						top: 160px;
+					}
+					.bc-card .title {
+						position: absolute;
+						top: 210px; /* approx to spec */
+						left: 16px;
+						right: 16px;
+						text-align: center;
+						font-family: "Kanit", sans-serif;
+						font-style: normal;
+						font-weight: 400;
+						font-size: 36px; /* 36 for Strategic; others appear ~32 but acceptable */
+						line-height: 31px;
+						color: #ffffff;
+						z-index: 2;
+					}
+					.bc-card.small-title .title {
+						font-size: 32px;
+						line-height: 28px;
+					}
+					.bc-card .desc {
+						position: absolute;
+						left: 16px;
+						right: 16px;
+						bottom: 16px;
+						text-align: center;
+						font-family: "Kanit", sans-serif;
+						font-weight: 400;
+						font-size: 12px;
+						line-height: 12px;
+						color: #ffffff;
+						z-index: 2;
+					}
+				</style>
+
+				<div class="bc-cards">
+					<!-- Strategic -->
+					<div class="bc-card" aria-label="Strategic">
+						<div
+							class="bg"
+							style="background-image: url('images/strategic-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<!-- aim icon -->
+						<svg
+							class="icon"
+							viewBox="0 0 48 48"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<circle cx="24" cy="24" r="6" stroke="#FFFFFF" stroke-width="3" />
+							<circle
+								cx="24"
+								cy="24"
+								r="14"
+								stroke="#FFFFFF"
+								stroke-width="3"
+								opacity="0.9"
+							/>
+							<path
+								d="M24 2v6M24 40v6M2 24h6M40 24h6"
+								stroke="#FFFFFF"
+								stroke-width="3"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Strategic</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- Input Kesehatan (locked) -->
+					<div class="bc-card small-title locked" aria-label="Input Kesehatan">
+						<div
+							class="bg"
+							style="background-image: url('images/kesehatan-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<!-- lock icon -->
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Input Kesehatan</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+
+					<!-- Input Standard (locked) -->
+					<div class="bc-card small-title locked" aria-label="Input Standard">
+						<div
+							class="bg"
+							style="background-image: url('images/standard-bg.png')"
+						></div>
+						<div class="grad"></div>
+						<div class="dim"></div>
+						<!-- lock icon -->
+						<svg
+							class="icon"
+							viewBox="0 0 54 54"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							aria-hidden="true"
+						>
+							<rect
+								x="9"
+								y="23"
+								width="36"
+								height="24"
+								rx="4"
+								stroke="#FFFFFF"
+								stroke-width="4"
+							/>
+							<path
+								d="M18 23v-5a9 9 0 0118 0v5"
+								stroke="#FFFFFF"
+								stroke-width="4"
+								stroke-linecap="round"
+							/>
+						</svg>
+						<div class="title">Input Standard</div>
+						<div class="desc">
+							Lorem Ipsum is simply dummy text of the printing and typesetting
+							industry. Lorem Ipsum has been
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="strategic-container mt-7"
+					x-data="{
+        currentPage: 'strategic',
+        pages: ['strategic', 'kesehatan', 'standard'],
+        
+        nextPage() {
+            const currentIndex = this.pages.indexOf(this.currentPage);
+            if (currentIndex < this.pages.length - 1) {
+                this.currentPage = this.pages[currentIndex + 1];
+            }
+        },
+         
+                prevPage() {
+                    const currentIndex = this.pages.indexOf(this.currentPage);
+            if (currentIndex > 0) {
+                this.currentPage = this.pages[currentIndex - 1];
+            }
+                },
+        
+        getPageTitle(page) {
+            const titles = {
+                'strategic': 'Strategik',
+                'kesehatan': 'Kesehatan',
+                'standard': 'Standard',
+            };
+            return titles[page] || '';
+        }
+    }"
+				>
+					<!-- Header Section -->
+					<div class="px-8">
+						<div
+							class="px-0 content-group assessment-form"
+							style="padding: 16px !important"
+						>
+							<div class="mb-16 header-section">
+								<div
+									class="flex items-start justify-between gap-2 mb-6"
+									style="margin-bottom: 24px"
+								>
+									<div style="width: 451px">
+										<div
+											class="mb-6 strategic-title"
+											style="
+												margin-bottom: 14px;
+												/* Input Evaluasi Tingkat Strategik Perusahaan */
+
+												font-family: 'Kanit';
+												font-style: normal;
+												font-weight: 400;
+												font-size: 32px;
+												/* or 119% */
+												line-height: 38px;
+
+												color: #293179;
+											"
+											x-text="{
+                    'strategic': 'Input Evaluasi Tingkat Strategis Perusahaan',
+                    'kesehatan': 'Input Evaluasi Tingkat Kesehatan Laporan Keuangan',
+                    'standard': 'Input Evaluasi Tingkat Strategik Perusahaan',
+                    }[currentPage]"
+										></div>
+
+										<div
+											class="strategic-description"
+											style="
+												/* Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s */
+
+												font-family: 'Kanit';
+												font-style: normal;
+												font-weight: 400;
+												font-size: 16px;
+												/* or 150% */
+
+												color: #aaaaaa;
+											"
+										>
+											Lorem Ipsum is simply dummy text of the printing and
+											typesetting industry. Lorem Ipsum has been the industry's
+											standard dummy text ever since the 1500s
+										</div>
+									</div>
+									<div
+										class="strategic-label"
+										style="font-family: 32px"
+										x-text="'Input ' + getPageTitle(currentPage)"
+									></div>
+								</div>
+							</div>
+							<div
+								class="assessment-form"
+								style="padding: 0"
+								x-show="currentPage === 'strategic'"
+								x-transition.duration.300ms
+							>
+								<div class="form-title">
+									Kapasitas Founder dan Top Management
+								</div>
+
+								<!-- Form Item 1 -->
+								<div class="form-item">
+									<div class="form-item-number">1.</div>
+									<div class="form-item-question">
+										Apakah founder dan top management memiliki pengalaman bisnis
+										yang relevan?
+									</div>
+									<div class="form-select-wrapper">
+										<select
+											class="custom-select"
+											style="
+												width: 100%;
+												appearance: none;
+												-webkit-appearance: none;
+												-moz-appearance: none;
+											"
+										>
+											<option value="" disabled selected>
+												Select an option
+											</option>
+											<option value="ya">Ya</option>
+											<option value="tidak">Tidak</option>
+										</select>
+										<div class="down-arrow">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<polyline points="6 9 12 15 18 9"></polyline>
+											</svg>
+										</div>
+									</div>
+								</div>
+
+								<!-- Form Item 2 -->
+								<div class="form-item">
+									<div class="form-item-number">2.</div>
+									<div class="form-item-question">
+										Apakah founder dan top management memiliki latar belakang
+										pendidikan atau pelatihan manajemen bisnis?
+									</div>
+									<div class="form-select-wrapper">
+										<select
+											class="custom-select"
+											style="
+												width: 100%;
+												appearance: none;
+												-webkit-appearance: none;
+												-moz-appearance: none;
+											"
+										>
+											<option value="" disabled selected>
+												Select an option
+											</option>
+											<option value="ya">Ya</option>
+											<option value="tidak">Tidak</option>
+										</select>
+										<div class="down-arrow">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<polyline points="6 9 12 15 18 9"></polyline>
+											</svg>
+										</div>
+									</div>
+								</div>
+
+								<!-- Form Item 3 -->
+								<div class="form-item">
+									<div class="form-item-number">3.</div>
+									<div class="form-item-question">
+										Seberapa kuat keterlibatan founder dan top management dalam
+										pengambilan keputusan strategis?
+									</div>
+									<div class="form-select-wrapper">
+										<select
+											class="custom-select"
+											style="
+												width: 100%;
+												appearance: none;
+												-webkit-appearance: none;
+												-moz-appearance: none;
+											"
+										>
+											<option value="" disabled selected>
+												Select an option
+											</option>
+											<option value="sangat_kuat">Sangat Kuat</option>
+											<option value="kuat">Kuat</option>
+											<option value="cukup">Cukup</option>
+											<option value="kurang">Kurang</option>
+										</select>
+										<div class="down-arrow">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<polyline points="6 9 12 15 18 9"></polyline>
+											</svg>
+										</div>
+									</div>
+								</div>
+
+								<!-- Form Item 4 -->
+								<div class="form-item">
+									<div class="form-item-number">4.</div>
+									<div class="form-item-question">
+										Apakah ada pembagian tugas yang jelas antara founder dan tim
+										manajemen?
+									</div>
+									<div class="form-select-wrapper">
+										<select
+											class="custom-select"
+											style="
+												width: 100%;
+												appearance: none;
+												-webkit-appearance: none;
+												-moz-appearance: none;
+											"
+										>
+											<option value="" disabled selected>
+												Select an option
+											</option>
+											<option value="ya">Ya</option>
+											<option value="tidak">Tidak</option>
+										</select>
+										<div class="down-arrow">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<polyline points="6 9 12 15 18 9"></polyline>
+											</svg>
+										</div>
+									</div>
+								</div>
+
+								<!-- Form Item 5 -->
+								<div class="form-item">
+									<div class="form-item-number">5.</div>
+									<div class="form-item-question">
+										Seberapa baik kemampuan founder dan top management dalam
+										membangun jaringan bisnis (networking)?
+									</div>
+									<div class="form-select-wrapper">
+										<select
+											class="custom-select"
+											style="
+												width: 100%;
+												appearance: none;
+												-webkit-appearance: none;
+												-moz-appearance: none;
+											"
+										>
+											<option value="" disabled selected>
+												Select an option
+											</option>
+											<option value="sangat_baik">Sangat Baik</option>
+											<option value="baik">Baik</option>
+											<option value="cukup">Cukup</option>
+											<option value="kurang">Kurang</option>
+										</select>
+										<div class="down-arrow">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="20"
+												height="20"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+											>
+												<polyline points="6 9 12 15 18 9"></polyline>
+											</svg>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Finance Form -->
+							<div
+								class="assessment-form financial-form"
+								x-show="currentPage === 'kesehatan'"
+								style="padding: 0"
+								x-transition.duration.300ms
+							>
+								<div class="finance-form-title">Laporan Laba Rugi</div>
+
+								<!-- Sales Section -->
+								<div class="finance-section">
+									<div class="finance-section-header">
+										<div class="finance-section-number">1.</div>
+										<div class="finance-section-title">Penjualan</div>
+										<div class="finance-section-note">
+											( Minimal 5 tahun terakhir )
+										</div>
+									</div>
+
+									<!-- Year 1 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option selected>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input
+											type="text"
+											class="finance-input"
+											value="50.000.000.000"
+										/>
+									</div>
+
+									<!-- Year 2 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option selected>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 3 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option selected>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 4 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option selected>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 5 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option selected>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 6 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+												<option selected>2023</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+								</div>
+
+								<!-- COGS Section -->
+								<div class="finance-section">
+									<div class="finance-section-header">
+										<div class="finance-section-number">2.</div>
+										<div class="finance-section-title">COGS</div>
+										<div class="finance-section-note">
+											( Minimal 5 tahun terakhir )
+										</div>
+									</div>
+
+									<!-- Year 1 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option selected>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 2 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option selected>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 3 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option selected>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 4 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option selected>2021</option>
+												<option>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 5 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option selected>2022</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+
+									<!-- Year 6 -->
+									<div class="finance-row">
+										<div class="finance-label">Tahun</div>
+										<div class="finance-label rp-label">Rp</div>
+									</div>
+									<div class="finance-input-row">
+										<div class="finance-select-container">
+											<select class="finance-select">
+												<option>2018</option>
+												<option>2019</option>
+												<option>2020</option>
+												<option>2021</option>
+												<option>2022</option>
+												<option selected>2023</option>
+											</select>
+											<div class="select-arrow">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="20"
+													height="20"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												>
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										<input type="text" class="finance-input" />
+									</div>
+								</div>
+							</div>
+
+							<!-- Operation Form -->
+							<div
+								class="assessment-form operation-form-container"
+								x-show="currentPage === 'standard'"
+								style="padding: 0"
+								x-transition.duration.300ms
+							>
+								<!-- Revenue Generation Section -->
+								<div class="operation-section">
+									<div class="operation-section-title">Revenue Generation</div>
+									<div class="operation-grid">
+										<div class="operation-item">
+											<div class="operation-item-label">
+												1. Stabilitas Penjualan
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												2. Pertumbuhan Penjualan
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												3. Total Asset Turnover
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												4. Fixed Asset Turnover
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Profitabilitas Section -->
+								<div class="operation-section">
+									<div class="operation-section-title">Profitabilitas</div>
+									<div class="operation-grid">
+										<div class="operation-item">
+											<div class="operation-item-label">
+												1. Gross Profit Margin
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												2. Operating Profit Margin
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												3. Net Profit Margin
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												4. Ebitda per Sales
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												5. Return on Equity (ROE)
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+										<div class="operation-item">
+											<div class="operation-item-label">
+												6. Return on Assets (ROA)
+											</div>
+											<div class="operation-input-wrapper">
+												<input type="text" class="operation-input" />
+												<span class="percent-sign">%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Next Button -->
+							<div class="nav-buttons" style="padding: 20px">
+								<div
+									class="prev-button"
+									@click="prevPage()"
+									x-show="currentPage !== pages[0]"
+								>
+									<div class="text-white prev-text">Previous</div>
+								</div>
+								<div style="flex-grow: 1"></div>
+								<div
+									class="next-button"
+									@click="nextPage()"
+									
+								>
+                                <!-- x-show="currentPage !== pages[pages.length - 1]" -->
+									<div class="next-text">Next</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="hidden dd-footer md:grid">
+				<style>
+					/* Scoped footer styles */
+					.dd-footer {
+						background: #ffffff;
+						border-radius: 15px;
+						padding: 24px;
+						margin-top: 24px;
+					}
+					.dd-footer-grid {
+						display: grid;
+						gap: 24px;
+					}
+					@media (min-width: 992px) {
+						.dd-footer-grid {
+							grid-template-columns: 1.6fr 1fr 1fr 1fr;
+							gap: 40px;
+						}
+					}
+					.dd-footer .muted {
+						color: #867c7c;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 15px;
+						margin: 0 0 12px;
+					}
+					.dd-footer .body {
+						color: #000000;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 32px;
+						margin: 0;
+					}
+					.dd-footer .small {
+						color: #000000;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 15px;
+						margin: 0;
+					}
+					.dd-footer .tagline {
+						margin: 12px 0;
+					}
+					.dd-footer .addr {
+						margin: 12px 0 24px;
+						max-width: 420px;
+					}
+					.dd-footer .copyright {
+						margin-top: 40px;
+					}
+					.dd-footer .contact-item {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+					}
+					.dd-footer .social {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+						margin-top: 8px;
+					}
+					.dd-footer .logo-text {
+						font-family: "Kanit", "Montserrat", sans-serif;
+						font-weight: 800;
+						font-size: 28px;
+						color: #252b5f;
+						margin: 0;
+					}
+				</style>
+
+				<div
+					class="dd-footer-grid"
+					style="max-width: 1160px; margin: 0 auto; padding: 0 32px"
+				>
+					<!-- Col 1: Logo + tagline + address + copyright -->
+					<div>
+						<h2 class="logo-text">ProBiz360</h2>
+						<p class="muted tagline">
+							Virtual asisten keuangan bisnis dalam satu platform
+						</p>
+						<p class="small addr">
+							PT Finchack<br />Gedung Cibis Nine Lt 15 Unit C, Jl TB Simatupang
+							2,<br />Cilandak Timur, Pasar Minggu, Jakarta Selatan, DKI Jakarta
+							12560
+						</p>
+						<p class="small copyright">Copyright 2024 PT Finchack</p>
+					</div>
+
+					<!-- Col 2: Perusahaan -->
+					<div>
+						<p class="muted">Perusahaan</p>
+						<p class="body">
+							Tentang Finchack<br />Artikel<br />Kebijakan Privasi<br />Syarat &
+							Ketentuan
+						</p>
+					</div>
+
+					<!-- Col 3: Layanan -->
+					<div>
+						<p class="muted">Layanan</p>
+						<p class="body">
+							Pembukuan<br />Perpajakan<br />Rekonsiliasi Otomatis<br />Operasi
+							Finansial<br />Legalitas Usaha
+						</p>
+					</div>
+
+					<!-- Col 4: Contact + Social -->
+					<div>
+						<p class="muted">Contact</p>
+						<p class="body contact-item">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.52 5.8L0 24l6.36-1.5A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.27-6.1-3.48-8.52z"
+									fill="#25D366"
+									opacity="0.15"
+								/>
+								<path
+									d="M19.05 4.95A9 9 0 006.2 17.8l-.3.13-2.47.58.6-2.41.07-.26A9 9 0 1019.05 4.95z"
+									stroke="#000"
+									stroke-width="1.5"
+									fill="none"
+								/>
+								<path
+									d="M8.5 8.9c.2-.43.5-.44.8-.44.2 0 .44 0 .67.5.24.5.8 1.74.87 1.86.07.13.1.27 0 .43-.1.16-.15.27-.3.42-.15.15-.32.34-.46.46-.15.12-.3.24-.13.47.17.23.75 1.23 1.61 1.99 1.1.98 2.02 1.28 2.25 1.42.23.14.37.13.5-.02.13-.15.57-.66.72-.88.15-.22.3-.18.5-.1.2.07 1.28.6 1.5.7.22.1.37.15.42.24.05.1.05.55-.12 1.08-.17.53-1.05 1-1.46 1.03-.37.03-.84.15-2.76-.59-2.33-.92-3.83-3.2-3.95-3.36-.12-.16-.94-1.26-1.11-2.41-.17-1.15.07-1.77.2-1.98z"
+									fill="#000"
+								/>
+							</svg>
+							0825 5255 2532
+						</p>
+						<p class="body contact-item">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 5h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2z"
+									stroke="#000"
+									stroke-width="2"
+									fill="none"
+								/>
+								<path d="M3 7l9 6 9-6" stroke="#000" stroke-width="2" />
+							</svg>
+							0825 5255 2532
+						</p>
+						<p class="muted" style="margin-top: 12px">Ikuti kami</p>
+						<div class="social">
+							<svg
+								width="19"
+								height="19"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="5"
+									stroke="#000"
+									stroke-width="2"
+								/>
+								<circle cx="12" cy="12" r="4" stroke="#000" stroke-width="2" />
+								<circle cx="17.5" cy="6.5" r="1.2" fill="#000" />
+							</svg>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="2"
+									stroke="#000"
+									stroke-width="2"
+								/>
+								<path d="M8 17V10" stroke="#000" stroke-width="2" />
+								<circle cx="8" cy="7" r="1" fill="#000" />
+								<path
+									d="M12 17v-4.5a2.5 2.5 0 015 0V17"
+									stroke="#000"
+									stroke-width="2"
+								/>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Alpine.js (v3) for dropdown interactivity -->
+		<script
+			src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+			defer
+		></script>
+		<!-- Bootstrap JS with Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Custom JavaScript -->
+		<script src="script.js"></script>
 	</body>
 </html>

@@ -1,0 +1,671 @@
+	/* Home page styles */
+    body {
+        font-family: "Kanit", sans-serif;
+        background: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .home-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        min-height: 100vh;
+        overflow-x: hidden;
+        padding-bottom: 64px;
+    }
+
+    /* Header section */
+    .header {
+        padding: 62px 32px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .welcome-text {
+        font-size: 14px;
+        color: #293179;
+        margin: 0;
+        text-align: start !important;
+    }
+
+    .user-name {
+        font-size: 30px;
+        color: #293179;
+        margin: 0;
+    }
+
+    .notification-bell {
+        width: 33px;
+        height: 33px;
+        margin-right: 15px;
+        color: #3b46ac;
+    }
+
+    .profile-photo {
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #d9d9d9;
+    }
+
+    .profile-photo img {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+    }
+
+    /* Chart section */
+    .chart-section {
+        margin: 10px 32px;
+        background: linear-gradient(90deg, #293179 15.99%, #4c5adf 101.81%);
+        border-radius: 15px;
+        color: #ffffff;
+        padding: 15px;
+        min-height: 154px;
+        position: relative;
+    }
+
+    .chart-year {
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .chart-labels {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        left: 0;
+        padding: 0 15px;
+    }
+
+    .chart-label {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .chart-values {
+        position: absolute;
+        left: 15px;
+        top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 70px;
+    }
+
+    .chart-value {
+        font-size: 10px;
+    }
+
+    .chart-graph {
+        position: relative;
+        height: 80px;
+        margin-left: 50px;
+        margin-top: 10px;
+    }
+
+    .chart-last-check {
+        position: absolute;
+        font-size: 12px;
+        top: 35%;
+        right: 30%;
+    }
+
+    .chart-dot {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #c32126;
+        border-radius: 50%;
+        top: 50%;
+        right: 45%;
+    }
+
+    .chart-dot::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ffffff;
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+    }
+
+    /* Business section */
+    .business-card {
+        margin: 20px 30px;
+        min-height: 196px;
+        border-radius: 18px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+            89.97deg,
+            rgba(53, 64, 156, 0) -20.13%,
+            #121636 97.17%
+        );
+    }
+
+    .business-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .business-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            89.97deg,
+            rgba(53, 64, 156, 0) -20.13%,
+            #121636 97.17%
+        );
+
+        border-radius: 19px;
+    }
+
+    .business-icon {
+        position: absolute;
+        bottom: 64px;
+        left: 25px;
+        color: #ffffff;
+    }
+
+    .business-text {
+        position: absolute;
+        bottom: 20px;
+        left: 25px;
+
+        /*font-size: 9px;*/
+        max-width: 235px;
+        /*line-height: 12px;*/
+
+        font-family: "Kanit", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 9px;
+        line-height: 12px;
+        /* or 133% */
+
+        color: #ffffff;
+    }
+
+    /* Button sections */
+    .button-section {
+        margin: 15px 30px;
+        width: calc(100% - 60px);
+    }
+
+    .business-button {
+        background-color: #3b46ac;
+        color: #ffffff;
+        border-radius: 13px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        min-height: 47px;
+        position: relative;
+    }
+
+    .button-icon {
+        margin-right: 10px;
+        color: #ffffff;
+    }
+
+    .button-text {
+        font-size: 16px;
+        line-height: 8px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .button-subtext {
+        font-size: 12px;
+        color: #293179;
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 15px;
+    }
+
+    .locked-button .button-icon {
+        position: absolute;
+        left: 45%;
+        transform: translateX(-50%);
+    }
+
+    .button-subtext.locked {
+        color: #b1b1b1;
+    }
+
+    /* History section */
+    .history-section {
+        margin: 20px 30px;
+        width: calc(100% - 60px);
+    }
+
+    .history-title {
+        font-size: 12px;
+        color: #293179;
+        margin-bottom: 15px;
+    }
+
+    .history-item {
+        background-color: #676767;
+        border-radius: 15px;
+        padding: 10px 20px;
+        color: #ffffff;
+        margin-bottom: 10px;
+        position: relative;
+        min-height: 51px;
+    }
+
+    .history-date {
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .history-description {
+        font-size: 5px;
+        margin-top: 3px;
+        max-width: 80%;
+        line-height: 6px;
+    }
+
+    .history-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ffffff;
+    }
+
+    /* Banner section */
+    .banner-section {
+        margin: 20px 30px;
+
+        border-radius: 15px;
+    }
+
+    .banner-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    /* Desktop-only layout */
+    @media (min-width: 768px) {
+        /* Remove mobile footer padding on desktop */
+        body {
+            padding-bottom: 0 !important;
+            background: #ffffff;
+        }
+
+        .desktop-dashboard {
+            display: block;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 40px 32px 64px;
+        }
+
+        .dd-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-bottom: 24px;
+            background-image: url("images/header-bg.png");
+            background-size: cover;
+            background-position: left center;
+            background-repeat: no-repeat;
+            min-height: 300px; /* taller so background fills like the design */
+
+            padding: 32px 0; /* more vertical padding for air */
+            position: relative;
+            overflow: visible; /* allow dropdown to escape header bounds */
+            flex-direction: column;
+            padding-bottom: 0;
+        }
+        .dd-topbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dd-logo {
+            height: 38px;
+            width: auto;
+            display: block;
+        }
+
+        .dd-welcome {
+            color: #293179;
+            margin-top: 18px;
+        }
+        .dd-welcome .welcome {
+            font-size: 16px;
+            margin: 0;
+        }
+        .dd-welcome .name {
+            font-size: 32px;
+            margin: 0;
+            font-weight: 600;
+        }
+        .dd-welcome .summary {
+            margin: 10px 0 0;
+            font-size: 14px;
+            max-width: 520px;
+        }
+
+        .dd-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .dd-actions svg {
+            color: #293179;
+        }
+        .dd-actions .menu-icon line {
+            stroke: #293179;
+        }
+        .dd-actions .menu-button {
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .dd-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .dd-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dd-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .dd-card {
+            background: #ffffff;
+            border-radius: 16px;
+            
+        }
+
+        .dd-chart {
+            background: linear-gradient(90deg, #293179 15.99%, #4c5adf 101.81%);
+            color: #ffffff;
+            padding: 20px;
+            position: relative;
+            min-height: 180px;
+        }
+        .dd-chart .year {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .dd-chart .y-values {
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 80px;
+            font-size: 12px;
+        }
+        .dd-chart .graph {
+            margin-left: 60px;
+            margin-top: 10px;
+            height: 100px;
+            position: relative;
+        }
+        .dd-chart .last-check {
+            position: absolute;
+            font-size: 12px;
+            top: 40%;
+            right: 30%;
+        }
+        .dd-chart .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #c32126;
+            border-radius: 50%;
+            top: 50%;
+            right: 45%;
+        }
+        .dd-chart .dot::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffffff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+        .dd-chart .x-labels {
+            position: absolute;
+            bottom: 12px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 12px;
+        }
+
+        .dd-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .dd-cta {
+            background: #3b46ac;
+            color: #ffffff;
+            border-radius: 14px;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .dd-cta.secondary {
+            background: #6b45d2;
+        }
+        .dd-cta .text {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .dd-reports {
+            margin-top: 20px;
+        }
+        .dd-reports-title {
+            
+
+            /* Score Your Health Check */
+
+
+
+font-family: 'Kanit';
+font-style: normal;
+font-weight: 400;
+font-size: 35px;
+line-height: 24px;
+/* identical to box height, or 69% */
+padding-bottom: 33px;
+
+color: #000000;
+
+
+        }
+        .dd-report-item {
+            background: #676767;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .dd-report-item .date {
+            font-size: 16px;
+            margin: 0;
+        }
+        .dd-report-item .desc {
+            font-size: 12px;
+            margin: 4px 0 0;
+            max-width: 70%;
+        }
+
+        .dd-banner .title {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            color: #000000;
+            margin: 0 0 10px;
+        }
+        .dd-banner img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+
+        /* Promo App section (desktop) */
+        .dd-promo {
+            position: relative;
+            width: 100%;
+            height: 421px;
+            margin: 8px 0 28px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: url("images/business-card-image.png") center/cover
+                no-repeat;
+        }
+        .dd-promo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #35409c;
+            mix-blend-mode: multiply;
+            opacity: 1;
+        }
+
+        .dd-promo .promo-text {
+            position: absolute;
+            left: 32px;
+            top: 40px;
+            z-index: 1;
+            max-width: 640px;
+            color: #ffffff;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 28px;
+            line-height: 42px;
+        }
+        .dd-promo .promo-text strong {
+            font-weight: 800;
+        }
+
+        .dd-promo .promo-phone {
+            position: absolute;
+            right: 60px;
+            top: 92px; /* allow the phone to pop above the card like the reference */
+            width: 312px;
+            height: 594px;
+            object-fit: contain;
+            z-index: 1;
+        }
+
+        /* Hero section matching reference (desktop) */
+        .dd-hero {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 24px;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 16px;
+            
+            padding: 32px;
+            margin-top: 16px;
+        }
+        .dd-hero-left {
+            max-width: 640px;
+        }
+        .dd-hero-title {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            line-height: 1.25;
+            color: #121212;
+            margin: 0 0 12px;
+        }
+        .dd-hero-desc {
+            font-size: 14px;
+            color: #2b2b2b;
+            margin: 0 0 24px;
+            max-width: 560px;
+        }
+        .dd-hero-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+            grid-column: span 2;
+        }
+        .cta-card {
+            background: linear-gradient(90deg, #293179 0%, #121636 100%);
+            border-radius: 16px;
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .cta-card.secondary {
+            background: linear-gradient(90deg, #3b46ac 0%, #1b1e5e 100%);
+            opacity: 0.95;
+        }
+        .cta-card .cta-text {
+            font-size: 18px;
+            margin: 0;
+        }
+        .cta-subtext {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #293179;
+            text-align: center;
+        }
+        .dd-hero-illustration {
+            width: 100%;
+            max-width: 520px;
+            margin-left: auto;
+        }
+        .dd-hero-illustration img { width: 100%; height: auto; display: block; }
+    }

@@ -19,341 +19,13 @@
 			defer
 			src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
 		></script>
-		<script>
-			function evalApp() {
-				return {
-					currentSection: "AnT",
-					toggleDropdown(event) {
-						const dropdown = event.target.closest(".form-select-wrapper");
-						const optionsPanel = dropdown.querySelector(".options-panel");
-						const customSelect = dropdown.querySelector(".custom-select");
 
-						// Close all other dropdowns first
-						document
-							.querySelectorAll(".options-panel.active")
-							.forEach((panel) => {
-								if (panel !== optionsPanel) {
-									panel.classList.remove("active");
-									panel
-										.closest(".form-select-wrapper")
-										.querySelector(".custom-select")
-										.classList.remove("active");
-								}
-							});
-
-						// Toggle current dropdown
-						optionsPanel.classList.toggle("active");
-						customSelect.classList.toggle("active");
-					},
-					selectOption(event, dropdown) {
-						const selectedText = event.target
-							.closest(".option-item")
-							.querySelector(".option-text").innerText;
-						const customSelect = dropdown.querySelector(".custom-select");
-						const optionsPanel = dropdown.querySelector(".options-panel");
-
-						customSelect.innerText = selectedText;
-						customSelect.classList.remove("active");
-						optionsPanel.classList.remove("active");
-						dropdown.classList.add("has-value");
-					},
-					closeDropdowns(event) {
-						if (!event.target.closest(".form-select-wrapper")) {
-							document
-								.querySelectorAll(".options-panel.active")
-								.forEach((panel) => {
-									panel.classList.remove("active");
-									panel
-										.closest(".form-select-wrapper")
-										.querySelector(".custom-select")
-										.classList.remove("active");
-								});
-						}
-					},
-					changeSection(section) {
-						this.currentSection = section;
-					},
-					init() {
-						document.addEventListener("click", this.closeDropdowns);
-					},
-				};
-			}
-		</script>
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="stylesheet" href="footer.css" />
+		<link rel="stylesheet" href="evaluation.css" />
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-			}
-			body {
-				font-family: "Kanit", sans-serif, system-ui;
-				margin: 0;
-				padding: 0;
-				background: #ffffff;
-			}
-
-			.ant-container {
-				width: 100%;
-				margin: 0 auto;
-				background: #ffffff;
-				overflow-x: hidden;
-			}
-
-			.content-group {
-				width: 85%;
-				max-width: 100%;
-				margin: 0 auto;
-				padding-top: 18px;
-				padding-bottom: 50px;
-			}
-
-			.header-section {
-				width: 100%;
-				margin-bottom: 18px;
-			}
-
-			.logo {
-				width: 118px;
-				height: 33px;
-			}
-
-			.section-label {
-				height: 12px;
-				right: 0;
-				top: 35px;
-				font-family: "Kanit", sans-serif, system-ui;
-				font-style: normal;
-				font-weight: 400;
-				font-size: 15px;
-				line-height: 12px;
-				color: #8a8a8a;
-				text-align: right;
-			}
-
-			.section-title {
-				color: #111827;
-				font-size: 24px;
-				font-weight: 700;
-				margin: 10px 0;
-			}
-
-			.section-desc {
-				color: #4b5563;
-				font-size: 16px;
-				font-weight: 400;
-				margin-bottom: 30px;
-			}
-
 			.assessment-form {
-				padding: 18px;
-				background: #f5f5f5;
-				border-radius: 10px;
-				width: 100%;
-				max-width: 329px;
-				margin: 0 auto;
-				margin-top: 20px;
-			}
-
-			.form-title {
-				font-family: "Kanit", sans-serif, system-ui;
-				font-style: normal;
-				font-weight: 500;
-				font-size: 16px;
-				line-height: 20px;
-				color: #293179;
-				margin-bottom: 15px;
-			}
-
-			.form-item {
-				display: flex;
-				flex-wrap: wrap;
-				align-items: flex-start;
-				margin-bottom: 24px;
-				position: relative;
-
-				border-radius: 8px;
-				/*background-color: #ffffff;
-				box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);*/
-			}
-
-			.form-item-number {
-				display: inline;
-				align-items: center;
-				justify-content: center;
-				/*background-color: #4957D6;
-				color: white;
-				border-radius: 50%; */
-				line-height: 18px;
-				font-size: 14px;
-				margin-right: 8px;
-				font-family: "Kanit", sans-serif, system-ui;
-				font-size: 14px;
-				font-weight: 400;
-				color: #111827;
-				margin-right: 20px;
-				margin-top: 3px;
-				font-family: "Kanit", sans-serif, system-ui;
-			}
-
-			.form-item-question {
-				flex: 1;
-				min-width: 200px;
-				font-size: 14px;
-				font-weight: 400;
-				color: #111827;
-				margin-right: 20px;
-				margin-top: 3px;
-				font-family: "Kanit", sans-serif, system-ui;
-			}
-
-			.form-select-wrapper {
-				width: 100%;
-				max-width: 288px;
-				margin-top: 10px;
-				position: relative;
-			}
-
-			.custom-select {
-				width: 100%;
-				padding: 10px 15px;
-				border: 1px solid #4957d6;
-				border-radius: 6px;
-				background-color: #ffffff;
-				font-family: "Kanit", sans-serif, system-ui;
-				font-style: normal;
-				font-weight: 400;
-				font-size: 12px;
-				color: #6b7280;
-				cursor: pointer;
-				height: 36px;
-				display: flex;
-				align-items: center;
-				transition: all 0.2s ease;
-			}
-
-			.down-arrow {
-				position: absolute;
-				right: 10px;
-				top: 50%;
-				transform: translateY(-50%);
-				color: #4957d6;
-			}
-
-			.options-panel {
-				display: none;
-				position: absolute;
-				top: 100%;
-				left: 0;
-				background-color: white;
-				border: 1px solid #4957d6;
-				border-radius: 6px;
-				margin-top: 5px;
-				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-					0 2px 4px -1px rgba(0, 0, 0, 0.06);
-				z-index: 10;
-				font-family: "Kanit", sans-serif, system-ui;
-			}
-
-			.options-note {
-				padding: 10px 15px;
-				font-size: 11px;
-				border-bottom: 1px solid #e5e7eb;
-				font-family: "Kanit", sans-serif, system-ui;
-			}
-
-			.option-item {
-				padding: 10px 15px;
-				cursor: pointer;
-				transition: background-color 0.2s ease;
-				font-family: "Kanit", sans-serif, system-ui;
-			}
-
-			.option-item:hover {
-				background-color: #eef0ff;
-			}
-
-			.option-text {
-				font-size: 12px;
-				color: #111827;
-				font-family: "Kanit", sans-serif, system-ui;
-			}
-
-			.options-panel.active {
-				display: block;
-			}
-
-			.custom-select.active {
-				border-color: #4957d6;
-				box-shadow: 0 0 0 2px rgba(73, 87, 214, 0.2);
-			}
-
-			.form-select-wrapper.has-value .custom-select {
-				color: #111827;
-			}
-
-			.nav-buttons {
-				display: flex;
-				justify-content: space-between;
-				padding: 20px 0;
-				margin-top: 20px;
-				border-top: 1px solid #e5e7eb;
-			}
-
-			.next-button,
-			.prev-button {
-				background-color: #2563eb;
-				color: white;
-				border-radius: 6px;
-				padding: 10px 20px;
-				cursor: pointer;
-				font-weight: 500;
-				transition: background-color 0.3s;
-			}
-
-			.prev-text,
-			.next-text {
-				font-family: "Kanit", sans-serif, system-ui;
-				font-style: normal;
-				font-weight: 600;
-				font-size: 15px;
-				line-height: 22px;
-				color: #ffffff;
-			}
-
-			.nav-item {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				text-decoration: none;
-			}
-
-			.nav-icon {
-				color: #676767;
-				margin-bottom: 5px;
-			}
-
-			.nav-icon.active {
-				color: #c32126;
-			}
-
-			.nav-text {
-				font-family: "Kanit", sans-serif, system-ui;
-				font-style: normal;
-				font-weight: 400;
-				font-size: 8px;
-				line-height: 9px;
-				text-align: center;
-				color: #000000;
-			}
-
-			.strategic-description {
-				font-family: "Kanit", sans-serif, system-ui;
-				font-weight: 400;
-				font-size: 9px;
-				line-height: 12px;
-				letter-spacing: 0;
-				color: rgba(170, 170, 170, 1);
+				max-width: none;
 			}
 		</style>
 	</head>
@@ -362,7 +34,7 @@
 			<div class="content-group">
 				<div class="header-section">
 					<div
-						class="flex items-center gap-2 justify-between mb-6"
+						class="flex items-center justify-between gap-2 mb-6"
 						style="margin-bottom: 24px"
 					>
 						<div class="back-button">
@@ -396,7 +68,7 @@
 					</div>
 
 					<div
-						class="strategic-title mb-6"
+						class="mb-6 strategic-title"
 						style="margin-bottom: 14px"
 						x-text="'Input Evaluasi ' + currentSection + ' Perusahaan'"
 					></div>
@@ -827,10 +499,14 @@
 						</div>
 						<select class="form-select" style="margin-top: 14px">
 							<option value="" selected>Select an option</option>
-							<option value="Lengkap, jelas dan digunakan">Lengkap, jelas dan digunakan</option>
-							<option value="Ada tetapi belum optimal">Ada tetapi belum optimal</option>
-                            <option value="Tidak lengkap">Tidak lengkap</option>
-                            <option value="Tidak ada struktur">Tidak ada struktur</option>
+							<option value="Lengkap, jelas dan digunakan">
+								Lengkap, jelas dan digunakan
+							</option>
+							<option value="Ada tetapi belum optimal">
+								Ada tetapi belum optimal
+							</option>
+							<option value="Tidak lengkap">Tidak lengkap</option>
+							<option value="Tidak ada struktur">Tidak ada struktur</option>
 						</select>
 					</div>
 
@@ -841,10 +517,14 @@
 						</div>
 						<select class="form-select" style="margin-top: 14px">
 							<option value="" selected>Select an option</option>
-							<option value="Lengkap, jelas dan digunakan">Lengkap, jelas dan digunakan</option>
-							<option value="Ada tetapi belum optimal">Ada tetapi belum optimal</option>
-                            <option value="Tidak lengkap">Tidak lengkap</option>
-                            <option value="Tidak ada struktur">Tidak ada struktur</option>
+							<option value="Lengkap, jelas dan digunakan">
+								Lengkap, jelas dan digunakan
+							</option>
+							<option value="Ada tetapi belum optimal">
+								Ada tetapi belum optimal
+							</option>
+							<option value="Tidak lengkap">Tidak lengkap</option>
+							<option value="Tidak ada struktur">Tidak ada struktur</option>
 						</select>
 					</div>
 
@@ -855,10 +535,14 @@
 						</div>
 						<select class="form-select" style="margin-top: 14px">
 							<option value="" selected>Select an option</option>
-							<option value="Lengkap, jelas dan digunakan">Lengkap, jelas dan digunakan</option>
-							<option value="Ada tetapi belum optimal">Ada tetapi belum optimal</option>
-                            <option value="Tidak lengkap">Tidak lengkap</option>
-                            <option value="Tidak ada struktur">Tidak ada struktur</option>
+							<option value="Lengkap, jelas dan digunakan">
+								Lengkap, jelas dan digunakan
+							</option>
+							<option value="Ada tetapi belum optimal">
+								Ada tetapi belum optimal
+							</option>
+							<option value="Tidak lengkap">Tidak lengkap</option>
+							<option value="Tidak ada struktur">Tidak ada struktur</option>
 						</select>
 					</div>
 
@@ -869,10 +553,14 @@
 						</div>
 						<select class="form-select" style="margin-top: 14px">
 							<option value="" selected>Select an option</option>
-							<option value="Lengkap, jelas dan digunakan">Lengkap, jelas dan digunakan</option>
-							<option value="Ada tetapi belum optimal">Ada tetapi belum optimal</option>
-                            <option value="Tidak lengkap">Tidak lengkap</option>
-                            <option value="Tidak ada struktur">Tidak ada struktur</option>
+							<option value="Lengkap, jelas dan digunakan">
+								Lengkap, jelas dan digunakan
+							</option>
+							<option value="Ada tetapi belum optimal">
+								Ada tetapi belum optimal
+							</option>
+							<option value="Tidak lengkap">Tidak lengkap</option>
+							<option value="Tidak ada struktur">Tidak ada struktur</option>
 						</select>
 					</div>
 
@@ -883,10 +571,14 @@
 						</div>
 						<select class="form-select" style="margin-top: 14px">
 							<option value="" selected>Select an option</option>
-							<option value="Lengkap, jelas dan digunakan">Lengkap, jelas dan digunakan</option>
-							<option value="Ada tetapi belum optimal">Ada tetapi belum optimal</option>
-                            <option value="Tidak lengkap">Tidak lengkap</option>
-                            <option value="Tidak ada struktur">Tidak ada struktur</option>
+							<option value="Lengkap, jelas dan digunakan">
+								Lengkap, jelas dan digunakan
+							</option>
+							<option value="Ada tetapi belum optimal">
+								Ada tetapi belum optimal
+							</option>
+							<option value="Tidak lengkap">Tidak lengkap</option>
+							<option value="Tidak ada struktur">Tidak ada struktur</option>
 						</select>
 					</div>
 				</div>
@@ -911,7 +603,7 @@
 			</div>
 
 			<div class="footer">
-				<a href="#" class="footer-item">
+				<a href="home.html" class="footer-item">
 					<div class="footer-icon active">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
