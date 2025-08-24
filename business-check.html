@@ -1145,6 +1145,8 @@
             const currentIndex = this.pages.indexOf(this.currentPage);
             if (currentIndex < this.pages.length - 1) {
                 this.currentPage = this.pages[currentIndex + 1];
+            }else {
+window.location.href = 'business-check-result.html';
             }
         },
          
@@ -2001,12 +2003,8 @@
 									<div class="text-white prev-text">Previous</div>
 								</div>
 								<div style="flex-grow: 1"></div>
-								<div
-									class="next-button"
-									@click="nextPage()"
-									
-								>
-                                <!-- x-show="currentPage !== pages[pages.length - 1]" -->
+								<div class="next-button" @click="nextPage()">
+									<!-- x-show="currentPage !== pages[pages.length - 1]" -->
 									<div class="next-text">Next</div>
 								</div>
 							</div>

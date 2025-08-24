@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Business Check</title>
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="footer.css" />
+		<link rel="stylesheet" href="business-check-assessment.css" />
+
+		<link rel="stylesheet" href="home.css" />
+
+		<style>
+			/* Business Check */
+			body {
+				font-family: "Kanit", sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #ffffff;
+			}
+
+			.business-check-container {
+				position: relative;
+				width: 100%;
+				max-width: 100%;
+				min-height: 100vh;
+				margin: 0 auto;
+				background: #ffffff;
+				overflow: hidden;
+			}
+			/*
+			@media (min-width: 480px) {
+				.business-check-container {
+					max-width: 480px;
+				}
+			}
+                */
+
+			/* Banner section */
+			.banner {
+				position: relative;
+				width: 100%;
+				min-height: 228px;
+				background: #d9d9d9;
+				overflow: hidden;
+			}
+
+			.banner-image {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.banner-overlay {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(
+					89.97deg,
+					rgba(53, 64, 156, 0) -20.13%,
+					#121636 97.17%
+				);
+				mix-blend-mode: multiply;
+			}
+
+			.banner-icon {
+				position: absolute;
+				width: 44px;
+				height: 42px;
+				left: 31px;
+				top: 77px;
+			}
+
+			.banner-title {
+				position: absolute;
+				width: auto;
+				left: 30px;
+				top: 137px;
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 24px;
+				color: #ffffff;
+			}
+
+			.banner-text {
+				position: absolute;
+				width: calc(100% - 62px);
+				max-width: 235px;
+				left: 31px;
+				top: 165px;
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				color: #ffffff;
+			}
+
+			/* Status bar */
+			.status-bar {
+				position: absolute;
+				top: 2.23%;
+				right: 14.76%;
+				display: flex;
+				align-items: center;
+				gap: 5px;
+			}
+
+			.status-bar svg {
+				fill: #ffffff;
+			}
+
+			/* Content section */
+			.content-section {
+				position: relative;
+				width: 100%;
+				padding: 20px 30px;
+				margin-bottom: 120px; /* Space for fixed footer */
+			}
+
+			.section-title {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 24px;
+				line-height: 12px;
+				color: #293179;
+				margin-bottom: 25px;
+			}
+
+			.content-group {
+				position: relative;
+
+				max-width: 100%;
+				margin: 0 auto;
+				padding-top: 18px;
+				padding-bottom: 50px;
+				padding: 0 32px;
+				width: 100%;
+			}
+
+			/* Card styles */
+			.check-card {
+				position: relative;
+				width: 100%;
+				min-height: 47px;
+				background: #3b46ac;
+				border-radius: 13px;
+				margin-bottom: 15px;
+				display: flex;
+				align-items: center;
+				padding: 0 20px;
+				justify-content: center;
+			}
+
+			.check-card.locked {
+				position: relative;
+				background: #2d0d6e;
+				border-radius: 13px;
+				height: 47px;
+				width: 100%;
+			}
+
+			.check-card.locked::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(45, 13, 110, 0.5);
+				mix-blend-mode: overlay;
+				border-radius: 13px;
+				z-index: 1;
+			}
+
+			.card-icon {
+				color: #ffffff;
+				margin-right: 10px;
+				z-index: 2;
+				width: 32px;
+				height: 32px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.lock-icon {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				color: #ffffff;
+				z-index: 3;
+				width: 24px;
+				height: 24px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.card-title {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 8px;
+				text-align: center;
+				color: #ffffff;
+				z-index: 2;
+				width: 116px;
+				height: 8px;
+			}
+
+			.card-description {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 9px;
+				line-height: 12px;
+				color: #aaaaaa;
+				margin-top: 10px;
+				margin-bottom: 30px;
+			}
+
+			/* Footer */
+			/*
+            .footer {
+				position: fixed;
+				width: 100%;
+				min-height: 112px;
+				left: 0;
+				bottom: 0;
+				background: #f8f8f8;
+				border-radius: 15px 15px 0 0;
+				filter: drop-shadow(6px -16px 28px rgba(0, 0, 0, 0.25));
+				z-index: 100;
+			}
+
+			@media (min-width: 480px) {
+				.footer {
+					max-width: 480px;
+					left: 50%;
+					transform: translateX(-50%);
+				}
+			}
+
+			.footer-nav {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				padding-top: 15px;
+			}
+                */
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-decoration: none;
+			}
+
+			.nav-icon {
+				color: #676767;
+				margin-bottom: 5px;
+			}
+
+			.nav-icon.active {
+				color: #c32126;
+			}
+
+			.nav-text {
+				font-family: "Kanit";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 8px;
+				line-height: 9px;
+				text-align: center;
+				color: #000000;
+			}
+
+			.form-title {
+				font-size: 24px;
+			}
+
+			.strategic-title {
+				font-size: 32px;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+	</head>
+	<body>
+		<div class="business-check-container md:hidden">
+			<!-- Banner Section -->
+			<div class="banner">
+				<img
+					src="images/business-card-image.png"
+					alt="Business Analysis"
+					class="banner-image"
+				/>
+				<div class="banner-overlay"></div>
+
+				<!-- Status Bar -->
+				<!-- <div class="status-bar">
+					<svg width="15" height="15" viewBox="0 0 24 24">
+						<path
+							d="M3.75 17.25v-10.5h3v10.5h-3zm5.25 0v-10.5h3v10.5h-3zm5.25 0v-10.5h3v10.5h-3z"
+							fill="#FFFFFF"
+						/>
+					</svg>
+					<svg width="15" height="15" viewBox="0 0 24 24">
+						<rect
+							x="4"
+							y="6"
+							width="16"
+							height="12"
+							rx="1"
+							stroke="#FFFFFF"
+							stroke-width="2"
+							fill="none"
+						/>
+						<rect x="6" y="8" width="12" height="8" rx="1" fill="#FFFFFF" />
+					</svg>
+				</div> -->
+
+				<!-- Banner Content -->
+				<div class="banner-icon">
+					<svg
+						width="44"
+						height="42"
+						viewBox="0 0 44 42"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_2004_326)">
+							<path
+								d="M43.4006 31.3357C42.4018 28.9603 40.404 27.3935 38.1566 26.8375C36.5085 26.4332 35.0601 25.3213 34.261 23.8051L29.7162 15.4152C28.8671 13.7978 28.6174 11.9278 29.2167 10.2094V10.1588C29.2667 10.0578 29.2667 9.95668 29.3166 9.90614V9.8556C29.3666 9.60289 29.4165 9.35018 29.4665 9.14802C29.4665 9.09747 29.4665 9.04693 29.4665 9.04693C29.4665 8.99639 29.4665 8.89531 29.5164 8.84477C29.5164 8.74368 29.5164 8.69314 29.5663 8.59206C29.5663 8.54152 29.5663 8.54152 29.5663 8.49098C29.7162 7.02527 29.4165 5.50903 28.6674 4.1444C27.8183 2.57762 26.5198 1.4657 25.0715 0.808664C24.9716 0.606498 24.8717 0.555957 24.7718 0.505415C24.7718 0.505415 24.7219 0.505415 24.7219 0.454874C24.622 0.404332 24.572 0.404332 24.4721 0.353791C24.4222 0.353791 24.3722 0.303249 24.3223 0.303249C24.2724 0.303249 24.2224 0.252708 24.1725 0.252708C24.1225 0.252708 24.0226 0.202166 23.9727 0.202166C23.9228 0.202166 23.9228 0.202166 23.8728 0.202166C23.7729 0.202166 23.673 0.151625 23.5732 0.151625C23.5732 0.151625 23.5732 0.151625 23.5232 0.151625C23.2735 0.101083 23.0238 0.0505415 22.7741 0.0505415C22.6742 0.0505415 22.5243 0.0505415 22.4245 0C22.3745 0 22.3745 0 22.3246 0C22.2247 0 22.1248 0 22.0749 0C21.975 0 21.8751 0 21.8251 0C21.7752 0 21.7752 0 21.7253 0C21.6254 0 21.4755 0 21.3757 0.0505415C21.1259 0.0505415 20.8762 0.101083 20.6265 0.151625C20.6265 0.151625 20.6265 0.151625 20.5766 0.151625C20.4767 0.151625 20.3768 0.202166 20.2769 0.202166C20.227 0.202166 20.227 0.202166 20.177 0.202166C20.1271 0.202166 20.0272 0.252708 19.9772 0.252708C19.9273 0.252708 19.8774 0.303249 19.8274 0.303249C19.7775 0.303249 19.7275 0.353791 19.6776 0.353791C19.4778 0.454874 19.4279 0.454874 19.328 0.505415C19.328 0.505415 19.278 0.505415 19.278 0.555957C19.1782 0.606498 19.0783 0.65704 18.9784 0.707581C17.4801 1.36462 16.2315 2.52708 15.3825 4.04332C14.6333 5.40794 14.3337 6.92419 14.4835 8.38989C14.4835 8.44043 14.4835 8.44043 14.4835 8.49098C14.4835 8.59206 14.4835 8.6426 14.5334 8.74368C14.5334 8.79422 14.5334 8.89531 14.5834 8.94585C14.5834 8.99639 14.5834 9.04693 14.5834 9.04693C14.6333 9.29964 14.6833 9.55235 14.7332 9.75451V9.80505C14.7831 9.90614 14.7831 10.0072 14.8331 10.0578V10.1083C15.4324 11.8267 15.1827 13.7473 14.3337 15.3141L9.78882 23.704C8.93979 25.2202 7.54138 26.3321 5.89325 26.7365C3.59586 27.343 1.59813 28.9603 0.599264 31.3357C-0.84909 34.722 0.399492 38.7653 3.49597 40.787C7.24172 43.213 12.1861 41.8989 14.3337 38.0072C15.3825 36.0361 15.5323 33.8123 14.883 31.8412C14.3337 30.1733 14.4335 28.3538 15.2826 26.787L19.9273 18.1949C19.9273 18.1949 19.9273 18.1949 19.9273 18.1444C20.8263 16.4765 23.2735 16.4765 24.1725 18.1444C24.1725 18.1444 24.1725 18.1444 24.1725 18.1949L28.8172 26.787C29.6662 28.3538 29.7661 30.1733 29.2167 31.8412C28.5675 33.8123 28.7173 36.0361 29.7661 38.0072C31.8637 41.8989 36.8081 43.213 40.6038 40.787C43.6503 38.7653 44.849 34.722 43.4006 31.3357Z"
+								fill="white"
+							/>
+							<path
+								d="M22.025 32.3466C24.5626 32.3466 26.6197 30.2648 26.6197 27.6968C26.6197 25.1287 24.5626 23.0469 22.025 23.0469C19.4873 23.0469 17.4302 25.1287 17.4302 27.6968C17.4302 30.2648 19.4873 32.3466 22.025 32.3466Z"
+								fill="white"
+							/>
+						</g>
+						<defs>
+							<clipPath id="clip0_2004_326">
+								<rect width="44" height="42" fill="white" />
+							</clipPath>
+						</defs>
+					</svg>
+				</div>
+				<h1 class="banner-title">Business Check</h1>
+				<p class="banner-text">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+			</div>
+
+			<!-- Content Section -->
+			<div class="content-section">
+				<h2 class="section-title">Lets Start!</h2>
+
+				<!-- Strategic Card -->
+				<a href="business-check-assessment.html" style="text-decoration: none">
+					<div class="check-card">
+						<div class="card-icon">
+							<svg
+								width="30"
+								height="30"
+								viewBox="0 0 30 30"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M27.8906 13.8867H24.3105C23.8037 9.59766 20.4023 6.19629 16.1133 5.68945V2.10938C16.1133 1.98047 16.0078 1.875 15.8789 1.875H14.1211C13.9922 1.875 13.8867 1.98047 13.8867 2.10938V5.68945C9.59766 6.19629 6.19629 9.59766 5.68945 13.8867H2.10938C1.98047 13.8867 1.875 13.9922 1.875 14.1211V15.8789C1.875 16.0078 1.98047 16.1133 2.10938 16.1133H5.68945C6.19629 20.4023 9.59766 23.8037 13.8867 24.3105V27.8906C13.8867 28.0195 13.9922 28.125 14.1211 28.125H15.8789C16.0078 28.125 16.1133 28.0195 16.1133 27.8906V24.3105C20.4023 23.8037 23.8037 20.4023 24.3105 16.1133H27.8906C28.0195 16.1133 28.125 16.0078 28.125 15.8789V14.1211C28.125 13.9922 28.0195 13.8867 27.8906 13.8867ZM15 22.1484C11.0508 22.1484 7.85156 18.9492 7.85156 15C7.85156 11.0508 11.0508 7.85156 15 7.85156C18.9492 7.85156 22.1484 11.0508 22.1484 15C22.1484 18.9492 18.9492 22.1484 15 22.1484Z"
+									fill="white"
+								/>
+								<path
+									d="M15 11.4844C14.0596 11.4844 13.1807 11.8477 12.5156 12.5156C11.8506 13.1807 11.4844 14.0596 11.4844 15C11.4844 15.9404 11.8506 16.8193 12.5156 17.4844C13.1807 18.1465 14.0625 18.5156 15 18.5156C15.9375 18.5156 16.8193 18.1494 17.4844 17.4844C18.1465 16.8193 18.5156 15.9375 18.5156 15C18.5156 14.0625 18.1494 13.1807 17.4844 12.5156C16.8193 11.8477 15.9404 11.4844 15 11.4844Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						<div class="card-title">Strategic</div>
+					</div>
+				</a>
+				<p class="card-description">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+
+				<!-- Input Kesehatan Card (Locked) -->
+				<div class="check-card locked">
+					<div class="card-icon">
+						<svg
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M26.6667 10.6667H24V8.00001C24 4.32001 21.0133 1.33334 17.3333 1.33334C13.6533 1.33334 10.6667 4.32001 10.6667 8.00001V10.6667H8.00001C6.53334 10.6667 5.33334 11.8667 5.33334 13.3333V26.6667C5.33334 28.1333 6.53334 29.3333 8.00001 29.3333H26.6667C28.1333 29.3333 29.3333 28.1333 29.3333 26.6667V13.3333C29.3333 11.8667 28.1333 10.6667 26.6667 10.6667ZM17.3333 22.6667C15.8667 22.6667 14.6667 21.4667 14.6667 20C14.6667 18.5333 15.8667 17.3333 17.3333 17.3333C18.8 17.3333 20 18.5333 20 20C20 21.4667 18.8 22.6667 17.3333 22.6667ZM13.3333 8.00001C13.3333 5.78668 15.12 4.00001 17.3333 4.00001C19.5467 4.00001 21.3333 5.78668 21.3333 8.00001V10.6667H13.3333V8.00001Z"
+								fill="white"
+							/>
+						</svg>
+					</div>
+					<div class="card-title">Input Kesehatan</div>
+					<div class="lock-icon">
+						<svg
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M19 11H5C3.89543 11 3 11.8954 3 13V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V13C21 11.8954 20.1046 11 19 11Z"
+								fill="white"
+							/>
+							<path
+								d="M17 11V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V11"
+								stroke="white"
+								stroke-width="2"
+								stroke-linecap="round"
+							/>
+						</svg>
+					</div>
+				</div>
+				<p class="card-description">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+
+				<!-- Input Standard Card (Locked) -->
+				<div class="check-card locked">
+					<div class="card-icon">
+						<svg
+							width="32"
+							height="32"
+							viewBox="0 0 32 32"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M18.6667 2.66667H8.00001C6.53334 2.66667 5.33334 3.86667 5.33334 5.33334V26.6667C5.33334 28.1333 6.53334 29.3333 8.00001 29.3333H24C25.4667 29.3333 26.6667 28.1333 26.6667 26.6667V10.6667L18.6667 2.66667ZM24 26.6667H8.00001V5.33334H17.3333V12H24V26.6667Z"
+								fill="white"
+							/>
+						</svg>
+					</div>
+					<div class="card-title">Input Standard</div>
+					<div class="lock-icon">
+						<svg
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M19 11H5C3.89543 11 3 11.8954 3 13V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V13C21 11.8954 20.1046 11 19 11Z"
+								fill="white"
+							/>
+							<path
+								d="M17 11V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V11"
+								stroke="white"
+								stroke-width="2"
+								stroke-linecap="round"
+							/>
+						</svg>
+					</div>
+				</div>
+				<p class="card-description">
+					Lorem Ipsum is simply dummy text of the printing and typesetting
+					industry. Lorem Ipsum has been the industry's standard dummy text ever
+					since the 1500s
+				</p>
+			</div>
+
+			<!-- Footer Section -->
+			<div class="footer">
+				<a href="home.html" class="footer-item">
+					<div class="footer-icon active">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+							<polyline points="9 22 9 12 15 12 15 22"></polyline>
+						</svg>
+					</div>
+					<div class="footer-text">Home</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+							<path
+								d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+							></path>
+						</svg>
+					</div>
+					<div class="footer-text">Your Result</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
+							></path>
+							<path d="M18 14v4"></path>
+							<path d="M18 9v1"></path>
+							<rect x="12" y="8" width="15" height="14" rx="2"></rect>
+						</svg>
+					</div>
+					<div class="footer-text">News</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="12" cy="12" r="3"></circle>
+							<path
+								d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+							></path>
+						</svg>
+					</div>
+					<div class="footer-text">Setting</div>
+				</a>
+
+				<a href="#" class="footer-item">
+					<div class="footer-icon inactive">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+							<circle cx="12" cy="7" r="4"></circle>
+						</svg>
+					</div>
+					<div class="footer-text">Profile</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="hidden business-check-container-desktop md:block">
+			<div class="dd-header">
+				<div
+					style="
+						max-width: 1160px;
+						width: 100%;
+						margin: 0 auto;
+						padding: 0 32px;
+					"
+					x-data="{ menuOpen: false }"
+					@keydown.escape.window="menuOpen=false"
+					class="relative"
+				>
+					<div class="dd-topbar">
+						<div class="flex items-center gap-2">
+							<div class="back-button">
+								<a href="home.html" style="text-decoration: none">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="#293179"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M19 12H5"></path>
+										<path d="M12 19l-7-7 7-7"></path>
+									</svg>
+								</a>
+							</div>
+							<a href="home.html">
+								<img
+									src="images/probiz360-logo.png"
+									alt="ProBiz360"
+									class="dd-logo"
+								/>
+							</a>
+						</div>
+						<div class="dd-actions">
+							<div class="notification-bell">
+								<svg
+									width="33"
+									height="33"
+									viewBox="0 0 33 33"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M28.875 8.93751C28.875 11.5913 26.7162 13.75 24.0625 13.75C21.4088 13.75 19.25 11.5913 19.25 8.93751C19.25 6.28376 21.4088 4.12501 24.0625 4.12501C26.7162 4.12501 28.875 6.28376 28.875 8.93751ZM26.125 16.2113C25.4375 16.39 24.75 16.5 24.0625 16.5C22.0579 16.4964 20.1365 15.6984 18.719 14.281C17.3016 12.8635 16.5036 10.9421 16.5 8.93751C16.5 6.91626 17.2975 5.08751 18.5625 3.72626C18.313 3.42038 17.9983 3.17402 17.6415 3.00513C17.2847 2.83624 16.8948 2.74909 16.5 2.75001C14.9875 2.75001 13.75 3.98751 13.75 5.50001V5.89876C9.66625 7.10876 6.875 10.8625 6.875 15.125V23.375L4.125 26.125V27.5H28.875V26.125L26.125 23.375V16.2113ZM16.5 31.625C18.0262 31.625 19.25 30.4013 19.25 28.875H13.75C13.75 29.6044 14.0397 30.3038 14.5555 30.8196C15.0712 31.3353 15.7707 31.625 16.5 31.625Z"
+										fill="#3B46AC"
+									/>
+								</svg>
+							</div>
+							<button
+								id="menuButton"
+								class="menu-button"
+								aria-label="Open menu"
+								@click="menuOpen=!menuOpen"
+								:aria-expanded="menuOpen.toString()"
+								aria-haspopup="true"
+								aria-controls="accountMenu"
+							>
+								<svg
+									class="menu-icon"
+									width="28"
+									height="20"
+									viewBox="0 0 28 20"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<line
+										x1="1"
+										y1="2"
+										x2="27"
+										y2="2"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="10"
+										x2="27"
+										y2="10"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="18"
+										x2="27"
+										y2="18"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<!-- Desktop dropdown menu (Alpine + Tailwind) -->
+					<style>
+						[x-cloak] {
+							display: none !important;
+						}
+					</style>
+					<div
+						id="accountMenu"
+						role="menu"
+						aria-labelledby="menuButton"
+						tabindex="-1"
+						x-cloak
+						x-show="menuOpen"
+						x-transition.opacity
+						x-transition.duration.200ms
+						@click.outside="menuOpen=false"
+						class="absolute right-8 mt-3 w-[330px] bg-white rounded-xl shadow-2xl overflow-hidden z-50"
+					>
+						<!-- Logo header -->
+						<div class="px-5 pt-4 pb-2">
+							<img
+								src="images/probiz360-logo.png"
+								alt="ProBiz360"
+								class="h-[49px] w-auto"
+							/>
+						</div>
+						<!-- Active row -->
+						<div
+							class="relative flex items-center gap-3 bg-[#293179] text-white px-5 py-4 font-extrabold"
+						>
+							<svg
+								class="w-8 h-8"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5Z"
+									fill="#fff"
+								/>
+							</svg>
+							<span>Dashboard</span>
+							<span
+								class="absolute right-0 top-0 h-full w-[14px] bg-[#C32126]"
+							></span>
+						</div>
+						<!-- Links -->
+						<nav class="grid px-5 py-5 gap-7">
+							<a
+								href="business-check.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="9"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="12" r="2" fill="#A7A7A7" />
+								</svg>
+								<span>Business Check</span>
+							</a>
+							<a
+								href="business-process.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="3"
+										y="12"
+										width="3"
+										height="7"
+										rx="1"
+										fill="#A7A7A7"
+									/>
+									<rect
+										x="9"
+										y="9"
+										width="3"
+										height="10"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.9"
+									/>
+									<rect
+										x="15"
+										y="6"
+										width="3"
+										height="13"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.8"
+									/>
+								</svg>
+								<span>Business Process</span>
+							</a>
+							<a
+								href="profile.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="7" r="4" fill="#A7A7A7" />
+								</svg>
+								<span>Profile</span>
+							</a>
+							<a
+								href="#password"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="5"
+										y="11"
+										width="14"
+										height="10"
+										rx="2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<path
+										d="M8 11V8a4 4 0 018 0v3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Password</span>
+							</a>
+							<a
+								href="#logout"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M10 17l5-5-5-5"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+									<path
+										d="M15 12H3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+									<path
+										d="M21 21V3a2 2 0 0 0-2-2h-6"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Logout</span>
+							</a>
+						</nav>
+					</div>
+					<div class="dd-welcome">
+						<p class="welcome">Welcome,</p>
+						<h2 class="name">Albert Ricia</h2>
+						<p class="summary">
+							You have 4 task to finish all task today, your already completed
+							<strong>75% task</strong> fot today, your progress is
+							<strong>very good.</strong>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="desktop-dashboard">
+				<style>
+					/* Scoped styles for desktop result section (responsive, no absolute positioning) */
+					.dd-result {
+						max-width: 1160px;
+						margin: 32px auto 0;
+						padding: 0 32px;
+					}
+					.dd-result .small-title {
+						font-family: "Montserrat", sans-serif;
+						font-style: italic;
+						font-weight: 300;
+						font-size: 20px;
+						color: #000;
+						margin: 0 0 8px;
+					}
+					.dd-result-grid {
+						display: grid;
+						grid-template-columns: 1.1fr 1fr;
+						gap: 40px;
+						align-items: start;
+					}
+					.dd-card-title {
+						font-family: "Kanit", sans-serif;
+						font-weight: 400;
+						font-size: 32px;
+						line-height: 1.2;
+						color: #293179;
+						margin: 0 0 16px;
+					}
+					.dd-rows {
+						border-radius: 8px;
+						overflow: hidden;
+					}
+					.dd-row {
+						display: grid;
+						grid-template-columns: 220px 24px 1fr;
+						align-items: center;
+						height: 58px;
+						padding: 0 16px;
+						font-family: "Kanit", sans-serif;
+						font-weight: 400;
+						font-size: 20px;
+						color: #000;
+					}
+					.dd-row:nth-child(odd) {
+						background: #f7f7f7;
+					}
+					.dd-row:nth-child(even) {
+						background: #edefff;
+					}
+					.dd-colon {
+						text-align: center;
+					}
+					.dd-figure {
+						width: 100%;
+					}
+					.dd-figure img {
+						width: 100%;
+						height: auto;
+						display: block;
+						object-fit: contain;
+					}
+				</style>
+
+				<div class="dd-result">
+					<div class="small-title">Result</div>
+					<div class="dd-result-grid">
+						<div>
+							<h3 class="dd-card-title">Identitas UMKM</h3>
+							<div class="dd-rows">
+								<div class="dd-row">
+									<div>Nama UMKM</div>
+									<div class="dd-colon">:</div>
+									<div>UD Jaya Sejahtera</div>
+								</div>
+								<div class="dd-row">
+									<div>Kategori Check Up</div>
+									<div class="dd-colon">:</div>
+									<div>Established</div>
+								</div>
+								<div class="dd-row">
+									<div>Produk Utama</div>
+									<div class="dd-colon">:</div>
+									<div>Meubel dan Kerajinan Kayu</div>
+								</div>
+								<div class="dd-row">
+									<div>Industri</div>
+									<div class="dd-colon">:</div>
+									<div>Pengolahan</div>
+								</div>
+								<div class="dd-row">
+									<div>Alamat</div>
+									<div class="dd-colon">:</div>
+									<div>Desa Mulyoharjo</div>
+								</div>
+								<div class="dd-row">
+									<div>Kota/Kabupaten</div>
+									<div class="dd-colon">:</div>
+									<div>Jepara</div>
+								</div>
+								<div class="dd-row">
+									<div>Provinsi</div>
+									<div class="dd-colon">:</div>
+									<div>Jawa Tengah</div>
+								</div>
+							</div>
+						</div>
+						<figure class="dd-figure">
+							<img src="images/result-figure.svg" alt="Result Illustration" />
+						</figure>
+					</div>
+				</div>
+
+				<!-- ProBiz360 Check Up Metric (responsive, no absolute) -->
+				<style>
+					.dd-metrics { max-width: 1160px; margin: 48px auto 0; padding: 0 32px; }
+					.dd-metrics-title { font-family: "Kanit", sans-serif; font-weight: 400; font-size: 32px; color: #293179; margin-bottom: 16px; }
+
+					/* Quadrant chart */
+					.dd-quad-wrap { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; }
+					.dd-y-label { writing-mode: vertical-rl; transform: rotate(180deg); color: #8D8D8D; font-family: "Kanit", sans-serif; font-size: 14px; }
+					.dd-quad { width: 100%; max-width: 700px; aspect-ratio: 16 / 9; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; border-radius: 6px; overflow: hidden; }
+					.dd-quad .cell { display: flex; align-items: center; justify-content: center; color: #fff; font-family: "Kanit", sans-serif; }
+					.dd-quad .c1 { background: #656DAD; }
+					.dd-quad .c2 { background: #969DDE; }
+					.dd-quad .point { display: flex; align-items: center; justify-content: flex-end; padding-right: 16px; gap: 8px; }
+					.dd-quad .dot { width: 28px; height: 28px; background: #C32126; border: 6px solid #A01C20; border-radius: 9999px; }
+					.dd-x-label { text-align: center; color: #8D8D8D; font-family: "Kanit", sans-serif; margin-top: 16px; }
+
+					/* Metrics table */
+					.dd-table { margin-top: 40px; }
+					.dd-table h4 { font-family: "Kanit", sans-serif; font-weight: 400; font-size: 32px; color: #293179; margin-bottom: 12px; }
+					.dd-thead, .dd-trow { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 1.4fr; align-items: center; min-height: 56px; padding: 0 16px; font-family: "Kanit", sans-serif; font-size: 18px; }
+					.dd-thead { border-radius: 8px; overflow: hidden; }
+					.dd-thead div:nth-child(1), .dd-trow:nth-child(odd) { background: #F7F7F7; }
+					.dd-thead div:nth-child(2) { background: #EDEFFF; }
+					.dd-thead div:nth-child(3) { background: #F7F7F7; }
+					.dd-thead div:nth-child(4) { background: #EDEFFF; }
+					.dd-thead div { padding: 14px 16px; }
+					.dd-trow { gap: 0; border-bottom: 1px solid #EDEFFF; }
+					.dd-center { text-align: center; }
+					.dd-warn { color: #C32126; }
+					.dd-footnote { margin-top: 8px; font-family: "Kanit", sans-serif; font-size: 14px; color: #C32126; text-align: right; }
+
+					/* Analysis card */
+					.dd-analysis { margin-top: 28px; background: #EDEFFF; border-radius: 8px; padding: 20px 24px; }
+					.dd-analysis h5 { margin: 0 0 8px; font-family: "Kanit", sans-serif; font-weight: 400; font-size: 24px; color: #293179; }
+					.dd-analysis p { margin: 0; font-family: "Kanit", sans-serif; font-size: 16px; line-height: 1.6; color: #000; }
+
+					@media (max-width: 1024px) {
+						.dd-quad { max-width: 100%; }
+						.dd-thead, .dd-trow { grid-template-columns: 1fr 0.6fr 0.6fr 1.2fr; font-size: 16px; }
+					}
+				</style>
+
+				<section class="dd-metrics">
+					<h3 class="dd-metrics-title">ProBiz360 Check Up Metric</h3>
+					<div class="dd-quad-wrap">
+						<div class="dd-y-label">Financial Health</div>
+						<div>
+							<div class="dd-quad">
+								<div class="cell c1">Kuadran iii</div>
+								<div class="cell c2 point"><span>3.65</span><span class="dot" aria-label="score"></span></div>
+								<div class="cell c2">Kuadran I</div>
+								<div class="cell c1">Kuadran ii</div>
+							</div>
+							<div class="dd-x-label">Core Drivers</div>
+						</div>
+					</div>
+
+					<div class="dd-table">
+						<h4>Check up metric</h4>
+						<div class="dd-thead">
+							<div>Parameter</div>
+							<div>Hasil</div>
+							<div>Standard</div>
+							<div>Keterangan</div>
+						</div>
+						<div class="dd-trow">
+							<div>Strategic Value</div>
+							<div class="dd-center">3.64</div>
+							<div class="dd-center">2.50</div>
+							<div class="dd-center">Sangat Bagus (Jauh di atas standard)</div>
+						</div>
+						<div class="dd-trow">
+							<div>Financial Health</div>
+							<div class="dd-center dd-warn">60.51*</div>
+							<div class="dd-center">70.00</div>
+							<div class="dd-center dd-warn">Kurang (Jauh di bawah standard)</div>
+						</div>
+						<div class="dd-trow">
+							<div>Core Drivers</div>
+							<div class="dd-center">3.95</div>
+							<div class="dd-center">2.50</div>
+							<div class="dd-center">Sangat Bagus (Jauh di atas standard)</div>
+						</div>
+						<div class="dd-footnote">*Nilai masih di bawah standard</div>
+					</div>
+
+					<div class="dd-analysis">
+						<h5>Analisis :</h5>
+						<p>
+							Perusahaan memiliki Strategic Value yang sangat baik, artinya secara potensi produk jika dikelola dengan baik dapat jauh berkembang. Namun secara Financial Health perusahaan masih memiliki beberapa permasalahan keuangan yang perlu diselesaikan. Dari sisi Core Drivers, perusahaan telah menjalankan berbagai fungsi manajemen usahanya dengan sangat baik.
+						</p>
+					</div>
+				</section>
+
+				<!-- Strategic Value Metric (responsive, grid/flex, no absolute positioning) -->
+				<section class="sv-wrap" aria-labelledby="sv-title">
+					<style>
+						/* Scoped styles for Strategic Value Metric */
+						.sv-wrap { max-width: 1160px; margin: 48px auto 0; padding: 0 32px; }
+						.sv-title { font-family: "Kanit", sans-serif; font-weight: 400; font-size: 32px; color: #293179; margin: 0 0 20px; }
+						.sv-grid { display: grid; grid-template-columns: 1fr; gap: 24px; justify-items: center; }
+						/* Radar */
+						.sv-radar { width: min(520px, 100%); aspect-ratio: 1/1; }
+						.sv-radar figure { margin: 0; width: 100%; height: 100%; display: grid; place-items: center; }
+						.sv-radar figcaption { margin-top: 8px; color: #8D8D8D; font-family: "Kanit", sans-serif; font-size: 14px; text-align: center; }
+
+						/* Table */
+						.sv-table h4 { font-family: "Kanit", sans-serif; font-weight: 400; font-size: 28px; color: #293179; margin: 0 0 12px; }
+						.sv-head, .sv-row { display: grid; grid-template-columns: 1.6fr 0.6fr 0.6fr 1.6fr; align-items: center; min-height: 56px; font-family: "Kanit", sans-serif; font-size: 18px; }
+						.sv-head { border-radius: 8px; overflow: hidden; }
+						.sv-head > div { padding: 14px 16px; }
+						.sv-head > div:nth-child(1), .sv-row:nth-child(odd) { background: #F7F7F7; }
+						.sv-head > div:nth-child(2) { background: #EDEFFF; }
+						.sv-head > div:nth-child(3) { background: #F7F7F7; }
+						.sv-head > div:nth-child(4) { background: #EDEFFF; }
+						.sv-row { padding: 0 16px; border-bottom: 1px solid #EDEFFF; }
+						.sv-center { text-align: center; }
+
+						/* Analysis card */
+						.sv-analysis { margin-top: 28px; background: #EDEFFF; border-radius: 8px; padding: 20px 24px; }
+						.sv-analysis h5 { margin: 0 0 8px; font-family: "Kanit", sans-serif; font-weight: 400; font-size: 24px; color: #293179; }
+						.sv-analysis p { margin: 0; font-family: "Kanit", sans-serif; font-size: 16px; line-height: 1.6; color: #000; }
+
+						@media (max-width: 1024px) {
+							.sv-head, .sv-row { grid-template-columns: 1fr 0.6fr 0.6fr 1.2fr; font-size: 16px; }
+						}
+					</style>
+
+					<h3 id="sv-title" class="sv-title">ProBiz360 – Strategic Value Metric</h3>
+					<div class="sv-grid">
+						<!-- Radar Chart (static SVG as placeholder; scalable) -->
+						<div class="sv-radar">
+							<figure>
+								<svg viewBox="0 0 300 300" width="100%" height="100%" aria-label="Strategic Value Radar">
+									<defs>
+										<linearGradient id="svFill" x1="0" y1="0" x2="0" y2="1">
+											<stop offset="0%" stop-color="#5b2ae6" stop-opacity="0.85"/>
+											<stop offset="100%" stop-color="#5b2ae6" stop-opacity="0.65"/>
+										</linearGradient>
+									</defs>
+									<!-- rings -->
+									<g stroke="#C32126" stroke-width="1" fill="none" opacity="0.8">
+										<circle cx="150" cy="150" r="40"/>
+										<circle cx="150" cy="150" r="70"/>
+										<circle cx="150" cy="150" r="100"/>
+										<circle cx="150" cy="150" r="120"/>
+									</g>
+									<!-- axes -->
+									<g stroke="#C32126" stroke-width="1">
+										<line x1="150" y1="30" x2="150" y2="270"/>
+										<line x1="48" y1="90" x2="252" y2="210"/>
+										<line x1="48" y1="210" x2="252" y2="90"/>
+									</g>
+									<!-- polygon (sample values) -->
+									<polygon points="150,70 220,130 190,210 120,230 80,160 120,120" fill="url(#svFill)" stroke="#5b2ae6" stroke-width="2"/>
+									<!-- labels -->
+									<g fill="#C32126" font-size="11" font-family="Kanit, sans-serif" text-anchor="middle">
+										<text x="150" y="18">Stabilitas Penjualan</text>
+										<text x="265" y="95">Fixed Asset Turnover</text>
+										<text x="265" y="225">Standard 0.05% Rating 75</text>
+										<text x="150" y="292">Total Asset Turnover</text>
+										<text x="35" y="225">Pertumbuhan Penjualan</text>
+										<text x="35" y="95">Standard 0.05% Rating 75</text>
+									</g>
+								</svg>
+								<figcaption>Nilai sampel untuk ilustrasi radar</figcaption>
+							</figure>
+						</div>
+
+						<!-- Table -->
+						<div class="sv-table" style="width: 100%;">
+							<h4>Strategic Value Metric</h4>
+							<div class="sv-head">
+								<div>Parameter</div>
+								<div>Hasil</div>
+								<div>Standard</div>
+								<div>Keterangan</div>
+							</div>
+							<div class="sv-row">
+								<div>Kapasitas Founder dan Top Management</div>
+								<div class="sv-center">3.64</div>
+								<div class="sv-center">2.50</div>
+								<div class="sv-center">Sangat Bagus (Jauh di atas standard)</div>
+							</div>
+							<div class="sv-row">
+								<div>Visi, Misi, dan Value Perusahaan</div>
+								<div class="sv-center">3.64</div>
+								<div class="sv-center">2.50</div>
+								<div class="sv-center">Sangat Bagus (Jauh di atas standard)</div>
+							</div>
+							<div class="sv-row">
+								<div>Kekuatan Ide dan Daya Saing Produk</div>
+								<div class="sv-center">3.64</div>
+								<div class="sv-center">2.50</div>
+								<div class="sv-center">Sangat Bagus (Jauh di atas standard)</div>
+							</div>
+							<div class="sv-row">
+								<div>Potensi Pasar</div>
+								<div class="sv-center">3.64</div>
+								<div class="sv-center">2.50</div>
+								<div class="sv-center">Sangat Bagus (Jauh di atas standard)</div>
+							</div>
+							<div class="sv-row">
+								<div>Business Plan</div>
+								<div class="sv-center">3.64</div>
+								<div class="sv-center">2.50</div>
+								<div class="sv-center">Sangat Bagus (Jauh di atas standard)</div>
+							</div>
+							<div class="sv-row">
+								<div>Implementasi Business Plan</div>
+								<div class="sv-center">3.64</div>
+								<div class="sv-center">2.50</div>
+								<div class="sv-center">Sangat Bagus (Jauh di atas standard)</div>
+							</div>
+						</div>
+
+						<!-- Analysis card -->
+						<div class="sv-analysis">
+							<h5>Analisis :</h5>
+							<p>
+								Perusahaan memiliki Strategic Value yang sangat baik, artinya secara potensi produk jika dikelola dengan baik dapat jauh berkembang. Namun secara Financial Health perusahaan masih memiliki beberapa permasalahan keuangan yang perlu diselesaikan. Dari sisi Core Drivers, perusahaan telah menjalankan berbagai fungsi manajemen usahanya dengan sangat baik.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<footer class="hidden dd-footer md:grid">
+                    <style>
+                        /* Scoped footer styles */
+                        .dd-footer {
+                            background: #ffffff;
+                            border-radius: 15px;
+                            padding: 24px;
+                            margin-top: 24px;
+                        }
+                        .dd-footer-grid {
+                            display: grid;
+                            gap: 24px;
+                        }
+                        @media (min-width: 992px) {
+                            .dd-footer-grid {
+                                grid-template-columns: 1.6fr 1fr 1fr 1fr;
+                                gap: 40px;
+                            }
+                        }
+                        .dd-footer .muted {
+                            color: #867c7c;
+                            font-family: "Montserrat", sans-serif;
+                            font-weight: 600;
+                            font-size: 12px;
+                            line-height: 15px;
+                            margin: 0 0 12px;
+                        }
+                        .dd-footer .body {
+                            color: #000000;
+                            font-family: "Montserrat", sans-serif;
+                            font-weight: 600;
+                            font-size: 12px;
+                            line-height: 32px;
+                            margin: 0;
+                        }
+                        .dd-footer .small {
+                            color: #000000;
+                            font-family: "Montserrat", sans-serif;
+                            font-weight: 600;
+                            font-size: 12px;
+                            line-height: 15px;
+                            margin: 0;
+                        }
+                        .dd-footer .tagline {
+                            margin: 12px 0;
+                        }
+                        .dd-footer .addr {
+                            margin: 12px 0 24px;
+                            max-width: 420px;
+                        }
+                        .dd-footer .copyright {
+                            margin-top: 40px;
+                        }
+                        .dd-footer .contact-item {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                        }
+                        .dd-footer .social {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            margin-top: 8px;
+                        }
+                        .dd-footer .logo-text {
+                            font-family: "Kanit", "Montserrat", sans-serif;
+                            font-weight: 800;
+                            font-size: 28px;
+                            color: #252b5f;
+                            margin: 0;
+                        }
+                    </style>
+    
+                    <div
+                        class="dd-footer-grid"
+                        style="max-width: 1160px; margin: 0 auto; padding: 0 32px"
+                    >
+                        <!-- Col 1: Logo + tagline + address + copyright -->
+                        <div>
+                            <h2 class="logo-text">ProBiz360</h2>
+                            <p class="muted tagline">
+                                Virtual asisten keuangan bisnis dalam satu platform
+                            </p>
+                            <p class="small addr">
+                                PT Finchack<br />Gedung Cibis Nine Lt 15 Unit C, Jl TB Simatupang
+                                2,<br />Cilandak Timur, Pasar Minggu, Jakarta Selatan, DKI Jakarta
+                                12560
+                            </p>
+                            <p class="small copyright">Copyright 2024 PT Finchack</p>
+                        </div>
+    
+                        <!-- Col 2: Perusahaan -->
+                        <div>
+                            <p class="muted">Perusahaan</p>
+                            <p class="body">
+                                Tentang Finchack<br />Artikel<br />Kebijakan Privasi<br />Syarat &
+                                Ketentuan
+                            </p>
+                        </div>
+    
+                        <!-- Col 3: Layanan -->
+                        <div>
+                            <p class="muted">Layanan</p>
+                            <p class="body">
+                                Pembukuan<br />Perpajakan<br />Rekonsiliasi Otomatis<br />Operasi
+                                Finansial<br />Legalitas Usaha
+                            </p>
+                        </div>
+    
+                        <!-- Col 4: Contact + Social -->
+                        <div>
+                            <p class="muted">Contact</p>
+                            <p class="body contact-item">
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.52 5.8L0 24l6.36-1.5A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.27-6.1-3.48-8.52z"
+                                        fill="#25D366"
+                                        opacity="0.15"
+                                    />
+                                    <path
+                                        d="M19.05 4.95A9 9 0 006.2 17.8l-.3.13-2.47.58.6-2.41.07-.26A9 9 0 1019.05 4.95z"
+                                        stroke="#000"
+                                        stroke-width="1.5"
+                                        fill="none"
+                                    />
+                                    <path
+                                        d="M8.5 8.9c.2-.43.5-.44.8-.44.2 0 .44 0 .67.5.24.5.8 1.74.87 1.86.07.13.1.27 0 .43-.1.16-.15.27-.3.42-.15.15-.32.34-.46.46-.15.12-.3.24-.13.47.17.23.75 1.23 1.61 1.99 1.1.98 2.02 1.28 2.25 1.42.23.14.37.13.5-.02.13-.15.57-.66.72-.88.15-.22.3-.18.5-.1.2.07 1.28.6 1.5.7.22.1.37.15.42.24.05.1.05.55-.12 1.08-.17.53-1.05 1-1.46 1.03-.37.03-.84.15-2.76-.59-2.33-.92-3.83-3.2-3.95-3.36-.12-.16-.94-1.26-1.11-2.41-.17-1.15.07-1.77.2-1.98z"
+                                        fill="#000"
+                                    />
+                                </svg>
+                                0825 5255 2532
+                            </p>
+                            <p class="body contact-item">
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M3 5h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2z"
+                                        stroke="#000"
+                                        stroke-width="2"
+                                        fill="none"
+                                    />
+                                    <path d="M3 7l9 6 9-6" stroke="#000" stroke-width="2" />
+                                </svg>
+                                0825 5255 2532
+                            </p>
+                            <p class="muted" style="margin-top: 12px">Ikuti kami</p>
+                            <div class="social">
+                                <svg
+                                    width="19"
+                                    height="19"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="3"
+                                        y="3"
+                                        width="18"
+                                        height="18"
+                                        rx="5"
+                                        stroke="#000"
+                                        stroke-width="2"
+                                    />
+                                    <circle cx="12" cy="12" r="4" stroke="#000" stroke-width="2" />
+                                    <circle cx="17.5" cy="6.5" r="1.2" fill="#000" />
+                                </svg>
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="3"
+                                        y="3"
+                                        width="18"
+                                        height="18"
+                                        rx="2"
+                                        stroke="#000"
+                                        stroke-width="2"
+                                    />
+                                    <path d="M8 17V10" stroke="#000" stroke-width="2" />
+                                    <circle cx="8" cy="7" r="1" fill="#000" />
+                                    <path
+                                        d="M12 17v-4.5a2.5 2.5 0 015 0V17"
+                                        stroke="#000"
+                                        stroke-width="2"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+		</div>
+
+		<!-- Alpine.js (v3) for dropdown interactivity -->
+		<script
+			src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+			defer
+		></script>
+		<!-- Bootstrap JS with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Custom JavaScript -->
+		<script src="script.js"></script>
+	</body>
+</html>
