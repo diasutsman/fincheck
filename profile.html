@@ -24,6 +24,7 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="stylesheet" href="footer.css" />
+		<link rel="stylesheet" href="home.css" />
 		<style>
 			/* Profile page styles */
 			body {
@@ -340,6 +341,7 @@
 				}
 			}
 		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
 	<body>
 		<div class="profile-container md:hidden">
@@ -609,6 +611,313 @@
 		</div>
 
 		<div class="hidden profile-container-desktop md:block">
+			<div class="dd-header">
+				<div
+					style="
+						max-width: 1160px;
+						width: 100%;
+						margin: 0 auto;
+						padding: 0 32px;
+					"
+					x-data="{ menuOpen: false }"
+					@keydown.escape.window="menuOpen=false"
+					class="relative"
+				>
+					<div class="dd-topbar">
+						<div class="flex items-center gap-2">
+							<div class="back-button">
+								<a href="home.html" style="text-decoration: none">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="#293179"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path d="M19 12H5"></path>
+										<path d="M12 19l-7-7 7-7"></path>
+									</svg>
+								</a>
+							</div>
+							<a href="home.html">
+								<img
+									src="images/probiz360-logo.png"
+									alt="ProBiz360"
+									class="dd-logo"
+								/>
+							</a>
+						</div>
+						<div class="dd-actions">
+							<div class="notification-bell">
+								<svg
+									width="33"
+									height="33"
+									viewBox="0 0 33 33"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M28.875 8.93751C28.875 11.5913 26.7162 13.75 24.0625 13.75C21.4088 13.75 19.25 11.5913 19.25 8.93751C19.25 6.28376 21.4088 4.12501 24.0625 4.12501C26.7162 4.12501 28.875 6.28376 28.875 8.93751ZM26.125 16.2113C25.4375 16.39 24.75 16.5 24.0625 16.5C22.0579 16.4964 20.1365 15.6984 18.719 14.281C17.3016 12.8635 16.5036 10.9421 16.5 8.93751C16.5 6.91626 17.2975 5.08751 18.5625 3.72626C18.313 3.42038 17.9983 3.17402 17.6415 3.00513C17.2847 2.83624 16.8948 2.74909 16.5 2.75001C14.9875 2.75001 13.75 3.98751 13.75 5.50001V5.89876C9.66625 7.10876 6.875 10.8625 6.875 15.125V23.375L4.125 26.125V27.5H28.875V26.125L26.125 23.375V16.2113ZM16.5 31.625C18.0262 31.625 19.25 30.4013 19.25 28.875H13.75C13.75 29.6044 14.0397 30.3038 14.5555 30.8196C15.0712 31.3353 15.7707 31.625 16.5 31.625Z"
+										fill="#3B46AC"
+									/>
+								</svg>
+							</div>
+							<button
+								id="menuButton"
+								class="menu-button"
+								aria-label="Open menu"
+								@click="menuOpen=!menuOpen"
+								:aria-expanded="menuOpen.toString()"
+								aria-haspopup="true"
+								aria-controls="accountMenu"
+							>
+								<svg
+									class="menu-icon"
+									width="28"
+									height="20"
+									viewBox="0 0 28 20"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<line
+										x1="1"
+										y1="2"
+										x2="27"
+										y2="2"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="10"
+										x2="27"
+										y2="10"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+									<line
+										x1="1"
+										y1="18"
+										x2="27"
+										y2="18"
+										stroke-width="3"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<!-- Desktop dropdown menu (Alpine + Tailwind) -->
+					<style>
+						[x-cloak] {
+							display: none !important;
+						}
+					</style>
+					<div
+						id="accountMenu"
+						role="menu"
+						aria-labelledby="menuButton"
+						tabindex="-1"
+						x-cloak
+						x-show="menuOpen"
+						x-transition.opacity
+						x-transition.duration.200ms
+						@click.outside="menuOpen=false"
+						class="absolute right-8 mt-3 w-[330px] bg-white rounded-xl shadow-2xl overflow-hidden z-50"
+					>
+						<!-- Logo header -->
+						<div class="px-5 pt-4 pb-2">
+							<img
+								src="images/probiz360-logo.png"
+								alt="ProBiz360"
+								class="h-[49px] w-auto"
+							/>
+						</div>
+						<!-- Active row -->
+						<div
+							class="relative flex items-center gap-3 bg-[#293179] text-white px-5 py-4 font-extrabold"
+						>
+							<svg
+								class="w-8 h-8"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5Z"
+									fill="#fff"
+								/>
+							</svg>
+							<span>Dashboard</span>
+							<span
+								class="absolute right-0 top-0 h-full w-[14px] bg-[#C32126]"
+							></span>
+						</div>
+						<!-- Links -->
+						<nav class="grid px-5 py-5 gap-7">
+							<a
+								href="business-check.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<circle
+										cx="12"
+										cy="12"
+										r="9"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="12" r="2" fill="#A7A7A7" />
+								</svg>
+								<span>Business Check</span>
+							</a>
+							<a
+								href="business-process.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="3"
+										y="12"
+										width="3"
+										height="7"
+										rx="1"
+										fill="#A7A7A7"
+									/>
+									<rect
+										x="9"
+										y="9"
+										width="3"
+										height="10"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.9"
+									/>
+									<rect
+										x="15"
+										y="6"
+										width="3"
+										height="13"
+										rx="1"
+										fill="#A7A7A7"
+										opacity="0.8"
+									/>
+								</svg>
+								<span>Business Process</span>
+							</a>
+							<a
+								href="profile.html"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<circle cx="12" cy="7" r="4" fill="#A7A7A7" />
+								</svg>
+								<span>Profile</span>
+							</a>
+							<a
+								href="#password"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<rect
+										x="5"
+										y="11"
+										width="14"
+										height="10"
+										rx="2"
+										stroke="#A7A7A7"
+										stroke-width="2"
+									/>
+									<path
+										d="M8 11V8a4 4 0 018 0v3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Password</span>
+							</a>
+							<a
+								href="#logout"
+								class="flex items-center gap-3 text-[#A7A7A7] no-underline font-extrabold text-[15px]"
+							>
+								<svg
+									class="w-8 h-8"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									aria-hidden="true"
+								>
+									<path
+										d="M10 17l5-5-5-5"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+									<path
+										d="M15 12H3"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+									<path
+										d="M21 21V3a2 2 0 0 0-2-2h-6"
+										stroke="#A7A7A7"
+										stroke-width="2"
+										stroke-linecap="round"
+									/>
+								</svg>
+								<span>Logout</span>
+							</a>
+						</nav>
+					</div>
+					<div class="dd-welcome">
+						<p class="welcome">Welcome,</p>
+						<h2 class="name">Albert Ricia</h2>
+						<p class="summary">
+							You have 4 task to finish all task today, your already completed
+							<strong>75% task</strong> fot today, your progress is
+							<strong>very good.</strong>
+						</p>
+					</div>
+				</div>
+			</div>
 			<!-- Account Section -->
 			<div class="account-section">
 				<!-- Back Button -->
@@ -762,116 +1071,214 @@
 				</div>
 			</div>
 
-			<!-- Footer Section -->
-			<!-- <div class="footer">
-				<a href="home.html" class="footer-item">
-					<div class="footer-icon active">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-							<polyline points="9 22 9 12 15 12 15 22"></polyline>
-						</svg>
-					</div>
-					<div class="footer-text">Home</div>
-				</a>
+			<footer class="hidden dd-footer md:grid" style="margin-top: 64px">
+				<style>
+					/* Scoped footer styles */
+					.dd-footer {
+						background: #ffffff;
+						border-radius: 15px;
+						padding: 24px;
+						margin-top: 24px;
+					}
+					.dd-footer-grid {
+						display: grid;
+						gap: 24px;
+					}
 
-				<a href="#" class="footer-item">
-					<div class="footer-icon inactive">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-							<path
-								d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-							></path>
-						</svg>
-					</div>
-					<div class="footer-text">Your Result</div>
-				</a>
+					.dd-footer-grid {
+						grid-template-columns: 1.6fr 1fr 1fr 1fr;
+					}
 
-				<a href="#" class="footer-item">
-					<div class="footer-icon inactive">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path
-								d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
-							></path>
-							<path d="M18 14v4"></path>
-							<path d="M18 9v1"></path>
-							<rect x="12" y="8" width="15" height="14" rx="2"></rect>
-						</svg>
-					</div>
-					<div class="footer-text">News</div>
-				</a>
+					.dd-footer .muted {
+						color: #867c7c;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 15px;
+						margin: 0 0 12px;
+					}
+					.dd-footer .body {
+						color: #000000;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 32px;
+						margin: 0;
+					}
+					.dd-footer .small {
+						color: #000000;
+						font-family: "Montserrat", sans-serif;
+						font-weight: 600;
+						font-size: 12px;
+						line-height: 15px;
+						margin: 0;
+					}
+					.dd-footer .tagline {
+						margin: 12px 0;
+					}
+					.dd-footer .addr {
+						margin: 12px 0 24px;
+						max-width: 420px;
+					}
+					.dd-footer .copyright {
+						margin-top: 40px;
+					}
+					.dd-footer .contact-item {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+					}
+					.dd-footer .social {
+						display: flex;
+						align-items: center;
+						gap: 10px;
+						margin-top: 8px;
+					}
+					.dd-footer .logo-text {
+						font-family: "Kanit", "Montserrat", sans-serif;
+						font-weight: 800;
+						font-size: 28px;
+						color: #252b5f;
+						margin: 0;
+					}
+				</style>
 
-				<a href="#" class="footer-item">
-					<div class="footer-icon inactive">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<circle cx="12" cy="12" r="3"></circle>
-							<path
-								d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-							></path>
-						</svg>
+				<div
+					class="dd-footer-grid"
+					style="max-width: 1160px; margin: 0 auto; padding: 0 32px"
+				>
+					<!-- Col 1: Logo + tagline + address + copyright -->
+					<div>
+						<h2 class="logo-text">ProBiz360</h2>
+						<p class="muted tagline">
+							Virtual asisten keuangan bisnis dalam satu platform
+						</p>
+						<p class="small addr">
+							PT Finchack<br />Gedung Cibis Nine Lt 15 Unit C, Jl TB Simatupang
+							2,<br />Cilandak Timur, Pasar Minggu, Jakarta Selatan, DKI Jakarta
+							12560
+						</p>
+						<p class="small copyright">Copyright 2024 PT Finchack</p>
 					</div>
-					<div class="footer-text">Setting</div>
-				</a>
 
-				<a href="#" class="footer-item">
-					<div class="footer-icon inactive">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-							<circle cx="12" cy="7" r="4"></circle>
-						</svg>
+					<!-- Col 2: Perusahaan -->
+					<div>
+						<p class="muted">Perusahaan</p>
+						<p class="body">
+							Tentang Finchack<br />Artikel<br />Kebijakan Privasi<br />Syarat &
+							Ketentuan
+						</p>
 					</div>
-					<div class="footer-text">Profile</div>
-				</a>
-			</div> -->
+
+					<!-- Col 3: Layanan -->
+					<div>
+						<p class="muted">Layanan</p>
+						<p class="body">
+							Pembukuan<br />Perpajakan<br />Rekonsiliasi Otomatis<br />Operasi
+							Finansial<br />Legalitas Usaha
+						</p>
+					</div>
+
+					<!-- Col 4: Contact + Social -->
+					<div>
+						<p class="muted">Contact</p>
+						<p class="body contact-item">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.52 5.8L0 24l6.36-1.5A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.27-6.1-3.48-8.52z"
+									fill="#25D366"
+									opacity="0.15"
+								/>
+								<path
+									d="M19.05 4.95A9 9 0 006.2 17.8l-.3.13-2.47.58.6-2.41.07-.26A9 9 0 1019.05 4.95z"
+									stroke="#000"
+									stroke-width="1.5"
+									fill="none"
+								/>
+								<path
+									d="M8.5 8.9c.2-.43.5-.44.8-.44.2 0 .44 0 .67.5.24.5.8 1.74.87 1.86.07.13.1.27 0 .43-.1.16-.15.27-.3.42-.15.15-.32.34-.46.46-.15.12-.3.24-.13.47.17.23.75 1.23 1.61 1.99 1.1.98 2.02 1.28 2.25 1.42.23.14.37.13.5-.02.13-.15.57-.66.72-.88.15-.22.3-.18.5-.1.2.07 1.28.6 1.5.7.22.1.37.15.42.24.05.1.05.55-.12 1.08-.17.53-1.05 1-1.46 1.03-.37.03-.84.15-2.76-.59-2.33-.92-3.83-3.2-3.95-3.36-.12-.16-.94-1.26-1.11-2.41-.17-1.15.07-1.77.2-1.98z"
+									fill="#000"
+								/>
+							</svg>
+							0825 5255 2532
+						</p>
+						<p class="body contact-item">
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path
+									d="M3 5h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2z"
+									stroke="#000"
+									stroke-width="2"
+									fill="none"
+								/>
+								<path d="M3 7l9 6 9-6" stroke="#000" stroke-width="2" />
+							</svg>
+							0825 5255 2532
+						</p>
+						<p class="muted" style="margin-top: 12px">Ikuti kami</p>
+						<div class="social">
+							<svg
+								width="19"
+								height="19"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="5"
+									stroke="#000"
+									stroke-width="2"
+								/>
+								<circle cx="12" cy="12" r="4" stroke="#000" stroke-width="2" />
+								<circle cx="17.5" cy="6.5" r="1.2" fill="#000" />
+							</svg>
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<rect
+									x="3"
+									y="3"
+									width="18"
+									height="18"
+									rx="2"
+									stroke="#000"
+									stroke-width="2"
+								/>
+								<path d="M8 17V10" stroke="#000" stroke-width="2" />
+								<circle cx="8" cy="7" r="1" fill="#000" />
+								<path
+									d="M12 17v-4.5a2.5 2.5 0 015 0V17"
+									stroke="#000"
+									stroke-width="2"
+								/>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</footer>
 		</div>
 
 		<!-- Bootstrap JS with Popper -->
