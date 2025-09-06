@@ -24,6 +24,7 @@
 			body {
 				height: auto !important;
 				overflow: auto !important;
+				display: block;
 			}
 		</style>
 		<script src="https://cdn.tailwindcss.com"></script>
@@ -31,7 +32,7 @@
 	</head>
 	<body>
 		<div>
-			<div class="dd-header">
+			<div class="hidden dd-header md:block">
 				<div
 					style="
 						max-width: 1160px;
@@ -348,7 +349,7 @@
 			</div>
 
 			<!-- Content Section -->
-			<div class="px-3 content-section">
+			<div class="px-3 content-section" style="max-width: 1160px;margin: 0 auto">
 				<div class="text-content">
 					<p>
 						Lorem ipsum is simply dummy text of the printing and typesetting
@@ -375,7 +376,7 @@
 				</div>
 			</div>
 
-			<footer class="hidden dd-footer lg:grid" style="padding: 0">
+			<footer class="hidden dd-footer md:grid" style="margin-top: 64px">
 				<style>
 					/* Scoped footer styles */
 					.dd-footer {
@@ -388,12 +389,11 @@
 						display: grid;
 						gap: 24px;
 					}
-					@media (min-width: 992px) {
-						.dd-footer-grid {
-							grid-template-columns: 1.6fr 1fr 1fr 1fr;
-							gap: 40px;
-						}
+
+					.dd-footer-grid {
+						grid-template-columns: 1.6fr 1fr 1fr 1fr;
 					}
+
 					.dd-footer .muted {
 						color: #867c7c;
 						font-family: "Montserrat", sans-serif;
@@ -450,13 +450,7 @@
 
 				<div
 					class="dd-footer-grid"
-					style="
-						/*max-width: 1160px;*/
-						max-width: auto;
-						width: auto;
-						margin: 0 auto;
-						padding: 0;
-					"
+					style="max-width: 1160px; margin: 0 auto; padding: 0 32px"
 				>
 					<!-- Col 1: Logo + tagline + address + copyright -->
 					<div>
@@ -591,7 +585,7 @@
 				</div>
 			</footer>
 
-			<div class="footer lg:hidden">
+			<div class="footer md:hidden">
 				<a href="home.html" class="footer-item">
 					<div class="footer-icon active">
 						<svg
